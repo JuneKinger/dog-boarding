@@ -11,6 +11,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(value = "person")
@@ -83,6 +84,19 @@ public class PersonController {
         return "index";
     }
 
+
+    @RequestMapping(value="edit/{personId}", method = RequestMethod.GET)
+    public String displayEditFrom(Model model, @PathVariable int personId, @CookieValue(value = "person", defaultValue = "none")
+                                  String email, Person person, Errors errors, String verify) {
+        if (email.equals("none")) {
+            return "redirect:/person/login";
+        }
+        model.addAttribute("title", "Edit account" + person.getEmail() + "(id=" + person.getId() + ")");
+        Optional<Person> pers = personDao.findById(personId);
+        model.addAttribute("person", person.getId());
+        return "edit";
+    }
+
     @RequestMapping(value = "logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {
 
@@ -93,6 +107,7 @@ public class PersonController {
         response.addCookie(emailCookieRemove);
         return "index";
     }
+
 
 }
 
