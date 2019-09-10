@@ -1,0 +1,10 @@
+errors {
+}
+
+#contactContent { margin-top: 20px; margin-left: 20px;}
+input { border: none; background-color: #000; margin-left: 20px; margin-bottom: 30px; padding-right: 50px;}
+
+label{
+    display:inline-block;
+    width:100px;
+}

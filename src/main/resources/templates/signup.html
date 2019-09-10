@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fragments :: head">
+    <title>Title</title>
+</head>
+<body class="container">
+<!-- form-control displays a nice table like form -->
+<form method ="post" style="max-width:300px;" th:object="${person}">
+    <div class="checkbox">
+    <a href="/>
+
+
+
+
+    </div>
+    <div>
+        <label th:for="firstName">First name</label>
+        <input type="text" class="form-control" th:field="*{firstName}" />
+        <span th:errors="*{firstName}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="lastName">Last name</label>
+        <input class="form-control" th:field="*{lastName}" />
+        <span th:errors="*{lastName}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="email">Email</label>
+        <input class="form-control" th:field="*{email}" />
+        <span th:errors="*{email}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input class="form-control" id="password" th:field="*{password}" type="password"  />
+        <span th:errors="*{password}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label for="verify">Verify</label>
+        <input class="form-control" id="verify" name="verify" type="password" />
+    </div>
+    <div class="form-group">
+        <label th:for="address">Address</label>
+        <input class="form-control" th:field="*{address}" />
+        <span th:errors="*{address}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="phone">Phone #</label>
+        <input class="form-control" th:field="*{phone}" />
+        <span th:errors="*{phone}" class="error"></span>
+    </div>
+
+    <div th:text="${error}"></div>
+
+    <input type="submit" value="Register"/>
+
+</form>
+</body>
+</html>
