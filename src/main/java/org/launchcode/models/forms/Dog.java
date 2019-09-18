@@ -1,40 +1,34 @@
 package org.launchcode.models.forms;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
+@DynamicUpdate
 public class Dog {
 
     @Id
     @GeneratedValue
     private int id;
 
-    @NotNull
-    @Size(min=2, max=15)
+    @NotEmpty(message="Name cannot be empty")
     private String name;
 
-    @NotNull
-    @Size(min=2)
     private String breed;
 
-    @NotNull
+    @NotNull(message = "Size cannot be empty")
     private String size;
 
-    @ManyToOne
+    private String specialNotes;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     private Person person;
 
     public Dog() { }
-
-    public Dog(String name, String breed, String size) {
-        this.name = name;
-        this.breed = breed;
-        this.size = size;
-    }
 
     public int getId() {
         return id;
@@ -71,4 +65,13 @@ public class Dog {
     public void setPerson(Person person) {
         this.person = person;
     }
+
+    public String getSpecialNotes() {
+        return specialNotes;
+    }
+
+    public void setSpecialNotes(String specialNotes) {
+        this.specialNotes = specialNotes;
+    }
+
 }

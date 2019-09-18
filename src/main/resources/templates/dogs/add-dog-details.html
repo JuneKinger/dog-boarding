@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fragments :: head">
+    <title>Title</title>
+</head>
+<nav th:replace="fragments :: navigation"></nav>
+<body class="container">
+<!-- form-control displays a nice table like form -->
+    <div style="margin-top: 100px">
+        <form class="form-inline" method ="post" style="max-width:800px;" th:object="${dog}">
+            <div th:object="${person}"></div>
+
+            <div class="form-horizontal">
+                <div class="row">
+                    <!-- <div class="col-md-6 col-md-offset-3"> -->
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h1>Add dog details</h1>
+                            </div>
+                            <input type="hidden" class="form-control" th:field="${person.email}" id="person.email"/>
+                            <div>
+                                <p></p>
+                            </div>
+                            <div class="form-horizontal">
+                                <label th:for="name">First name: </label>
+                                <input class="form-control" th:field="*{name}" placeholder="name"/>
+                                <span th:errors="*{name}" class="error"></span>
+                            </div>
+                            <div>
+                                <p></p>
+                            </div>
+                            <div class="form-horizontal">
+                                <label th:for="breed">Breed: </label>
+                                <input class="form-control" th:field="*{breed}" placeholder="breed"/>
+                                <span th:errors="*{breed}" class="error"></span>
+                            </div>
+                            <div>
+                                <p></p>
+                            </div>
+                            <fieldset>
+                                <input type="radio" name="size" value="small" id="size_small" >
+                                <label for="size_small">Small (< 10 lbs) &nbsp; </label>
+
+                                <input type="radio" name="size" value="medium" id="size_medium">
+                                <label for="size_medium">Medium (11 - 50 lbs) &nbsp; </label>
+
+                                <input type="radio" name="size" value="large" id="size_large">
+                                <label for="size_large">Large (> 51 lbs) </label>
+
+                            </fieldset>
+                            <div>
+                                <p></p>
+                            </div>
+                            <div class="form-horizontal">
+                                <label th:for="specialNotes">Special Notes: </label>
+                                <textarea class="form-control"  th:field="*{specialNotes}" placeholder="specialNotes"></textarea>
+                                <span th:errors="*{specialNotes}" class="error"></span>
+                            </div>
+                            <div>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="form-group">
+                <label th:for="numberOfDogs">Number of dogs</label>
+                <select name="dogId">
+                    <option th:each="dog : ${dogs}"
+                            th:text="${dog.name}"
+                            th:value="${dog.id}"></option>
+                </select>
+
+                <span th:errors="*{numberOfDogs}" class="error"></span>
+            </div> -->
+
+            <div th:text="${error}"></div>
+
+            <!-- <input type="hidden" th:value="${person.id}" name="personId" /> -->
+            <button type="submit" name="action" value="Add">Add another dog</button>
+            <button type="submit" name="action" value="Exit">Save and Exit</button>
+
+        </form>
+    </div>
+</body>
+</html>

@@ -1,45 +1,47 @@
 package org.launchcode.models.forms;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@DynamicUpdate
 public class Person {
 
     @Id
     @GeneratedValue
     private int id;
 
-    @Email
-    @Column(unique = true)
     @NotEmpty(message = "Email cannot be empty")
+    @Column(unique = true)
     private String email;
 
-    @Size(min = 6)
-    @NotEmpty(message = "Password cannot be empty")
+    @NotEmpty
     private String password;
 
-    @NotEmpty(message = "First name cannot be empty")
+    @NotEmpty
     private String firstName;
 
-    @NotEmpty(message = "Last name cannot be empty")
+    @NotEmpty
     private String lastName;
 
-    @NotEmpty(message = "Address name cannot be empty")
+    @NotEmpty
     private String address;
 
-    @Size(min = 10, max = 10, message = "Phone # needs to be 10 digits long")
-    private String phone;
+    //@Size(min = 10, max = 10, message = "Phone # needs to be 10 digits long")
+    private String homePhone;
+
+    private String cellPhone;
 
     // one to many relationship established with foreign key person_id
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id")
-    private List<Dog> dogs = new ArrayList<>();
+    private List<Dog> dogNames = new ArrayList<>();
 
 
     // default constructor
@@ -47,15 +49,15 @@ public class Person {
     }
 
     // parameterized constructor
-    public Person(String email, String password) {
+    public Person(String email) {
     }
 
     // parameterized constructor
-    public Person(String email, String password, String verify, String firstName,
+    public Person(String firstName,
                   String lastName, String address, String phone) {
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -100,17 +102,26 @@ public class Person {
         this.address = address;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getHomePhone() {
+        return homePhone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setHomePhone(String hPhone) {
+        this.homePhone = hPhone;
+    }
+    public String getCellPhone() {
+        return cellPhone;
     }
 
-    public List<Dog> getDogs() {
-        return dogs;
+    public void setCellPhone(String cPhone) {
+        this.cellPhone = cPhone;
     }
 
+    public List<Dog> getDogNames() {
+        return dogNames;
+    }
 
+    public void setDogNames(List<Dog> dogNames) {
+        this.dogNames = dogNames;
+    }
 }

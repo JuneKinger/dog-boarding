@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fragments :: head">
+    <title>Title</title>
+</head>
+<nav th:replace="fragments :: navigation"></nav>
+
+<body class="container">
+    <div style="margin-top: 60px">
+        <div class="form-row">
+            <div class="col-md-6 col-md-offset-3">
+    <!-- form-control displays a nice table like form -->
+                <form method ="post" style="max-width:500px;" th:object="${person}">
+                    <div class="panel-group" >
+                          <div class="panel panel-primary">
+                              <div class="panel-heading">
+                                  <h1 class="panel-title">Edit Profile</h1>
+                              </div>
+                              <div class="panel-body">
+                                  <div th:text="${error}" class="col-form-label text-danger"></div>
+                                  <div class="form-row" >
+                                      <div class="col-md-5 form-group">
+                                          <label th:for="firstName"><small>First name *</small></label>
+                                          <input type="text" class="form-control" id = "firstName" th:field="*{firstName}" placeholder="firstName" required/>
+                                          <span th:errors="*{firstName}" class="error"></span>
+                                        </div>
+
+                                      <div class="col-md-5 form-group">
+                                          <label th:for="lastName"><small>Last name *</small> </label>
+                                          <input class="form-control" id="lastName" th:field="*{lastName}" placeholder="lastName" required />
+                                          <span th:errors="*{lastName}" class="error"></span>
+                                      </div>
+                                  </div>
+
+                                  <div class="col-md-10 form-group">
+                                      <label th:for="address"><small>Address *</small></label>
+                                      <textarea rows="3" class="form-control" id="address" th:field="*{address}" placeholder="address" required/>
+                                      <span th:errors="*{address}" class="error"></span>
+                                  </div>
+
+                                  <div class="col-md-5 form-group">
+                                      <label for="homePhone" ><small>Home Phone *</small></label>
+                                      <input id="homePhone" class="form-control"  type="text" th:field="*{homePhone}" placeholder="eg. 999-999-9999" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
+                                      <span>format: 123-456-7890</span>
+                                      <span th:errors="*{homePhone}" class="error"></span>
+                                  </div>
+
+                                  <div class="col-md-5 form-group">
+                                      <label for="cellPhone" ><small>Cell Phone (optional)</small></label>
+                                      <input id="cellPhone" class="form-control"  type="text" th:field="*{cellPhone}" placeholder="eg. 999-999-9999" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"  />
+                                      <span>format: 123-456-7890</span>
+                                      <span th:errors="*{cellPhone}" class="error"></span>
+                                  </div>
+
+                                  <!-- <label th:for="email">Email</label> -->
+                                  <input type="hidden" th:field="*{email}" />
+                                  <input type="hidden"  th:field="*{password}"  />
+
+                                  <!--<p><a th:href="'person/edit/' + ${person.id}"></a></p>-->
+
+                                  <!-- <input type="hidden" th:value="${person.id}" name="personId" /> -->
+                                  <div class="col-md-3">
+                                        <input type="submit" value="Edit"/>
+                                  </div>
+                              </div>
+                          </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

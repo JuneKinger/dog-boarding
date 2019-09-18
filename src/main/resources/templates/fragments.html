@@ -2,18 +2,66 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:fragment="head">
     <meta charset="UTF-8">
-    <!-- Bootstrap stylesheets and script -->
-    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
-    <link th:href="@{/css/dogwalker.css}" rel="stylesheet" />
-    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
 
+    <!-- Bootstrap stylesheets and script -->
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link type="text/css" href="../../css/styles.css" rel="stylesheet" />
+    <img src="../images/puppies.jpg">
 
 </head>
 <body>
-    <nav th:fragment="navigation">
-        <a th:href="'/person/signup'">Signup |</a>
-        <a th:href="'/person/login'">Login |</a>
-        <a th:href="'/person/edit'">Edit personal details</a>
-    </nav>
+
+<nav class="navbar navbar-inverse navbar-fixed-top"  th:fragment="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" >Dogs Always!</a>
+        </div>
+
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+            <li><a href="/person/signup">Register</a></li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    My Profile
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" tabindex="-1" href="/person/edit">Edit Profile</a></li>
+                    <li><a class="dropdown-item" tabindex="-1" href="/person/remove">Delete Profile</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLinkDogs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    My Dogs
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkDogs">
+                    <li><a class="dropdown-item" tabindex="-1" href="/dogs/add-dog-details">Add Dog Details</a></li>
+                    <li><a class="dropdown-item" tabindex="-1" href="/dogs/edit-dog-details">Edit Dog Details</a></li>
+                    <li><a class="dropdown-item" tabindex="-1" href="/dogs/remove-dog-details">Delete Dog Details</a></li>
+                </ul>
+            </li>
+            <li><a href="/dog/service">Schedule Service</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/person/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li><a href="/person/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        </ul>
+
+    </div>
+
+</nav>
+<div>
+    <br>
+    <br>
+    <br>
+</div>
+<!-- <div style="text-align:right;"><img src="C:/Users/June/lc101/dog-walker/src/main/resources/static/images/puppies.jpg"></div>-->
 </body>
+
+
 </html>
