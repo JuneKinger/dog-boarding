@@ -20,7 +20,6 @@ public class Dog {
 
     private String breed;
 
-    @NotNull(message = "Size cannot be empty")
     private String size;
 
     private String specialNotes;
@@ -73,5 +72,6 @@ public class Dog {
     public void setSpecialNotes(String specialNotes) {
         this.specialNotes = specialNotes;
     }
+
 
 }

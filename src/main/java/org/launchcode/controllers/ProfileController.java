@@ -2,7 +2,9 @@ package org.launchcode.controllers;
 
 import org.apache.naming.factory.SendMailFactory;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
+import org.launchcode.models.data.DogDao;
 import org.launchcode.models.data.PersonDao;
+import org.launchcode.models.forms.Dog;
 import org.launchcode.models.forms.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Identity;
+import java.util.List;
 import java.util.Optional;
 import java.lang.String;
 
@@ -25,6 +28,9 @@ public class ProfileController {
 
     @Autowired
     private PersonDao personDao;
+
+    @Autowired
+    private DogDao dogDao;
 
     @RequestMapping(value = "")
     public String index(Model model) {
@@ -37,6 +43,7 @@ public class ProfileController {
     public String displaySignupForm(Model model) {
 
         model.addAttribute("person", new Person());
+
         return "person/signup";
     }
 
@@ -74,7 +81,7 @@ public class ProfileController {
             response.addCookie(cookie);
 
             personDao.save(person);
-            return "person/index";
+            return "redirect:/dogs/add-dog-details";
         }
         else {
 
@@ -105,7 +112,7 @@ public class ProfileController {
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String processLoginForm(Model model, @ModelAttribute  Person person, HttpServletResponse response, HttpSession session) {
+    public String processLoginForm(Model model, @ModelAttribute  Person person, HttpServletResponse response) {
 
         Person pers = personDao.findByEmail(person.getEmail());
         if (pers == null || (!pers.getPassword().equals(person.getPassword()))) {
@@ -152,7 +159,7 @@ public class ProfileController {
 
 
     @RequestMapping(value = "edit", method = RequestMethod.GET)
-    public String displayEditForm(Model model, Person person, HttpSession session, @CookieValue(value = "person",
+    public String displayEditForm(Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {
 
         if (email.equals("none")) {
@@ -160,6 +167,7 @@ public class ProfileController {
         }
 
         Person pers = personDao.findByEmail(email);
+
         model.addAttribute("person", pers);
 
         return "person/edit";
@@ -194,7 +202,7 @@ public class ProfileController {
 
 
     @RequestMapping(value = "remove", method = RequestMethod.GET)
-    public String displayRemoveForm(Model model, Person person, @CookieValue(value = "person",
+    public String displayRemoveForm(Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {
 
         if (email.equals("none") || email.equals("")) {
@@ -205,21 +213,25 @@ public class ProfileController {
         Person pers = personDao.findByEmail(email);
         model.addAttribute("person", pers);
 
+        List<Dog> dogs = pers.getDogs();
+
         return "person/remove";
 
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
-    public String processRemoveForm(HttpServletRequest request, HttpServletResponse response, @RequestParam int personId, String email, Model model, Person person) {
+    public String processRemoveForm(HttpServletRequest request, HttpServletResponse response, @RequestParam String email) {
 
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                c.setMaxAge(0);
+                c.setPath("/");
+                response.addCookie(c);
+            }
+        }
         Person pers = personDao.findByEmail(email);
         personDao.delete(pers);
-
-        Cookie emailCookieRemove = new Cookie("email", "");
-        emailCookieRemove.setMaxAge(0);
-        response.addCookie(emailCookieRemove);
-        pers.equals("");
-        email.equals("none");
 
         return "person/index";
     }

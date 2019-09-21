@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fragments :: head">
+    <title>Title</title>
+</head>
+<nav th:replace="fragments :: navigation"></nav>
+<body class="container">
+<!-- form-control displays a nice table like form -->
+<div style="margin-top: 100px">
+    <div class="form-row">
+        <div class="col-md-6 col-md-offset-3">
+            <form method ="post" style="max-width:1500px;" th:object="${dog}">
+                <div class="panel-group">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h1 class="panel-title">Add dog details</h1>
+                        </div>
+                        <div class="panel-body">
+                            <div th:text="${error}" class="col-form-label text-danger"></div>
+                            <div class="col-md-10 form-group">
+                                <label th:for="name"><small>First name *</small> </label>
+                                <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="name" required/>
+                                <span th:errors="*{name}" class="error"></span>
+                            </div>
+
+                            <div class="col-md-10 form-group">
+                                <label th:for="breed"><small>Breed </small></label>
+                                <input type="text" class="form-control" id="breed" th:field="*{breed}" placeholder="breed"/>
+                                <span th:errors="*{breed}" class="error"></span>
+                            </div>
+                            <div class="form-row">
+                                <div class="radio col-md-12 form-group">
+                                    </label><small><strong> Select Size </strong></small></label>
+                                </div>
+                                <div class="radio col-md-8 form-group">
+                                    <label for="small"><small>Small (0 - 10 lbs)</small></label>
+                                    <input type="radio" name="small" value="small" id="small"/>
+                                </div>
+                                <div class="radio col-md-8 form-group">
+                                    <label for="medium"><small>Medium (11 - 50 lbs)</small></label>
+                                    <input type="radio" name="medium" value="medium" id="medium" />
+                                </div>
+                                <div class="radio col-md-8 form-group">
+                                    <label for="large"><small>Large (51 - ? lbs)</small></label>
+                                    <input type="radio" name="large" value="large" id="large" />
+                                </div>
+                            </div>
+                            <div class="col-md-10 form-group">
+                                <label th:for="specialNotes"><small>Special Notes </small> </label>
+                                <textarea rows="3" class="form-control" id="specialNotes" th:field="*{specialNotes}" placeholder="specialNotes"></textarea>
+                                <span th:errors="*{specialNotes}" class="error"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <input type="hidden" th:value="${person.id}" name="personId" /> -->
+                <!-- <button type="submit" name="action" value="Add">Add another dog</button> -->
+                <button type="submit" class="btn btn-primary" role="button" name="action" >Add dog details</button>
+                <button type="submit" class="btn btn-primary" role="button" name="action" >Exit</button>
+
+                <input type="hidden" th:field="${person.email}" />
+
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<!-- <div class="form-group">
+              <label th:for="numberOfDogs">Number of dogs</label>
+              <select name="dogId">
+                  <option th:each="dog : ${dogs}"
+                          th:text="${dog.name}"
+                          th:value="${dog.id}"></option>
+              </select>
+
+              <span th:errors="*{numberOfDogs}" class="error"></span>
+          </div> -->

@@ -24,10 +24,8 @@ public class DogController {
     /*
     @RequestMapping(value = "")
     public String index(Model model) {
-
         model.addAttribute("dogs", dogDao.findAll());
         model.addAttribute("title", "My dogs");
-
         return "dogs/index";
     }
 */
@@ -74,5 +72,4 @@ public class DogController {
     }
 
 }
-
 

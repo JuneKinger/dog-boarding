@@ -13,7 +13,7 @@
                 <div class="panel-group" >
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h1 class="panel-title">Edit Profile</h1>
+                            <h1 class="panel-title">Delete Profile</h1>
                         </div>
                         <div class="panel-body">
                             <div class="form-row" >
@@ -49,10 +49,12 @@
                             <input type="hidden" th:field="*{email}" />
                             <input type="hidden"  th:field="*{password}"  />
 
-                            <p><a th:href="'person/edit/' + ${person.id}"></a></p>
+                            <!-- <p><a th:href="'person/remove/' + ${person.id}"></a></p>
+                            <input type="hidden" value="${person.id}" /> -->
 
                             <div class="col-md-3">
-                                <input type="submit" value="Delete"/>
+                                <!-- <a class="btn btn-primary" href="#" role="button">Delete</a> -->
+                                <button type="submit" class="btn btn-primary" role="button" name="action" >Delete Profile</button>
                             </div>
                         </div>
                     </div>

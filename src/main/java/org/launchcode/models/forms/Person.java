@@ -41,7 +41,7 @@ public class Person {
     // one to many relationship established with foreign key person_id
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id")
-    private List<Dog> dogNames = new ArrayList<>();
+    private List<Dog> dogs = new ArrayList<>();
 
 
     // default constructor
@@ -117,11 +117,11 @@ public class Person {
         this.cellPhone = cPhone;
     }
 
-    public List<Dog> getDogNames() {
-        return dogNames;
+    public List<Dog> getDogs() {
+        return dogs;
     }
 
-    public void setDogNames(List<Dog> dogNames) {
-        this.dogNames = dogNames;
+    public void setDogNames(List<Dog> dogs) {
+        this.dogs = dogs;
     }
 }
