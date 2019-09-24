@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("dogs")
@@ -21,14 +22,28 @@ public class DogController {
     @Autowired
     private PersonDao personDao;
 
-    /*
     @RequestMapping(value = "")
-    public String index(Model model) {
-        model.addAttribute("dogs", dogDao.findAll());
-        model.addAttribute("title", "My dogs");
+
+    // takes an object out of the db using Spring Data JPA (cheeseDao),
+    // run it through Spring MVC to Thymeleaf layer where we had a list of POJOs
+    // where we rendered that list to the webpage.
+    // method binds data (list of cheeses) to the model
+    public String index(Model model, @CookieValue(value = "person",
+            defaultValue = "none") String email) {
+
+        if (email.equals("none")) {
+            return "redirect:/person/login";
+        }
+
+        Person pers = personDao.findByEmail(email);
+        List<Dog> dogs = pers.getDogs();
+
+        // findAll() is an iterable that Thymeleaf uses in th:each="dog : ${dogs}"
+        model.addAttribute("dogs", dogs);
+        model.addAttribute("title", "My Dogs");
+
         return "dogs/index";
     }
-*/
 
     @RequestMapping(value = "add-dog-details", method = RequestMethod.GET)
     public String displayDogDetailForm(Model model, @CookieValue(value = "person",

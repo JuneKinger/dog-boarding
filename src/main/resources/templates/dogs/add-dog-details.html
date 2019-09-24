@@ -9,7 +9,7 @@
 <div style="margin-top: 60px">
     <div class="form-row">
         <div class="col-md-6 col-md-offset-3">
-            <form method ="post" style="max-width:800px;" th:object="${dog}">
+            <form method ="post" style="max-width:500px;" th:object="${dog}">
                 <div th:object="${person}"></div>
 
                     <div class="panel-group">
@@ -42,17 +42,14 @@
                             </div>
                             -->
 
-                            <div class="col-md-12">
-                                <hr>
-                            </div>
-                            <div class="col-md-10 form-group">
-                                <label th:for="name"><small>First name *</small></label>
+                            <div class="col-md-8 form-group">
+                                <label th:for="name"><small>Name *</small></label>
                                 <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="name" required/>
                             </div>
                             <div>
                                 <p></p>
                             </div>
-                            <div class="col-md-10 form-group">
+                            <div class="col-md-8 form-group">
                                 <label th:for="breed"><small>Breed</small></label>
                                 <input class="form-control" type="text" th:field="*{breed}" id="breed" placeholder="breed"/>
                             </div>
@@ -61,22 +58,22 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="col-md-10" form-group>
+                                <div class="col-md-8" form-group>
                                     </label><small><strong> Select Size </strong></small></label>
                                     <div>
                                         <p></p>
                                     </div>
 
-                                    <div class="form-check col-md-10">
+                                    <div class="form-check col-md-8">
                                         <input class="form-check-input" th:field="*{size}" type="radio" name="small" value="" id="small"/>
                                         <label class="form-check-label" for="small"><small>Small (0 - 10 lbs)</small></label>
                                     </div>
 
-                                    <div class="form-check col-md-10">
-                                        <input class="form-check-input" th:field="*{size}" type="radio" name="medium" value="medium" id="medium" checked/>
+                                    <div class="form-check col-md-8">
+                                        <input class="form-check-input" th:field="*{size}" type="radio" name="medium" checked value="medium" id="medium" />
                                         <label class="form-check-label" for="medium"><small>Medium (11 - 50 lbs)</small></label>
                                     </div>
-                                    <div class="form-check col-md-10">
+                                    <div class="form-check col-md-8">
                                         <input class="form-check-input" th:field="*{size}" type="radio" name="large" value="" id="large"/>
                                         <label class="form-check-label" for="large"><small>Large (51 - Max)</small></label>
                                     </div>
@@ -85,7 +82,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-10 form-group">
+                            <div class="col-md-8 form-group">
                                 <label th:for="specialNotes">Special Notes: </label>
                                 <textarea class="form-control"  th:field="*{specialNotes}" id="specialNotes" placeholder="specialNotes"></textarea>
                             </div>
@@ -93,13 +90,13 @@
                                 <p></p>
                             </div>
 
-                            <div class="col-md-10 form-group">
+                            <div class="col-md-8 form-group">
                                 <!-- <input type="hidden" th:value="${person.id}" name="personId" /> -->
                                 <input type="hidden" class="form-control" th:field="${person.email}" id="person.email"/>
 
                                 <button type="submit" name="action" class="btn btn-primary" value="Add">Save</button>
                                 <!--<button type="submit" name="action" value="Exit">Save and Exit</button> -->
-                                <a href="/" id ="cancel" name="cancel" class="btn btn-primary">Cancel</a>
+                                <a href="/" id ="cancel" name="cancel" class="btn btn-primary">&nbsp;Exit</a>
                             </div>
 
                         </div>
@@ -114,10 +111,6 @@
                 </select>
                 <span th:errors="*{numberOfDogs}" class="error"></span>
             </div> -->
-
-
-
-
 
             </form>
         </div>
