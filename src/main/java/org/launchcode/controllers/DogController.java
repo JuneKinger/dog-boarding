@@ -11,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("dogs")
@@ -46,7 +47,7 @@ public class DogController {
     }
 
     @RequestMapping(value = "add-dog-details", method = RequestMethod.GET)
-    public String displayDogDetailForm(Model model, @CookieValue(value = "person",
+    public String displayAddDogDetailForm(Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {
 
         if (email.equals("none")) {
@@ -61,7 +62,7 @@ public class DogController {
     }
 
     @RequestMapping(value = "add-dog-details", method = RequestMethod.POST)
-    public String processDogDetailForm(@ModelAttribute @Valid Dog newDog, Errors errors,
+    public String processAddDogDetailForm(@ModelAttribute @Valid Dog newDog, Errors errors,
                                        @RequestParam("action") String action, Person person, Model model) {
 
         if (errors.hasErrors()) {
@@ -84,6 +85,64 @@ public class DogController {
 
             return "person/index";
         }
+    }
+
+    @RequestMapping(value = "list-dog-details", method = RequestMethod.GET)
+    public String displayListDogDetailForm(Model model, @CookieValue(value = "person",
+            defaultValue = "none") String email) {
+
+        if (email.equals("none")) {
+            return "redirect:/person/login";
+        }
+        Person pers = personDao.findByEmail(email);
+
+        model.addAttribute("dogs", pers.getDogs());
+        model.addAttribute("person", pers);
+
+        return "dogs/list-dog-details";
+    }
+
+
+
+    @RequestMapping(value = "edit-dog-details/{id}", method = RequestMethod.GET)
+    public String displayEditDogDetailForm(@PathVariable int id, Model model, @CookieValue(value = "person",
+            defaultValue = "none") String email) {
+
+        if (email.equals("none")) {
+            return "redirect:/person/login";
+        }
+        Person pers = personDao.findByEmail(email);
+
+        model.addAttribute("person", personDao.findByEmail(email));
+        //model.addAttribute("dogs", dogDao.findAll());
+
+        model.addAttribute("dog", dogDao.findById(id));
+
+        return "dogs/edit-dog-details";
+    }
+
+
+    @RequestMapping(value = "edit-dog-details/{id}", method = RequestMethod.POST)
+    public String processDogDetailForm(@ModelAttribute @Valid Dog newDog, Errors errors,
+                                       @PathVariable int id, Person person, Model model) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Edit Dog");
+            model.addAttribute("dog", dogDao.findById(id));
+            return "dogs/edit-dog-details";
+        }
+
+        Person pers = personDao.findByEmail(person.getEmail());
+
+        newDog.setPerson(pers);
+
+        dogDao.save(newDog);
+
+        //if (action.equals("Edit")) {
+            model.addAttribute("dog", dogDao.findById(id));
+            return "dogs/list-dog-details";
+
+
     }
 
 }

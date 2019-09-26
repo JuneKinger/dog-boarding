@@ -121,7 +121,7 @@ public class Person {
         return dogs;
     }
 
-    public void setDogNames(List<Dog> dogs) {
+    public void setDogs(List<Dog> dogs) {
         this.dogs = dogs;
     }
 }
