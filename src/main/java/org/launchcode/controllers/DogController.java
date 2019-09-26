@@ -47,7 +47,7 @@ public class DogController {
     }
 
     @RequestMapping(value = "add-dog-details", method = RequestMethod.GET)
-    public String displayAddDogDetailForm(Model model, @CookieValue(value = "person",
+    public String displayAddDogDetailsForm(Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {
 
         if (email.equals("none")) {
@@ -62,7 +62,7 @@ public class DogController {
     }
 
     @RequestMapping(value = "add-dog-details", method = RequestMethod.POST)
-    public String processAddDogDetailForm(@ModelAttribute @Valid Dog newDog, Errors errors,
+    public String processAddDogDetailsForm(@ModelAttribute @Valid Dog newDog, Errors errors,
                                        @RequestParam("action") String action, Person person, Model model) {
 
         if (errors.hasErrors()) {
@@ -88,7 +88,7 @@ public class DogController {
     }
 
     @RequestMapping(value = "list-dog-details", method = RequestMethod.GET)
-    public String displayListDogDetailForm(Model model, @CookieValue(value = "person",
+    public String displayListDogDetailsForm(Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {
 
         if (email.equals("none")) {
@@ -104,7 +104,7 @@ public class DogController {
 
 
     @RequestMapping(value = "edit-dog-details/{id}", method = RequestMethod.GET)
-    public String displayEditDogDetailForm(@PathVariable int id, Model model, @CookieValue(value = "person",
+    public String displayEditDogDetailsForm(@PathVariable int id, Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {
 
         if (email.equals("none")) {
@@ -122,7 +122,7 @@ public class DogController {
 
 
     @RequestMapping(value = "edit-dog-details/{id}", method = RequestMethod.POST)
-    public String processDogDetailForm(@ModelAttribute @Valid Dog newDog, Errors errors,
+    public String processEditDogDetailsForm(@ModelAttribute @Valid Dog newDog, Errors errors,
                                        @PathVariable int id, Person person, Model model) {
 
         if (errors.hasErrors()) {
@@ -143,18 +143,58 @@ public class DogController {
         dog.setBreed(newDog.getBreed());
         dog.setSize(newDog.getSize());
         dog.setSpecialNotes(newDog.getSpecialNotes());
-        //newDog.getId();
+
         dog.setPerson(pers);
-        //pers.setDogs(dogs);
 
         dogDao.save(dog);
 
-        //if (action.equals("Edit")) {
-            //model.addAttribute("dog", dogDao.findById(id));
         model.addAttribute("dogs", pers.getDogs());
         model.addAttribute("person", pers);
         return "dogs/list-dog-details";
 
+    }
+
+    @RequestMapping(value = "remove-dog-details/{id}", method = RequestMethod.GET)
+    public String displayRemoveDogDetailsForm(@PathVariable int id, Model model, @CookieValue(value = "person",
+            defaultValue = "none") String email) {
+
+        if (email.equals("none")) {
+            return "redirect:/person/login";
+        }
+        Person pers = personDao.findByEmail(email);
+
+        model.addAttribute("person", personDao.findByEmail(email));
+        //model.addAttribute("dogs", dogDao.findAll());
+
+        model.addAttribute("dog", dogDao.findById(id));
+
+        return "dogs/remove-dog-details";
+    }
+
+
+    @RequestMapping(value = "remove-dog-details/{id}", method = RequestMethod.POST)
+    public String processRemoveDogDetailForm(@ModelAttribute @Valid Dog newDog, Errors errors,
+                                       @PathVariable int id, Person person, Model model) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Remove Dog");
+            model.addAttribute("dog", dogDao.findById(id));
+            return "dogs/remove-dog-details";
+        }
+
+        Person pers = personDao.findByEmail(person.getEmail());
+
+        List<Dog> dogs = pers.getDogs();
+
+        //pers.setDogs(dogs);
+
+        Dog dog = dogDao.findById(id);
+
+        dogDao.delete(dog);
+
+        model.addAttribute("dogs", pers.getDogs());
+        model.addAttribute("person", pers);
+        return "dogs/list-dog-details";
 
     }
 

@@ -8,7 +8,7 @@
 <!-- form-control displays a nice table like form -->
 <div style="margin-top: 60px">
     <div class="form-row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-10 col-md-offset-1">
             <form method ="post" style="max-width:500px;" th:object="${dog}">
                 <div th:object="${person}"></div>
 
@@ -16,7 +16,7 @@
                     <!-- <div class="col-md-6 col-md-offset-3"> -->
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h1 class="panel-title">Edit dog details</h1>
+                            <h1 class="panel-title">Delete dog details</h1>
                         </div>
                         <div class="panel-body">
                             <div th:text="${error}" class="col-form-label text-danger"></div>
@@ -26,14 +26,14 @@
 
                             <div class="col-md-8 form-group">
                                 <label th:for="name"><small>Name *</small></label>
-                                <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="name" required/>
+                                <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="name" readonly/>
                             </div>
                             <div>
                                 <p></p>
                             </div>
                             <div class="col-md-8 form-group">
                                 <label th:for="breed"><small>Breed</small></label>
-                                <input class="form-control" type="text" th:field="*{breed}" id="breed" placeholder="breed"/>
+                                <input class="form-control" type="text" th:field="*{breed}" id="breed" placeholder="breed" readonly/>
                             </div>
                             <div>
                                 <p></p>
@@ -47,16 +47,16 @@
                                     </div>
 
                                     <div class="form-check col-md-8">
-                                        <input class="form-check-input" th:field="*{size}" type="radio" name="small" value="" id="small"/>
+                                        <input class="form-check-input" th:field="*{size}" type="radio" name="small" value="" id="small" readonly/>
                                         <label class="form-check-label" for="small"><small>Small (0 - 10 lbs)</small></label>
                                     </div>
 
                                     <div class="form-check col-md-8">
-                                        <input class="form-check-input" th:field="*{size}" type="radio" name="medium" checked value="medium" id="medium" />
+                                        <input class="form-check-input" th:field="*{size}" type="radio" name="medium" checked value="medium" id="medium" readonly/>
                                         <label class="form-check-label" for="medium"><small>Medium (11 - 50 lbs)</small></label>
                                     </div>
                                     <div class="form-check col-md-8">
-                                        <input class="form-check-input" th:field="*{size}" type="radio" name="large" value="" id="large"/>
+                                        <input class="form-check-input" th:field="*{size}" type="radio" name="large" value="" id="large" readonly/>
                                         <label class="form-check-label" for="large"><small>Large (51 - Max)</small></label>
                                     </div>
                                     <div>
@@ -66,7 +66,7 @@
                             </div>
                             <div class="col-md-8 form-group">
                                 <label th:for="specialNotes">Special Notes: </label>
-                                <textarea class="form-control"  th:field="*{specialNotes}" id="specialNotes" placeholder="specialNotes"></textarea>
+                                <textarea class="form-control"  th:field="*{specialNotes}" id="specialNotes" placeholder="specialNotes" readonly></textarea>
                             </div>
                             <div>
                                 <p></p>
@@ -76,7 +76,7 @@
                                 <!-- <input type="hidden" th:value="${person.id}" name="personId" /> -->
                                 <input type="hidden" class="form-control" th:field="${person.email}" id="person.email"/>
                                 <input type="hidden" class="form-control" name="id" th:field="${dog.id}" id="dog.id"/>
-                                <button type="submit" name="action" class="btn btn-primary" value="Edit">Save</button>
+                                <button type="submit" name="action" class="btn btn-primary" value="Delete">Delete</button>
                                 <!--<button type="submit" name="action" value="Exit">Save and Exit</button> -->
                                 <a href="/" id ="cancel" name="cancel" class="btn btn-primary">&nbsp;Exit</a>
                             </div>
