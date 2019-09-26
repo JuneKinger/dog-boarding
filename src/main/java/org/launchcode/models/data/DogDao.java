@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface DogDao extends CrudRepository<Dog, Integer> {
-
+    Dog findById(int id);
 }
 

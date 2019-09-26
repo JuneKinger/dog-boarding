@@ -103,7 +103,6 @@ public class DogController {
     }
 
 
-
     @RequestMapping(value = "edit-dog-details/{id}", method = RequestMethod.GET)
     public String displayEditDogDetailForm(@PathVariable int id, Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {
@@ -134,13 +133,27 @@ public class DogController {
 
         Person pers = personDao.findByEmail(person.getEmail());
 
-        newDog.setPerson(pers);
+        List<Dog> dogs = pers.getDogs();
 
-        dogDao.save(newDog);
+        pers.setDogs(dogs);
+
+        Dog dog = dogDao.findById(id);
+
+        dog.setName(newDog.getName());
+        dog.setBreed(newDog.getBreed());
+        dog.setSize(newDog.getSize());
+        dog.setSpecialNotes(newDog.getSpecialNotes());
+        //newDog.getId();
+        dog.setPerson(pers);
+        //pers.setDogs(dogs);
+
+        dogDao.save(dog);
 
         //if (action.equals("Edit")) {
-            model.addAttribute("dog", dogDao.findById(id));
-            return "dogs/list-dog-details";
+            //model.addAttribute("dog", dogDao.findById(id));
+        model.addAttribute("dogs", pers.getDogs());
+        model.addAttribute("person", pers);
+        return "dogs/list-dog-details";
 
 
     }

@@ -93,7 +93,7 @@
                             <div class="col-md-8 form-group">
                                 <!-- <input type="hidden" th:value="${person.id}" name="personId" /> -->
                                 <input type="hidden" class="form-control" th:field="${person.email}" id="person.email"/>
-                                <input type="hidden" class="form-control" th:field="${dog.id}" id="dog.id"/>
+                                <input type="hidden" class="form-control" name="id" th:field="${dog.id}" id="dog.id"/>
                                 <button type="submit" name="action" class="btn btn-primary" value="Edit">Save</button>
                                 <!--<button type="submit" name="action" value="Exit">Save and Exit</button> -->
                                 <a href="/" id ="cancel" name="cancel" class="btn btn-primary">&nbsp;Exit</a>
