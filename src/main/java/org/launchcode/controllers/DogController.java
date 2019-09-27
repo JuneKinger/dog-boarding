@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -63,7 +65,7 @@ public class DogController {
 
     @RequestMapping(value = "add-dog-details", method = RequestMethod.POST)
     public String processAddDogDetailsForm(@ModelAttribute @Valid Dog newDog, Errors errors,
-                                       @RequestParam("action") String action, Person person, Model model) {
+                                           @RequestParam("action") String action, Person person, Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Dog");
@@ -80,8 +82,7 @@ public class DogController {
         if (action.equals("Add")) {
             model.addAttribute("dog", new Dog());
             return "dogs/add-dog-details";
-        }
-        else {
+        } else {
 
             return "person/index";
         }
@@ -123,7 +124,7 @@ public class DogController {
 
     @RequestMapping(value = "edit-dog-details/{id}", method = RequestMethod.POST)
     public String processEditDogDetailsForm(@ModelAttribute @Valid Dog newDog, Errors errors,
-                                       @PathVariable int id, Person person, Model model) {
+                                            @PathVariable int id, Person person, Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Edit Dog");
@@ -163,6 +164,12 @@ public class DogController {
         }
         Person pers = personDao.findByEmail(email);
 
+        List<Dog> dogs = pers.getDogs();
+
+        //pers.setDogs(dogs);
+
+        Dog dog = dogDao.findById(id);
+
         model.addAttribute("person", personDao.findByEmail(email));
         //model.addAttribute("dogs", dogDao.findAll());
 
@@ -174,29 +181,25 @@ public class DogController {
 
     @RequestMapping(value = "remove-dog-details/{id}", method = RequestMethod.POST)
     public String processRemoveDogDetailForm(@ModelAttribute @Valid Dog newDog, Errors errors,
-                                       @PathVariable int id, Person person, Model model) {
+                                             @PathVariable int id, Person person, Model model) {
 
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Remove Dog");
-            model.addAttribute("dog", dogDao.findById(id));
-            return "dogs/remove-dog-details";
-        }
 
         Person pers = personDao.findByEmail(person.getEmail());
 
         List<Dog> dogs = pers.getDogs();
 
-        //pers.setDogs(dogs);
+        pers.setDogs(dogs);
 
         Dog dog = dogDao.findById(id);
+        dog.setPerson(pers);
 
         dogDao.delete(dog);
 
         model.addAttribute("dogs", pers.getDogs());
         model.addAttribute("person", pers);
+
         return "dogs/list-dog-details";
-
     }
-
 }
+
 

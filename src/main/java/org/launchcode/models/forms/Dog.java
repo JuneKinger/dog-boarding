@@ -24,7 +24,8 @@ public class Dog {
 
     private String specialNotes;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    //@ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Person person;
 
     public Dog() { }
