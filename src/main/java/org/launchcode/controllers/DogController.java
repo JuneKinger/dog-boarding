@@ -56,9 +56,12 @@ public class DogController {
             return "redirect:/person/login";
         }
 
-        model.addAttribute("dogs", dogDao.findAll());
+        Person person = personDao.findByEmail(email);
+        List<Dog> dogs = person.getDogs();
+
+        model.addAttribute("dogs", dogs);
         model.addAttribute("dog", new Dog());
-        model.addAttribute("person", personDao.findByEmail(email));
+        model.addAttribute("person", person);
 
         return "dogs/add-dog-details";
     }
@@ -96,8 +99,9 @@ public class DogController {
             return "redirect:/person/login";
         }
         Person pers = personDao.findByEmail(email);
+        List<Dog> dogs = pers.getDogs();
 
-        model.addAttribute("dogs", pers.getDogs());
+        model.addAttribute("dogs", dogs);
         model.addAttribute("person", pers);
 
         return "dogs/list-dog-details";

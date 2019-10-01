@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fragments :: head">
+    <title>Title</title>
+</head>
+<nav th:replace="fragments :: navigation"></nav>
+<body class="container">
+<!-- form-control displays a nice table like form -->
+<div style="margin-top: 100px">
+    <div class="form-row">
+        <div class="col-md-6 col-md-offset-3">
+            <form method ="post" style="max-width:500px;" th:object="${service}">
+                <div th:object="${dogs}"></div>
+                <div th:object="${person}"></div>
+
+                <div class="panel-group">
+                    <!-- <div class="col-md-6 col-md-offset-3"> -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h1 class="panel-title">Schedule Service</h1>
+                        </div>
+                        <div class="panel-body">
+                            <div th:text="${error}" class="col-form-label text-danger"></div>
+                            <div>
+                                <p></p>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-8" form-group>
+                                    </label><small><strong>Check dogs for service: </strong></small></label>
+                                        <div>
+                                            <p></p>
+                                        </div>
+                                        <div th:each="dog : ${dogs}" class="custom-control custom-checkbox col-md-8">
+                                             <!--
+                                             <input class="form-check-input" type="checkbox" name="name" th:field="${name}" th:text="${dog.name}" />
+                                             -->
+                                             <!-- including form-control in input below distorts the ckeckbox so I have it removed -->
+                                             <input  type="checkbox" class="custom-control-input "  name="dogIds" th:value="${dog.id}" th:id="${dog.id}" />
+                                             <label class="custom-control-label checkbox" th:for="${dog.id}"  th:text="${dog.name}"></label>
+                                             <br />
+                                        </div>
+                                </div>
+                             </div>
+                            <div>
+                                <p></p>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-8" form-group>
+                                    </label><small><strong> How often do you need this service? </strong></small></label>
+                                    <div>
+                                        <p></p>
+                                    </div>
+                                    <div>
+                                        <script>
+                                           $("input[type='radio']").change(function(){
+
+                                                if($(this).val()=="weekly")
+                                                {
+                                                    $("#weeklyAnswer").show();
+                                                }
+                                                else
+                                                {
+                                                       $("#weeklyAnswer").hide();
+                                                }
+
+                                                });
+                                        </script>
+                                            One Time <input type="radio" name="answer" checked="checked" value="once"/>
+                                            Weekly <input type="radio" name="answer" value="weekly"/>
+                                            <p>Date: <span th:text="*{startDate}"></span></p>
+                                            <input  type="date" name="once" th:field="*{startDate}" id="once"/>
+
+                                            <input  style="display:none ;" type="text" name="weeklyAnswer" id="weeklyAnswer"/>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8 form-group">
+
+                       <input type="hidden" th:value="${service.id}" name="serviceId" />
+
+                       <input type="hidden" class="form-control" th:field="${person.email}" id="person.email"/>
+
+                            <button type="submit" name="action" class="btn btn-primary" value="Add">Save</button>
+                            <!--<button type="submit" name="action" value="Exit">Save and Exit</button> -->
+                            <a href="/" id ="cancel" name="cancel" class="btn btn-primary">&nbsp;Exit</a>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<!--
+
+                            <div>
+
+                                    <div class="form-check col-md-8">
+                                        <input class="form-check-input" th:field="${frequency}" type="radio" name="once" value="once" id="once" />
+                                        <label class="form-check-label" for="once"><small>One Time</small></label>
+                                    </div>
+
+                                    <div class="form-check col-md-8">
+                                        <input class="form-check-input" th:field="${frequency}" type="radio" name="weekly"  value="weekly" checked id="weekly" />
+                                        <label class="form-check-label" for="weekly"><small>Weekly</small></label>
+                                    </div>
+                                    </div>
+                                        <p></p>
+                                    </div>
+                            </div>
+
+                        -->

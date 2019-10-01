@@ -10,6 +10,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link type="text/css" href="../../css/styles.css" rel="stylesheet" />
     <img src="../images/puppies.jpg">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -50,7 +51,20 @@
 
             -->
             <li><a href="/dogs/list-dog-details">Dog Details</a></li>
+            <!--
             <li><a href="/dogs/service">Schedule Service</a></li>
+            -->
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuServiceLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Schedule Service
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuServiceLink">
+                    <li><a class="dropdown-item" tabindex="-1" href="/service/add-service">Add Service</a></li>
+                    <li><a class="dropdown-item" tabindex="-1" href="/service/remove-service">Delete Service</a></li>
+                </ul>
+            </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="/person/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>

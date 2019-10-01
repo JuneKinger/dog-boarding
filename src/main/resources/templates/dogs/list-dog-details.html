@@ -11,24 +11,27 @@
     <br>
 </div>
 
-<div class="table-responsive" style="max-width:1200px;">
-    <div class="table table-striped row">
-        <div class="col-md-8 col-md-offset-2">
+<div class="table-responsive" >
+
+        <div class="col-md-6 col-md-offset-3">
             <form  method ="post" style="max-width:800px;" th:object="${dogs}">
                 <div th:object="${person}"></div>
-                <table>
-                    <thead>
+                <table class="table table-striped row">
                     <tr>
+                        <div>
+                            <br>
+                        </div>
                         <h1>Your Dogs</h1>
                         <th>Name</th>
                         <th>Breed</th>
                         <th>Size</th>
                         <th>Special Notes</th>
-                        <th><a href="/dogs/add-dog-details" class="btn btn-primary a-btn-slide-text">
-                            <span class="glyphicon glyphicon-plus" ></span>
+
+                        <th><a href="/dogs/add-dog-details" class="btn btn-primary btn-sm ">
+                            <span class="glyphicon glyphicon-plus col text-center" ></span>
                             <span><strong>Add a Dog</strong></span></a></th>
                     </tr>
-                    </thead>
+
                     <tbody>
 
                     <tr th:each="dog : ${dogs}">
@@ -37,22 +40,23 @@
                         <td th:text="${dog.breed}"></td>
                         <td th:text="${dog.size}"></td>
                         <td th:text="${dog.specialNotes}"></td>
-                        <td>
-                            <a th:href="@{'/dogs/edit-dog-details/' + ${dog.id}}" class="btn btn-primary btn-sm a-btn-slide-text">
-                            <span class="glyphicon glyphicon-edit" ></span>
-                            <span><strong>Edit</strong></span></a>
-                        </td>
-                        <td>
-                            <a th:href="@{'/dogs/remove-dog-details/' + ${dog.id}}" class="btn btn-primary btn-sm a-btn-slide-text">
+                        <div class="btn-group">
+                            <td>
+                                <a th:href="@{'/dogs/edit-dog-details/' + ${dog.id}}" class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-edit" ></span>
+                                <span><strong>Edit</strong></span></a>
+
+                                <a th:href="@{'/dogs/remove-dog-details/' + ${dog.id}}" class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-trash" ></span>
                                 <span><strong>Delete</strong></span></a>
-                        </td>
+                            </td>
+                        </div>
                     </tr>
-                    </tbody>
+
                 </table>
             </form>
         </div>
-    </div>
+
 </div>
 
 <!--

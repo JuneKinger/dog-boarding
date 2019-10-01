@@ -6,6 +6,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @DynamicUpdate
@@ -15,7 +18,7 @@ public class Dog {
     @GeneratedValue
     private int id;
 
-    @NotEmpty(message="Name cannot be empty")
+    @NotEmpty
     private String name;
 
     private String breed;
@@ -28,7 +31,13 @@ public class Dog {
     @ManyToOne
     private Person person;
 
+
+    @OneToMany(mappedBy = "dog", cascade = CascadeType.ALL)
+    private List<Service> services = new ArrayList<>();
+
+
     public Dog() { }
+
 
     public int getId() {
         return id;
@@ -72,6 +81,15 @@ public class Dog {
 
     public void setSpecialNotes(String specialNotes) {
         this.specialNotes = specialNotes;
+    }
+
+
+    public List<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(List<Service> services) {
+        this.services = services;
     }
 
 
