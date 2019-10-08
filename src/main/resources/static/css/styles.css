@@ -16,3 +16,32 @@ h1 {
 text-align: center;}
 
 
+
+span.tab-space {
+padding-left:5em;}
+
+.select-weekDays input {
+
+  display: none!important;
+}
+
+.select-weekDays input[type=checkbox] + label {
+  display: inline-block;
+  border-radius: 5px;
+  background: #dddddd;
+  height: 30px;
+  width: 25px;
+  margin-right: 3px;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.select-weekDays input[type=checkbox]:checked + label {
+  background: #2AD705;
+  color: #ffffff;
+}
+
+div.a {
+text-align:center
+}

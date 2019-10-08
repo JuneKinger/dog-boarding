@@ -19,10 +19,12 @@ public class Service {
     @GeneratedValue
     private int id;
 
-    @NotNull
+
+    @NotNull(message = "Start date cannot be null")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
+    @NotNull(message = "End date cannot be null")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
@@ -30,6 +32,7 @@ public class Service {
 
     @OneToOne
     private Person person;
+
 
     @ManyToOne
     @JoinColumn(name="dog_id")
@@ -41,17 +44,21 @@ public class Service {
         return id;
     }
 
+
     public Date getStartDate() {
         return startDate;
     }
+
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
+
     public Date getEndDate() {
         return endDate;
     }
+
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;

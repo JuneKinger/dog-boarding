@@ -1,5 +1,6 @@
 package org.launchcode.controllers;
 
+import org.apache.tomcat.util.buf.StringUtils;
 import org.launchcode.models.data.DogDao;
 import org.launchcode.models.data.PersonDao;
 import org.launchcode.models.data.ServiceDao;
@@ -11,12 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
+import javax.naming.Context;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
-import java.util.List;
-import java.util.Optional;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.regex.Pattern;
 
 @Controller
 @RequestMapping("service")
@@ -63,55 +65,80 @@ public class ServiceController {
         Person pers = personDao.findByEmail(email);
         List<Dog> dogs = pers.getDogs();
 
+        if (dogs.size() == 0) {
+            model.addAttribute("err", "Please enter *Dog Details* first");
+            return "service/add-service";
+        }
+
+        //model.addAttribute("error", "");
         model.addAttribute("dogs", dogs);
         model.addAttribute("service", new Service());
         model.addAttribute("person", pers);
-
         return "service/add-service";
     }
 
     @RequestMapping(value = "add-service", method = RequestMethod.POST)
-    // .GET uses person and dogs so I need it here too although I don't directly use those 2 objects
     public String processAddServiceForm(@ModelAttribute @Valid Service newService, Errors errors,
-                                        @RequestParam("action") String action, int [] dogIds, Person person, String email, Dog dogs, Model model) {
+                                        @RequestParam("action") String action, int[] dogIds, String personEmail, String Radio, String dayOfWeek, Model model) {
 
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Service");
-            model.addAttribute("dogs", dogs);
-            model.addAttribute("person", person);
+/*
+      if (Radio.equals("weekly") && !dayOfWeek.matches("[A-Za-z]")) {
+
+          model.addAttribute("errors", "Please enter Days of the Week");
+          Person pers = personDao.findByEmail(personEmail);
+          List<Dog> dogs = pers.getDogs();
+
+          model.addAttribute("dogs", dogs);
+          model.addAttribute("person", pers);
+          return "service/add-service";
+          }
+
+        if (dogIds == null) {
+
+            model.addAttribute("errors", "Please check mark at least one dog");
             return "service/add-service";
         }
-
-        if (dogIds.equals(null)) {
-            model.addAttribute("error", "Check at least one dog");
+*/
+      if (errors.hasErrors()) {
             model.addAttribute("title", "Add Service");
+
+            //model.addAttribute("error", "Invalid input - please reenter");
+            /*
+            Person pers = personDao.findByEmail(email);
+            List<Dog> dogs = pers.getDogs();
+
             model.addAttribute("dogs", dogs);
-            model.addAttribute("person", person);
+            model.addAttribute("person", pers);
+
+             */
             return "service/add-service";
         }
-
 
 
         for (int dogId : dogIds) {
 
             Service service = new Service();
             service.setDog(dogDao.findById(dogId));
+
+            if (Radio.equals("weekly")) {
+                service.setDayOfWeek(newService.getDayOfWeek());
+            }
+
+            service.setPerson(personDao.findByEmail(personEmail));
             service.setStartDate(newService.getStartDate());
-            service.setPerson(personDao.findByEmail(email));
+            service.setEndDate(newService.getEndDate());
+
             serviceDao.save(service);
+        }
+            if (action.equals("Add")) {
+                return "redirect:/service/add-service";
+            } else {
+
+                return "person/index";
+            }
 
         }
-
-        if (action.equals("Add")) {
-            model.addAttribute("dog", new Service());
-            return "service/add-service";
-        } else {
-
-            return "person/index";
-        }
-
-     }
-
+/*
 
     @RequestMapping(value = "remove-service/{id}", method = RequestMethod.GET)
     public String displayRemoveDogDetailsForm(@PathVariable int id, Model model, @CookieValue(value = "person",
@@ -159,6 +186,8 @@ public class ServiceController {
 
         return "dogs/list-dog-details";
     }
+
+ */
 }
 
 

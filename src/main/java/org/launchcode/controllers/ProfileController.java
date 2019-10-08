@@ -55,7 +55,7 @@ public class ProfileController {
             model.addAttribute("title", "Sign up");
             return "person/signup";
         }
-
+/*
         //String result = person.getFirstName().trim();
         if (person.getFirstName().trim().equals("") || (person.getLastName().trim().equals("")) ||
                 (person.getEmail().trim().equals("")) || (person.getAddress().trim().equals("")) ||
@@ -64,6 +64,8 @@ public class ProfileController {
             model.addAttribute("title", "Sign up");
             return "person/signup";
         }
+        */
+
 
         if (personDao.findByEmail(email) != null) {
             model.addAttribute("error", "This email address has been taken");
@@ -108,6 +110,7 @@ public class ProfileController {
 
     public String displayLoginForm(Model model) {
         model.addAttribute("person", new Person());
+        model.addAttribute("title", "Login");
         return "person/login";
     }
 
@@ -118,6 +121,7 @@ public class ProfileController {
         if (pers == null || (!pers.getPassword().equals(person.getPassword()))) {
             model.addAttribute("error", "Invalid email and/or password");
             model.addAttribute("title", "Login");
+            model.addAttribute("person", new Person());
             return "person/login";
        }
         // create cookie with cookie name and value (key-value pair) using Cookie class
