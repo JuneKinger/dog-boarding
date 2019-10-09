@@ -21,18 +21,16 @@
                                 <h1 class="panel-title">Schedule Service</h1>
                             </div>
                             <div class="panel-body">
-                                <!--
                                 <div th:if="${err}">
-                                    <div th:err="${err}" class="col-form-label text-danger a"></div>
+                                    <div th:err="${err}" th:text="${err}" class="col-form-label text-danger a"></div>
                                 </div>
                                 <div th:unless="${err}">
--->
                                     <div>
                                         <p></p>
                                     </div>
 
                                     <div class="form-row">
-                                        <div class="col-md-10" form-group>
+                                        <div class="col-md-10" >
 
                                             <label><small><strong>Check dogs for service: </strong></small></label>
 
@@ -42,25 +40,30 @@
                                             <p><em>
                                                 <div class="custom-control custom-checkbox col-md-10" th:each="dog : ${dogs}" >
 
-                                                     <!--including form-control in input below distorts the ckeckbox to a huge box so I had it removed
-                                                     including class="checkbox" in label places text on next line and does not align with checkbox-->
-                                                     <input  type="checkbox" class="custom-control-input "  name="dogIds" th:value="${dog.id}" th:id="${dog.id}" checked/>
-                                                     <label class="custom-control-label" th:for="${dog.id}"  th:text="${dog.name}"></label>
+                                                    <!--including form-control in input below distorts the ckeckbox to a huge box so I had it removed
+                                                    including class="checkbox" in label places text on next line and does not align with checkbox-->
+                                                    <input  type="checkbox" class="custom-control-input required_group"  name="dogIds" th:value="${dog.id}" th:id="${dog.id}" required/>
+                                                    <label class="custom-control-label" th:for="${dog.id}"  th:text="${dog.name}"></label>
 
-                                                    <p th:if="${#fields.hasErrors('dog')}" class="label label-danger" th:errors="${dog}">Incorrect</p>
-                                            <!--
-                                                 <span><div th:errors="${dog}" class="col-form-label text-danger"></div></span>
-                                                 -->
+                                                    <!--
+                                                         <span><div th:errors="${dog}" class="col-form-label text-danger"></div></span>
+                                                         -->
+                                                    <script>
+                                                            $('form').on('click', '.required_group', function() {
+                                                                $('input.required_group').prop('required', $('input.required_group:checked').length === 0);
+                                                            });
+                                                     </script>
                                                 </div>
 
                                             </em></p>
-
                                         </div>
-                                     </div>
+
+                                    </div>
+
 
                                     <div class="form-row">
 
-                                        <div class="col-md-8" form-group>
+                                        <div class="col-md-8" >
                                             <div>
                                                 <p></p>
                                             </div>
@@ -68,7 +71,7 @@
                                                 <p></p>
                                             </div>
                                             <div>
-                                                </label><small><strong><p><u> How often do you need this service: </strong></small></label></p></u>
+                                                </label><small><strong><p><u> How often do you need this service: </u></p></strong></small></label>
                                             </div>
                                             <div>
                                                 <p></p>
@@ -97,28 +100,28 @@
                                                                 <label th:for="weekday-mon">Mon</label>
 
                                                                 <span><input type="text" th:field="*{dayOfWeek}" />
-                                                                <input type="checkbox" th:id="weekday-tue" class="weekday" name="dayOfWeek"  th:value="Tue"/>
-                                                                <label th:for="weekday-tue">Tue</label></span>
+                                                                            <input type="checkbox" th:id="weekday-tue" class="weekday" name="dayOfWeek"  th:value="Tue"/>
+                                                                            <label th:for="weekday-tue">Tue</label></span>
 
                                                                 <span><input type="text" th:field="*{dayOfWeek}" />
-                                                                <input type="checkbox" th:id="weekday-wed" class="weekday" name="dayOfWeek"  th:value="Wed"/>
-                                                                    <label th:for="weekday-wed">Wed</label></span>
+                                                                            <input type="checkbox" th:id="weekday-wed" class="weekday" name="dayOfWeek"  th:value="Wed"/>
+                                                                                <label th:for="weekday-wed">Wed</label></span>
 
                                                                 <span><input type="text" th:field="*{dayOfWeek}" />
-                                                                <input type="checkbox" th:id="weekday-thu" class="weekday" name="dayOfWeek" th:value="Thu"/>
-                                                                <label th:for="weekday-thu">Thu</label></span>
+                                                                            <input type="checkbox" th:id="weekday-thu" class="weekday" name="dayOfWeek" th:value="Thu"/>
+                                                                            <label th:for="weekday-thu">Thu</label></span>
 
                                                                 <span><input type="text" th:field="*{dayOfWeek}" />
-                                                                <input type="checkbox" th:id="weekday-fri" class="weekday" name="dayOfWeek" th:value="Fri" />
-                                                                    <label th:for="weekday-fri">Fri</label></span>
+                                                                            <input type="checkbox" th:id="weekday-fri" class="weekday" name="dayOfWeek" th:value="Fri" />
+                                                                                <label th:for="weekday-fri">Fri</label></span>
 
                                                                 <span><input type="text" th:field="*{dayOfWeek}" />
-                                                                <input type="checkbox" th:id="weekday-sat" class="weekday" name="dayOfWeek"  th:value="Sat"/>
-                                                                    <label th:for="weekday-sat">Sat</label></span>
+                                                                            <input type="checkbox" th:id="weekday-sat" class="weekday" name="dayOfWeek"  th:value="Sat"/>
+                                                                                <label th:for="weekday-sat">Sat</label></span>
 
                                                                 <span><input type="text" th:field="*{dayOfWeek}" />
-                                                                <input type="checkbox" th:id="weekday-sun" class="weekday" name="dayOfWeek" th:value="Sun"/>
-                                                                    <label th:for="weekday-sun">Sun</label></span>
+                                                                            <input type="checkbox" th:id="weekday-sun" class="weekday" name="dayOfWeek" th:value="Sun"/>
+                                                                                <label th:for="weekday-sun">Sun</label></span>
                                                                 <span th:errors="*{dayOfWeek}" class="error"></span>
                                                             </div>
 
@@ -138,21 +141,18 @@
                                             </table>
 
                                             <script>
-
-                                                $('input[type="radio"]').click(function()
-                                                {
-                                                if($(this).attr("value")=="once")
-                                                {
-                                                    $(".Box").hide('slow');
-                                                }
-                                                if($(this).attr("value")=="weekly")
-                                                {
-                                                    $(".Box").show('slow');
-
-                                                }
-                                                });
-                                                $('input[type="radio"]').trigger('click');
-
+                                                            $('input[type="radio"]').click(function()
+                                                            {
+                                                            if($(this).attr("value")=="once")
+                                                            {
+                                                                $(".Box").hide('slow');
+                                                            }
+                                                            if($(this).attr("value")=="weekly")
+                                                            {
+                                                                $(".Box").show('slow');
+                                                            }
+                                                            });
+                                                            $('input[type="radio"]').trigger('click');
                                             </script>
 
 
@@ -165,20 +165,22 @@
 
                                         <!--<input type="hidden" th:value="*{id}" name="serviceId" />-->
                                         <div th:unless="${err}">
-                                            <input type="hidden" name="personEmail" th:value="${person.email}" />
+                                            <input type="hidden" name="email" th:value="${person.email}" />
                                         </div>
                                         <button type="submit" name="action" class="btn btn-primary" value="Add">Save</button>
                                         <!--<button type="submit" name="action" value="Exit">Save and Exit</button> -->
                                         <span class="tab-space"><a href="/" id ="cancel" name="cancel" class="btn btn-primary">&nbsp;Exit</a></span>
                                     </div>
+                                </div>
                             <!-- {err} div
                                 </div>
                         -->
                             <!-- panel body div -->
-                            </div>
-
+                             </div>
                         </div>
+
                     </div>
+
 
                 </form>
             </div>
@@ -188,22 +190,4 @@
 </body>
 </html>
 
-<!--
 
-                            <div>
-
-                                    <div class="form-check col-md-8">
-                                        <input class="form-check-input" th:field="${frequency}" type="radio" name="once" value="once" id="once" />
-                                        <label class="form-check-label" for="once"><small>One Time</small></label>
-                                    </div>
-
-                                    <div class="form-check col-md-8">
-                                        <input class="form-check-input" th:field="${frequency}" type="radio" name="weekly"  value="weekly" checked id="weekly" />
-                                        <label class="form-check-label" for="weekly"><small>Weekly</small></label>
-                                    </div>
-                                    </div>
-                                        <p></p>
-                                    </div>
-                            </div>
-
-                        -->
