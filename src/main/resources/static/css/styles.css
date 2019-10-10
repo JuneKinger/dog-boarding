@@ -45,3 +45,9 @@ padding-left:5em;}
 div.a {
 text-align:center
 }
+
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
