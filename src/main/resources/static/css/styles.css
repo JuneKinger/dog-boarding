@@ -51,3 +51,7 @@ text-align:center
 .container input:checked ~ .checkmark {
   background-color: #2196F3;
 }
+
+.required {
+color: red;
+}

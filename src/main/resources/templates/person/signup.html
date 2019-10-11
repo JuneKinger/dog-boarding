@@ -23,20 +23,20 @@
 
                                 <div class="form-row">
                                     <div class="col-md-5 form-group">
-                                        <label for="firstName"><small>First Name *</small></label>
-                                        <input id="firstName" class="form-control" type="text" th:field="*{firstName}" placeholder="First Name" />
+                                        <label for="firstName"><small>First Name </small><span class="required">*</span></label>
+                                        <input id="firstName" required="required" class="form-control" type="text"  th:field="*{firstName}" placeholder="First Name" />
                                         <span th:errors="*{firstName}" class="error"></span>
                                     </div>
 
                                     <div class="col-md-5 form-group">
-                                        <label for="lastName" ><small>Last Name *</small></label>
+                                        <label for="lastName" ><small>Last Name </small><span class="required">*</span></label>
                                         <input id="lastName" class="form-control" type = "text" th:field="*{lastName}" placeholder="Last Name" />
                                         <span th:errors="*{lastName}" class="error"></span>
                                     </div>
                                 </div>
 
                                 <div class="col-md-10 form-group">
-                                    <label for="email" ><small>Email *</small></label>
+                                    <label for="email" ><small>Email </small><span class="required">*</span></label>
                                     <input id="email" class="form-control"  type="email" th:field="*{email}" placeholder="Email" />
                                     <span th:errors="*{email}" class="error"></span>
                                 </div>
@@ -44,19 +44,19 @@
 
                                 <div class="form-row">
                                     <div class="col-md-5 form-group">
-                                        <label for="password" ><small>Password *</small></label>
+                                        <label for="password" ><small>Password </small><span class="required">*</span></label>
                                         <input id="password" class="form-control"  th:field="*{password}" type="password" placeholder="Password" />
                                         <span th:errors="*{password}" class="error"></span>
                                     </div>
 
                                     <div class="col-md-5 form-group">
-                                        <label for="verify" ><small>Verify *</small></label>
+                                        <label for="verify" ><small>Verify </small><span class="required">*</span></label>
                                         <input id="verify" class="form-control" name="verify" type="password" placeholder="Verify" />
                                     </div>
                                 </div>
 
                                 <div class="col-md-10 form-group">
-                                    <label for="address" ><small>Address *</small></label>
+                                    <label for="address" ><small>Address </small><span class="required">*</span></label>
                                     <textarea id="address" rows="3" class="form-control" type="text" th:field="*{address}" placeholder="Address" ></textarea>
                                     <span th:errors="*{address}" class="error"></span>
                                 </div>
@@ -69,16 +69,24 @@
                                 </div>
 
                                 <div class="col-md-5 form-group">
-                                    <label for="cellPhone" ><small>Cell Phone *</small></label>
+                                    <label for="cellPhone" ><small>Cell Phone </small><span class="required">*</span></label>
                                     <input id="cellPhone" class="form-control"  type="text" th:field="*{cellPhone}" placeholder="eg. 999-999-9999" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"  />
                                     <span>format: 123-456-7890</span>
                                     <span th:errors="*{cellPhone}" class="error"></span>
                                 </div>
 
-                                <div class="col-md-3 ">
+                                <div class="col-md-10 ">
+                                    <p></p>
                                     <!-- <a href="/dogs/add-dog-details" class="btn btn-primary" role="button">Register</a> -->
                                     <!-- <input type="submit" value="Register"/> -->
                                     <button type="submit" class="btn btn-primary" role="button" name="action" >Register</button>
+                                    <br/>
+                                </div>
+                                <div class="col-md-10 ">
+                                    <br/>
+                                    <label class="required">*</label>
+                                    <label><span><small>Indicates required field</small></span></label>
+
                                 </div>
                             </div>
                         </div>

@@ -25,7 +25,7 @@
                             </div>
 
                             <div class="col-md-8 form-group">
-                                <label th:for="name"><small>Name *</small></label>
+                                <label th:for="name"><small>Name </small><span class="required">*</span></label>
                                 <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="name" required/>
                             </div>
                             <div>
@@ -35,13 +35,12 @@
                                 <label th:for="breed"><small>Breed</small></label>
                                 <input class="form-control" type="text" th:field="*{breed}" id="breed" placeholder="breed"/>
                             </div>
-                            <div>
-                                <p></p>
-                            </div>
 
-                            <div class="form-row">
+
+                            <div class="form-row ">
                                 <div class="col-md-8" form-group>
-                                    </label><small><strong> Select Size </strong></small></label>
+                                    <br/>
+                                    </label><p><u><small><strong> Select Size:</strong></small><span class="required">*</span></u></p></label>
                                     <div>
                                         <p></p>
                                     </div>
@@ -65,7 +64,8 @@
                                 </div>
                             </div>
                             <div class="col-md-8 form-group">
-                                <label th:for="specialNotes"><small>Special Notes:</small></label>
+                                <br/>
+                                <label th:for="specialNotes"><small>Special Notes</small></label>
                                 <textarea class="form-control"  th:field="*{specialNotes}" id="specialNotes" placeholder="specialNotes"></textarea>
                             </div>
                             <div>
@@ -78,9 +78,14 @@
                                 <input type="hidden" class="form-control" name="id" th:field="${dog.id}" id="dog.id"/>
                                 <button type="submit" name="action" class="btn btn-primary" value="Edit">Save</button>
                                 <!--<button type="submit" name="action" value="Exit">Save and Exit</button> -->
-                                <a href="/" id ="cancel" name="cancel" class="btn btn-primary">&nbsp;Exit</a>
+                                <span class="tab-space"><a href="/" id ="cancel" name="cancel" class="btn btn-primary">&nbsp;Exit</a></span>
                             </div>
+                            <div class="col-md-10 ">
+                                <br/>
+                                <label class="required">*</label>
+                                <label><span><small>Indicates required field</small></span></label>
 
+                            </div>
                         </div>
                     </div>
                 </div>

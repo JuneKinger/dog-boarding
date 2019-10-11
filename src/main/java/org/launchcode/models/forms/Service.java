@@ -30,13 +30,14 @@ public class Service {
 
     private String dayOfWeek;
 
-    @OneToOne
-    private Person person;
-
-
     @ManyToOne
     @JoinColumn(name="dog_id")
     private Dog dog;
+
+    @ManyToOne
+    @JoinColumn(name="person_id")
+    private Person person;
+
 
     public Service() { }
 
@@ -92,4 +93,6 @@ public class Service {
     public void setDog(Dog dog) {
         this.dog = dog;
     }
+
+
 }

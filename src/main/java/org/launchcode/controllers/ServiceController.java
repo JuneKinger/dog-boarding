@@ -127,26 +127,61 @@ public class ServiceController {
         }
 
     }
-/*
+
+    @RequestMapping(value = "list-services", method = RequestMethod.GET)
+    public String displayListServicesForm(Model model, @CookieValue(value = "person",
+            defaultValue = "none") String email) {
+
+        if (email.equals("none")) {
+            return "redirect:/person/login";
+        }
+        Person pers = personDao.findByEmail(email);
+        List<Dog> dogs = pers.getDogs();
+
+
+        for (Dog dog : dogs) {
+            //Dog dogId = dogDao.findById(dog.getId());
+            List<Service> service = serviceDao.findByDog_Id(dog.getId());
+            model.addAttribute("services", serviceDao.findByDog_Id(dog.getId()));
+            model.addAttribute("person", pers);
+            return "service/list-services";
+        }
+
+
+        return "service/list-services";
+    }
+
     @RequestMapping(value = "remove-service/{id}", method = RequestMethod.GET)
-    public String displayRemoveDogDetailsForm(@PathVariable int id, Model model, @CookieValue(value = "person",
+    public String displayRemoveServiceForm(@PathVariable int id, Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {
         if (email.equals("none")) {
             return "redirect:/person/login";
         }
-        Service service = serviceDao.findById(id);
-        //List<Dog> dogs = service.getDog();
+
+        Person pers = personDao.findByEmail(email);
+
+        //List<Dog> dogs = pers.getDogs();
+
         //pers.setDogs(dogs);
-        //Dog dog = dogDao.findById(id);
-        //model.addAttribute("person", personDao.findByEmail(email));
+
+        Service service = serviceDao.findById(id);
+
+        Dog dog = service.getDog();
+
+        model.addAttribute("person", personDao.findByEmail(email));
         //model.addAttribute("dogs", dogDao.findAll());
-        model.addAttribute("service", serviceDao.findById(id));
-        return "service/remove";
+
+        model.addAttribute("dog", dog);
+        model.addAttribute("service", service);
+        return "service/remove-service";
     }
+
+
     @RequestMapping(value = "remove-service/{id}", method = RequestMethod.POST)
     public String processRemoveDogDetailForm(@ModelAttribute @Valid Dog newDog, Errors errors,
                                              @PathVariable int id, Person person, Model model) {
         Person pers = personDao.findByEmail(person.getEmail());
+
         List<Dog> dogs = pers.getDogs();
         pers.setDogs(dogs);
         Dog dog = dogDao.findById(id);
@@ -156,5 +191,5 @@ public class ServiceController {
         model.addAttribute("person", pers);
         return "dogs/list-dog-details";
     }
- */
+
 }

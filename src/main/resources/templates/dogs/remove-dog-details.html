@@ -25,7 +25,7 @@
                             </div>
 
                             <div class="col-md-8 form-group">
-                                <label th:for="name"><small>Name *</small></label>
+                                <label th:for="name"><small>Name </small><span class="required">*</span></label>
                                 <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="name" readonly/>
                             </div>
                             <div>
@@ -39,13 +39,13 @@
                                 <p></p>
                             </div>
 
-                            <div class="form-row">
+                            <div class="form-row ">
                                 <div class="col-md-8" form-group>
-                                    </label><small><strong> Select Size </strong></small></label>
+                                    <br/>
+                                    </label><p><u><small><strong> Select Size:</strong></small><span class="required">*</span></u></p></label>
                                     <div>
                                         <p></p>
                                     </div>
-
                                     <div class="form-check col-md-8">
                                         <input class="form-check-input" th:field="*{size}" type="radio" name="small" value="small" id="small" readonly/>
                                         <label class="form-check-label" for="small"><small>Small (0 - 10 lbs)</small></label>
@@ -64,23 +64,27 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-8 form-group">
-                                <label th:for="specialNotes"><small>Special Notes:</small></label>
+                            <div class="col-md-8">
+                                <br/>
+                                   <label th:for="specialNotes"><small>Special Notes</small></label>
                                 <textarea class="form-control"  th:field="*{specialNotes}" id="specialNotes" placeholder="specialNotes" readonly></textarea>
                             </div>
-                            <div>
-                                <p></p>
-                            </div>
 
-                            <div class="col-md-8 form-group">
-                                <!-- <input type="hidden" th:value="${person.id}" name="personId" /> -->
+                            <div class="col-md-8" >
+
                                 <input type="hidden" class="form-control" th:field="${person.email}" id="person.email"/>
                                 <input type="hidden" class="form-control" name="id" th:field="${dog.id}" id="dog.id"/>
+                                <br/>
                                 <button type="submit" name="action" class="btn btn-primary" value="Delete">Delete</button>
                                 <!--<button type="submit" name="action" value="Exit">Save and Exit</button> -->
-                                <a href="/" id ="cancel" name="cancel" class="btn btn-primary">&nbsp;Exit</a>
+                                <span class="tab-space"><a href="/" id ="cancel" name="cancel" class="btn btn-primary">&nbsp;Exit</a></span>
                             </div>
+                            <div class="col-md-10 ">
+                                <br/>
+                                <label class="required">*</label>
+                                <label><span><small>Indicates required field</small></span></label>
 
+                            </div>
                         </div>
                     </div>
                 </div>
