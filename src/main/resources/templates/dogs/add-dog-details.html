@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
     <title>Title</title>
 </head>
@@ -24,58 +24,61 @@
                                 <p></p>
                             </div>
 
-                            <div class="col-md-8 form-group">
+                            <div class="col-md-8">
                                 <label th:for="name"><small>Name </small><span class="required">*</span></label>
                                 <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="name" required/>
                             </div>
                             <div>
                                 <p></p>
                             </div>
-                            <div class="col-md-8 form-group">
+                            <div class="col-md-8">
+                                <div>
+                                    <p></p>
+                                </div>
                                 <label th:for="breed"><small>Breed</small></label>
                                 <input class="form-control" type="text" th:field="*{breed}" id="breed" placeholder="breed"/>
                             </div>
-                            <div>
-                                <p></p>
+
+                            <div class="col-md-8">
+                                <fieldset class="variations_fieldset">
+                                    <div>
+                                        <div>
+                                            <p></p>
+                                        </div>
+                                        <input type="radio" th:field="*{size}" data-attribute_name="attribute_size" name="attribute_size" id="size1" value="small">
+                                        <label for="size1"><small>Small (0 - 10 lbs)</small></label>
+                                    </div>
+                                    <div >
+                                        <input type="radio" th:field="*{size}" data-attribute_name="attribute_size" name="attribute_size" id="size2" value="Medium">
+                                        <label for="size2"><small>Medium (11 - 40 lbs)</small></label>
+                                    </div>
+                                    <div >
+                                        <input type="radio" th:field="*{size}" data-attribute_name="attribute_size" name="attribute_size" id="size3" value="large">
+                                        <label for="size3"><small>Large (41 - 80 lbs)</small></label>
+                                    </div>
+                                    <div >
+                                        <input type="radio" th:field="*{size}" data-attribute_name="attribute_size" name="attribute_size" id="size4" value="extra">
+                                        <label for="size4"><small>Gigantic (81 - Max)</small></label>
+                                    </div>
+                                </fieldset>
+                                <script>
+                                    $('.variations_fieldset input[value="Medium"]').prop('checked', true);
+                                </script>
                             </div>
 
-                            <!--<div class="form-row">-->
-                                <div class="col-md-8" form-group>
-                                    <br/>
-                                    </label><p><u><small><strong> Select Size:</strong></small><span class="required">*</span></u></p></label>
-                                    <div>
-                                        <p></p>
-                                    </div>
-
-                                    <div class="form-check col-md-8 ">
-                                        <input class="form-check-input " th:field="*{size}" type="radio" checked6 name="small" value="small" id="small" />
-                                        <label class="form-check-label" for="small"><small>Small (0 - 10 lbs)</small></label>
-                                    </div>
-
-                                    <div class="form-check col-md-8">
-                                        <input class="form-check-input " th:field="*{size}" type="radio" name="medium"  value="medium" id="medium" />
-                                        <label class="form-check-label" for="medium"><small>Medium (11 - 50 lbs)</small></label>
-                                    </div>
-
-                                    <div class="form-check col-md-8">
-                                        <input class="form-check-input " th:field="*{size}" type="radio" name="large" value="large" id="large"/>
-                                        <label class="form-check-label" for="large"><small>Large (51 - Max)</small></label>
-                                    </div>
-                                    <div>
-                                        <p></p>
-                                    </div>
-                                </div>
-                            <!--</div>-->
                             <div class="col-md-8 form-group">
-                                <br/>
+                                <div>
+                                    <p></p>
+                                </div>
                                 <label th:for="specialNotes"><small>Special Notes</small> </label>
                                 <textarea class="form-control"  th:field="*{specialNotes}" id="specialNotes" placeholder="specialNotes"></textarea>
                             </div>
-                            <div>
-                                <p></p>
-                            </div>
+
 
                             <div class="col-md-8 form-group">
+                                <div>
+                                    <p></p>
+                                </div>
                                 <!-- <input type="hidden" th:value="${person.id}" name="personId" /> -->
                                 <input type="hidden" class="form-control" th:field="${person.email}" id="person.email"/>
                                 <br/>

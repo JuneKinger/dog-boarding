@@ -19,6 +19,7 @@ import javax.validation.constraints.Email;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Pattern;
+import java.sql.Date;
 
 @Controller
 @RequestMapping("service")
@@ -57,8 +58,8 @@ public class ServiceController {
             return "redirect:/person/login";
         }
 
-        Person pers = personDao.findByEmail(email);
-        List<Dog> dogs = pers.getDogs();
+        Person person = personDao.findByEmail(email);
+        List<Dog> dogs = person.getDogs();
 
         if (dogs.size() == 0) {
             model.addAttribute("err", "Please enter *Dog Details* first");
@@ -68,7 +69,7 @@ public class ServiceController {
         //model.addAttribute("error", "");
         model.addAttribute("dogs", dogs);
         model.addAttribute("service", new Service());
-        model.addAttribute("person", pers);
+        model.addAttribute("person", person);
         return "service/add-service";
     }
 
@@ -89,31 +90,46 @@ public class ServiceController {
             model.addAttribute("errors", "Please check mark at least one dog");
             return "service/add-service";
         }
-*/
+
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Service");
 
             //model.addAttribute("error", "Invalid input - please reenter");
+            if (!dogIds.equals("")) {
+                for (int dogId : dogIds) {
+                    Dog dog = dogDao.findById(dogId);
+                    newService.setDog(dog);
+                    if (dogId == 0) {
+                        break;
+                    }
+                }
 
-            Person pers = personDao.findByEmail(email);
-            List<Dog> dogs = pers.getDogs();
+            }
+            */
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Add Service");
+            Person person = personDao.findByEmail(email);
 
-            model.addAttribute("dogs", pers.getDogs());
-            model.addAttribute("person", pers);
+            model.addAttribute("dogs", person.getDogs());
+            model.addAttribute("person", personDao.findByEmail(email));
+
             return "service/add-service";
         }
-
 
         for (int dogId : dogIds) {
 
             Service service = new Service();
-            service.setDog(dogDao.findById(dogId));
+            Dog dog = dogDao.findById(dogId);
+
+            service.setDog(dog);
 
             if (Radio.equals("weekly")) {
                 service.setDayOfWeek(newService.getDayOfWeek());
             }
 
-            service.setPerson(personDao.findByEmail(email));
+            Person person = personDao.findByEmail(email);
+
+            service.setPerson(person);
             service.setStartDate(newService.getStartDate());
             service.setEndDate(newService.getEndDate());
 
@@ -135,18 +151,10 @@ public class ServiceController {
         if (email.equals("none")) {
             return "redirect:/person/login";
         }
-        Person pers = personDao.findByEmail(email);
-        List<Dog> dogs = pers.getDogs();
-
-
-        for (Dog dog : dogs) {
-            //Dog dogId = dogDao.findById(dog.getId());
-            List<Service> service = serviceDao.findByDog_Id(dog.getId());
-            model.addAttribute("services", serviceDao.findByDog_Id(dog.getId()));
-            model.addAttribute("person", pers);
-            return "service/list-services";
-        }
-
+        Person person = personDao.findByEmail(email);
+        List<Service> services = serviceDao.findByPerson_Id(person.getId());
+        model.addAttribute("person", person);
+        model.addAttribute("services", services);
 
         return "service/list-services";
     }
@@ -158,7 +166,7 @@ public class ServiceController {
             return "redirect:/person/login";
         }
 
-        Person pers = personDao.findByEmail(email);
+        //Person pers = personDao.findByEmail(email);
 
         //List<Dog> dogs = pers.getDogs();
 
@@ -166,30 +174,32 @@ public class ServiceController {
 
         Service service = serviceDao.findById(id);
 
-        Dog dog = service.getDog();
+        //Dog dog = service.getDog();
 
         model.addAttribute("person", personDao.findByEmail(email));
         //model.addAttribute("dogs", dogDao.findAll());
 
-        model.addAttribute("dog", dog);
+        model.addAttribute("dogs", service.getDog());
         model.addAttribute("service", service);
-        return "service/remove-service";
+        return "service/remove-services";
     }
 
 
     @RequestMapping(value = "remove-service/{id}", method = RequestMethod.POST)
-    public String processRemoveDogDetailForm(@ModelAttribute @Valid Dog newDog, Errors errors,
+    public String processRemoveDogDetailForm(@ModelAttribute @Valid Service service,
                                              @PathVariable int id, Person person, Model model) {
-        Person pers = personDao.findByEmail(person.getEmail());
+
+        //Person pers = personDao.findByEmail(person.getEmail());
+
+      /*
 
         List<Dog> dogs = pers.getDogs();
         pers.setDogs(dogs);
         Dog dog = dogDao.findById(id);
         dog.setPerson(pers);
-        dogDao.delete(dog);
-        model.addAttribute("dogs", pers.getDogs());
-        model.addAttribute("person", pers);
-        return "dogs/list-dog-details";
+        */
+        serviceDao.delete(service);
+        return "redirect:/service/list-services";
     }
 
 }

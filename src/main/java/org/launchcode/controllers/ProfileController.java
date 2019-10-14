@@ -36,7 +36,7 @@ public class ProfileController {
     public String index(Model model) {
 
         model.addAttribute("person", personDao.findAll());
-        return "person/index";
+        return "home/index";
     }
 
     @RequestMapping(value = "signup", method = RequestMethod.GET)
@@ -134,7 +134,7 @@ public class ProfileController {
 
         model.addAttribute("title", pers.getFirstName());
         //return "redirect:/person/edit/" + person.getId();
-        return "person/index";
+        return "home/index";
     }
 
 
@@ -185,14 +185,14 @@ public class ProfileController {
         if (errors.hasErrors()) {
             return "person/edit";
         }
-
+/*
         if (person.getFirstName().trim().equals("") || (person.getLastName().trim().equals("")) ||
-                (person.getAddress().trim().equals("")) || (person.getHomePhone().trim().equals(""))) {
+                (person.getAddress().trim().equals("")) || (person.getCellPhone().trim().equals(""))) {
             model.addAttribute("error", "Invalid input - please re-enter");
             model.addAttribute("title", "Edit");
             return "person/edit";
         }
-
+*/
         Person pers = personDao.findByEmail(email);
         pers.setFirstName(person.getFirstName());
         pers.setLastName(person.getLastName());
@@ -201,7 +201,7 @@ public class ProfileController {
         pers.setCellPhone(person.getCellPhone());
         personDao.save(pers);
 
-        return "person/index";
+        return "home/index";
     }
 
 
@@ -237,7 +237,7 @@ public class ProfileController {
         Person pers = personDao.findByEmail(email);
         personDao.delete(pers);
 
-        return "person/index";
+        return "home/index";
     }
 
 

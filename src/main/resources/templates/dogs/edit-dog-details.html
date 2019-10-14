@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+
 <head th:replace="fragments :: head">
     <title>Title</title>
 </head>
@@ -37,31 +38,29 @@
                             </div>
 
 
-                            <div class="form-row ">
-                                <div class="col-md-8" form-group>
-                                    <br/>
-                                    </label><p><u><small><strong> Select Size:</strong></small><span class="required">*</span></u></p></label>
+                            <div class="col-md-8">
+                                <fieldset>
                                     <div>
-                                        <p></p>
+                                        <div>
+                                            <p></p>
+                                        </div>
+                                        <input type="radio" th:field="*{size}" data-attribute_name="attribute_size" name="attribute_size" id="size1" value="small">
+                                        <label for="size1"><small>Small</small></label>
                                     </div>
+                                    <div >
+                                        <input type="radio" th:field="*{size}" data-attribute_name="attribute_size" name="attribute_size" id="size2" value="Medium">
+                                        <label for="size2"><small>Medium</small></label>
+                                    </div>
+                                    <div >
+                                        <input type="radio" th:field="*{size}" data-attribute_name="attribute_size" name="attribute_size" id="size3" value="large">
+                                        <label for="size3"><small>Large</small></label>
+                                    </div>
+                                    <div >
+                                        <input type="radio" th:field="*{size}" data-attribute_name="attribute_size" name="attribute_size" id="size4" value="extra">
+                                        <label for="size4"><small>Gigantic (81 - Max)</small></label>
+                                    </div>
+                                </fieldset>
 
-                                    <div class="form-check col-md-8">
-                                        <input class="form-check-input" th:field="*{size}" type="radio" name="small" value="small" id="small"/>
-                                        <label class="form-check-label" for="small"><small>Small (0 - 10 lbs)</small></label>
-                                    </div>
-
-                                    <div class="form-check col-md-8">
-                                        <input class="form-check-input" th:field="*{size}" type="radio" name="medium" value="medium" id="medium" />
-                                        <label class="form-check-label" for="medium"><small>Medium (11 - 50 lbs)</small></label>
-                                    </div>
-                                    <div class="form-check col-md-8">
-                                        <input class="form-check-input" th:field="*{size}" type="radio" name="large" value="large" id="large"/>
-                                        <label class="form-check-label" for="large"><small>Large (51 - Max)</small></label>
-                                    </div>
-                                    <div>
-                                        <p></p>
-                                    </div>
-                                </div>
                             </div>
                             <div class="col-md-8 form-group">
                                 <br/>

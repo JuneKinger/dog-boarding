@@ -20,12 +20,13 @@ public class HomeController {
 
         // if no cookies present, direct to login page to force a log in
         if (email.equals("none") || email.equals("")) {
-            return "redirect:/person/login";
+            //return "redirect:/person/login";
+            return "home/index";
         }
 
          Person person = personDao.findByEmail(email);
          model.addAttribute("person", person.getFirstName());
 
-        return "person/index";
+        return "home/index";
     }
 }

@@ -4,9 +4,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +18,6 @@ public class Service {
     private int id;
 
 
-    @NotNull(message = "Start date cannot be null")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
@@ -44,7 +41,6 @@ public class Service {
     public int getId() {
         return id;
     }
-
 
     public Date getStartDate() {
         return startDate;

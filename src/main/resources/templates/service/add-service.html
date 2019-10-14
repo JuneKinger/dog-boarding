@@ -11,14 +11,12 @@
     <div class="form-row">
         <div class="col-md-6 col-md-offset-3">
             <form method ="post" style="max-width:500px;" th:object="${service}">
-                <div th:object="${dogs}"></div>
-                <div th:object="${person}"></div>
 
                 <div class="panel-group">
                     <!-- <div class="col-md-6 col-md-offset-3"> -->
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h1 class="panel-title">Schedule Service</h1>
+                            <h1 class="panel-title">Schedule Appointment</h1>
                         </div>
                         <div class="panel-body">
                             <div th:if="${err}">
@@ -108,7 +106,7 @@
                                                         <span><input type="text" th:field="*{dayOfWeek}" />
                                                                         <input type="checkbox" th:id="weekday-sun" class="weekday custom-control-input required_group" name="dayOfWeek" th:value="Sun" required/>
                                                                             <label th:for="weekday-sun">Sun</label></span>
-                                                        <!--<span th:errors="*{dayOfWeek}" class="error"></span>-->
+                                                        <span th:errors="*{dayOfWeek}" class="error"></span>
                                                         <script>
                                                                 $('form').on('click', '.required_group', function() {
                                                                     $('input.required_group').prop('required', $('input.required_group').length === 0);
@@ -122,11 +120,11 @@
                                                     <p></p>
                                                 </div>
                                                 <p><label for="sdt"><small>Start Date: </small><span class="required">*</span></label>
-                                                    <input id="sdt" type="date" th:field="*{startDate}" /></p>
-                                                <span th:errors="*{startDate}" class="error"></span>
+                                                    <input id="sdt" type="date" th:field="*{startDate}" required/></p>
+                                                <!--<span th:errors="*{startDate}" class="error"></span> -->
                                                 <p><label for="edt"><small>End Date: </small><span class="required">*</span></label>
-                                                    <input id="edt" type="date" th:field="*{endDate}" /></p>
-                                                <span th:errors="*{endDate}" class="error"></span>
+                                                    <input id="edt" type="date" th:field="*{endDate}" required/></p>
+                                                <!--<span th:errors="*{endDate}" class="error"></span> -->
 
 
                                                 <script>

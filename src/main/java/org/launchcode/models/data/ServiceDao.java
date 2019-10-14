@@ -14,5 +14,5 @@ import java.util.Optional;
 public interface ServiceDao extends CrudRepository<Service, Integer> {
     Service findById(int id);
     List<Service> findByDog_Id(int dogId);
-
+    List<Service> findByPerson_Id(int personId);
 }

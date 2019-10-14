@@ -40,14 +40,14 @@
 
                                   <div class="col-md-5 form-group">
                                       <label for="homePhone" ><small>Home Phone (optional)</small></label>
-                                      <input id="homePhone" class="form-control"  type="text" th:field="*{homePhone}" placeholder="eg. 999-999-9999" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
+                                      <input id="homePhone" class="form-control"  type="text" th:field="*{homePhone}" placeholder="eg. 999-999-9999" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"  />
                                       <span>format: 123-456-7890</span>
                                       <span th:errors="*{homePhone}" class="error"></span>
                                   </div>
 
                                   <div class="col-md-5 form-group">
                                       <label for="cellPhone" ><small>Cell Phone </small><span class="required">*</span></label>
-                                      <input id="cellPhone" class="form-control"  type="text" th:field="*{cellPhone}" placeholder="eg. 999-999-9999" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"  />
+                                      <input id="cellPhone" class="form-control"  type="text" th:field="*{cellPhone}" placeholder="eg. 999-999-9999" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
                                       <span>format: 123-456-7890</span>
                                       <span th:errors="*{cellPhone}" class="error"></span>
                                   </div>

@@ -42,10 +42,26 @@ padding-left:5em;}
   color: #ffffff;
 }
 
-div.a {
-text-align:center
+.a {
+padding: 20px 0;
+  text-align: center;
 }
 
+/*
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+*/
+
+.right {
+  position: absolute;
+  right: 0px;
+  width: 300px;
+   padding: 4px 0;
+}
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
@@ -55,3 +71,21 @@ text-align:center
 .required {
 color: red;
 }
+
+hr {
+width: 50%;
+height: 3px;
+background-color: blue;
+margin-right: auto;
+margin-left: auto;
+margin-top: 5px;
+margin-bottom: 5px;
+border-width: 2px;
+border-color: black;
+}
+
+
+.pad {
+padding-left:4em;
+padding-right:4em;}
+
