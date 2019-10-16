@@ -17,11 +17,13 @@ public class Service {
     @GeneratedValue
     private int id;
 
-
+    @FutureOrPresent
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
-    @NotNull(message = "End date cannot be null")
+    @FutureOrPresent
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 

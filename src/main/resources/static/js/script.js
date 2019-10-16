@@ -1,5 +1,4 @@
-
- $('input[type="radio"]').click(function()){
+$('input[type="radio"]').click(function()){
          if($(this).attr("value")=="once"){
              $(".Box").hide('slow');
          }

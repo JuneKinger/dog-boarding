@@ -2,9 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<form action="" id="pricing" onsubmit="return false;">
+    <fieldset>
+        <legend>Pricing Check!</legend>
+        <!--
+        <label >Size Of the Cake</label>
+        <input type="radio"  name="selectedcake" value="Round6"
+               onclick="calculateTotal()" />
+        Round cake 6" -  serves 8 people ($20)
+        <input type="radio"  name="selectedcake" value="Round8"
+               onclick="calculateTotal()" />
+        Round cake 8" - serves 12 people ($25)
+        <input type="radio"  name="selectedcake" value="Round10"
+               onclick="calculateTotal()" />
+        Round cake 10" - serves 16 people($35)
+        <input type="radio"  name="selectedcake" value="Round12"
+               onclick="calculateTotal()" />
+        Round cake 12" - serves 30 people($75)
+        -->
+           <label ># of dogs - discount for >1 dog</label>
+
+        <select id="checkPrice" name='price'
+                onchange="calculateTotal()">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+
+        </select>
+        <br/>
+        <!--
+        <p>
+            <label for='includecandles' class="inlinelabel">
+                Include Candles($5)</label>
+            <input type="checkbox" id="includecandles" name='includecandles'
+                   onclick="calculateTotal()" />
+        </p>
+
+        <p>
+            <label class="inlinelabel" for='includeinscription'>
+                Include Inscription($20)</label>
+            <input type="checkbox" id="includeinscription"
+                   name="includeinscription" onclick="calculateTotal()" />
+
+            <input type="text"  id="theinscription"
+                   name="theinscription" value="Enter Inscription"  />
+        </p>
+           -->
+        <div id="totalPrice"></div>
+
+    </fieldset>
+    <script>
+        var theForm = document.forms["pricing"];
+    </script>
+</form>
 </body>
 </html>
