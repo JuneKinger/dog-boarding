@@ -20,6 +20,7 @@ public class HomeController {
 
         // if no cookies present, direct to login page to force a log in
         if (email.equals("none") || email.equals("")) {
+
             //return "redirect:/person/login";
             return "home/index";
         }
