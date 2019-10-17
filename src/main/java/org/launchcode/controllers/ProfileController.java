@@ -1,7 +1,5 @@
 package org.launchcode.controllers;
 
-import org.apache.naming.factory.SendMailFactory;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.launchcode.models.data.DogDao;
 import org.launchcode.models.data.PersonDao;
 import org.launchcode.models.forms.Dog;
@@ -11,15 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.security.Identity;
 import java.util.List;
-import java.util.Optional;
 import java.lang.String;
 
 @Controller
@@ -55,17 +49,6 @@ public class ProfileController {
             model.addAttribute("title", "Sign up");
             return "person/signup";
         }
-/*
-        //String result = person.getFirstName().trim();
-        if (person.getFirstName().trim().equals("") || (person.getLastName().trim().equals("")) ||
-                (person.getEmail().trim().equals("")) || (person.getAddress().trim().equals("")) ||
-                (person.getPassword().trim().equals("")) || (person.getHomePhone().trim().equals(""))) {
-            model.addAttribute("error", "Invalid input - please re-enter");
-            model.addAttribute("title", "Sign up");
-            return "person/signup";
-        }
-        */
-
 
         if (personDao.findByEmail(email) != null) {
             model.addAttribute("error", "This email address has been taken");
@@ -149,15 +132,7 @@ public class ProfileController {
                 response.addCookie(c);
             }
         }
-        /*
-        // remove cookies from a browser by adding a new one to the response with the
-        // same name but with maxAge value set to 0 and value = ""
 
-        Cookie emailCookieRemove = new Cookie("email", "");
-        emailCookieRemove.setMaxAge(0);;
-        emailCookieRemove.setPath("/");
-        response.addCookie(emailCookieRemove);
-    */
         return "redirect:/person/login";
     }
 
@@ -185,14 +160,7 @@ public class ProfileController {
         if (errors.hasErrors()) {
             return "person/edit";
         }
-/*
-        if (person.getFirstName().trim().equals("") || (person.getLastName().trim().equals("")) ||
-                (person.getAddress().trim().equals("")) || (person.getCellPhone().trim().equals(""))) {
-            model.addAttribute("error", "Invalid input - please re-enter");
-            model.addAttribute("title", "Edit");
-            return "person/edit";
-        }
-*/
+
         Person pers = personDao.findByEmail(email);
         pers.setFirstName(person.getFirstName());
         pers.setLastName(person.getLastName());
@@ -242,5 +210,4 @@ public class ProfileController {
 
 
 }
-
 
