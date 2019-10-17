@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
 <head th:replace="fragments :: head">
-    <title>Title</title>
-
-</head>
+    <title>Signup</title>
+    </head>
 <nav th:replace="fragments :: navigation"></nav>
 <img src="@{resources/static/images/puppies.jpg}" style="text-align:right;" alt="My test image" />
 <body>
-<div class ="container" style="margin-top: 20px">
-    <div class="form-row">
+<div class ="container" style="margin-top: 25px">
+    <div class="col-md-10 col-md-offset-1">
         <!-- <div class="col-md-6 col-md-offset-3"> -->
             <form method ="post"  style="max-width:1000px;" th:object="${person}">
                 <div class="panel-group">
@@ -21,72 +20,63 @@
 
                                 <div th:text="${error}" class="col-form-label text-danger"></div>
 
-                                <div class="form-row">
-                                    <div class="col-md-5 form-group">
-                                        <label for="firstName"><small>First Name </small><span class="required">*</span></label>
-                                        <input id="firstName" required="required" class="form-control" type="text"  th:field="*{firstName}" placeholder="First Name" />
-                                        <span th:errors="*{firstName}" class="error"></span>
-                                    </div>
-
-                                    <div class="col-md-5 form-group">
-                                        <label for="lastName" ><small>Last Name </small><span class="required">*</span></label>
-                                        <input id="lastName" class="form-control" type = "text" th:field="*{lastName}" placeholder="Last Name" />
-                                        <span th:errors="*{lastName}" class="error"></span>
-                                    </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="firstName"><small>First Name </small><span class="required">*</span></label>
+                                    <input id="firstName"  type="text" class="form-control" th:field="*{firstName}" placeholder="First Name" required/>
                                 </div>
 
-                                <div class="col-md-10 form-group">
-                                    <label for="email" ><small>Email </small><span class="required">*</span></label>
-                                    <input id="email" class="form-control"  type="email" th:field="*{email}" placeholder="Email" />
-                                    <span th:errors="*{email}" class="error"></span>
+                                <div class="col-md-6 form-group">
+                                    <label for="lastName" ><small>Last Name </small><span class="required">*</span></label>
+                                    <input id="lastName" type = "text" class="form-control" th:field="*{lastName}" placeholder="Last Name" required/>
                                 </div>
 
-
-                                <div class="form-row">
-                                    <div class="col-md-5 form-group">
-                                        <label for="password" ><small>Password </small><span class="required">*</span></label>
-                                        <input id="password" class="form-control"  th:field="*{password}" type="password" placeholder="Password" />
-                                        <span th:errors="*{password}" class="error"></span>
-                                    </div>
-
-                                    <div class="col-md-5 form-group">
-                                        <label for="verify" ><small>Verify </small><span class="required">*</span></label>
-                                        <input id="verify" class="form-control" name="verify" type="password" placeholder="Verify" />
-                                    </div>
+                                <div class="col-md-12" form-group>
+                                    <!-- one space after </span> leaves a space between label and icon -->
+                                    <label for="email" ><small>Email </small></label> <span class="glyphicon glyphicon-envelope"></span> <span class="required">*</span>
+                                    <input id="email" class="form-control " pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]{2,3}$" th:field="*{email}" placeholder="Email format" required />
                                 </div>
 
-                                <div class="col-md-10 form-group">
+                                <div class="col-md-6 form-group">
+                                    <p></p>
+                                    <label for="password" ><small>Password </small><span class="required">*</span></label>
+                                    <input id="password" class="form-control" th:field="*{password}" type="password" placeholder="Password" required/>
+                                    <span th:errors="*{password}" class="error"></span>
+                                </div>
+
+                                <div class="col-md-6 form-group">
+                                    <p></p>
+                                    <label for="verify" ><small>Verify </small><span class="required">*</span></label>
+                                    <input id="verify" class="form-control" name="verify" type="password" placeholder="Verify" required/>
+                                </div>
+
+                                <div class="col-md-12 form-group">
                                     <label for="address" ><small>Address </small><span class="required">*</span></label>
-                                    <textarea id="address" rows="3" class="form-control" type="text" th:field="*{address}" placeholder="Address" ></textarea>
-                                    <span th:errors="*{address}" class="error"></span>
+                                    <textarea id="address" class="form-control" rows="3" type="text" th:field="*{address}" placeholder="Address" required></textarea>
                                 </div>
 
-                                <div class="col-md-5 form-group">
+                                <div class="col-md-6 form-group">
                                     <label for="homePhone" ><small>Home Phone (optional)</small></label>
                                     <input id="homePhone" class="form-control"  type="text" th:field="*{homePhone}" placeholder="eg. 999-999-9999" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"  />
-                                    <span>format: 123-456-7890</span>
+                                    <span>Format: 123-456-7890</span>
                                     <span th:errors="*{homePhone}" class="error"></span>
                                 </div>
 
-                                <div class="col-md-5 form-group">
+                                <div class="col-md-6 form-group">
                                     <label for="cellPhone" ><small>Cell Phone </small><span class="required">*</span></label>
-                                    <input id="cellPhone" class="form-control"  type="text" th:field="*{cellPhone}" placeholder="eg. 999-999-9999" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"  />
-                                    <span>format: 123-456-7890</span>
-                                    <span th:errors="*{cellPhone}" class="error"></span>
+                                    <input id="cellPhone" class="form-control" type="text" th:field="*{cellPhone}" placeholder="eg. 999-999-9999" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
+                                    <span>Format: 123-456-7890</span>
                                 </div>
 
-                                <div class="col-md-10 ">
+                                <div class="col-md-12 ">
                                     <p></p>
-                                    <!-- <a href="/dogs/add-dog-details" class="btn btn-primary" role="button">Register</a> -->
-                                    <!-- <input type="submit" value="Register"/> -->
                                     <button type="submit" class="btn btn-primary" role="button" name="action" >Register</button>
                                     <br/>
                                 </div>
-                                <div class="col-md-10 ">
+
+                                <div class="col-md-12 ">
                                     <br/>
                                     <label class="required">*</label>
                                     <label><span><small>Indicates required field</small></span></label>
-
                                 </div>
                             </div>
                         </div>
@@ -94,21 +84,7 @@
 
                 </div>
             </form>
-        <!-- </div> -->
     </div>
 </div>
 </body>
 </html>
-<!--
-        <table>
-
-            <tr><td>Name:</td><td><input type="text"/></td></tr>
-            <tr><td>Age:</td><td><input type="text"/></td></tr>
-        </table>
-
-         css
-
-         td{
-    text-align:right;
-}
--->

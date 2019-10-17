@@ -1,45 +1,107 @@
-body {
-    font-family: sans-serif;
-}
+vbody {
+     font-family: sans-serif;
+ }
 
-nav {
-    margin-bottom: 20px;
-}
-
-h1 {
-text-align: center;}
+ nav {
+     margin-bottom: 20px;
+ }
 
 
-.head {
-padding: 20px 0;
-  text-align: center;
-}
+ .error
+ { color: red; font-size: 12px;
+ }
 
-.pad {
-padding-left:4em;
-padding-right:4em;
-/* font-size:18px; */
-}
 
-.post-container {
-    margin: 50px 50px 50px 50px;
-    border: 3px solid #333;
-    overflow: auto
-}
+ h1 {
+ text-align: center;}
 
-.post-image {
-    float: left
-}
 
-.post-image img {
-    display: block
-}
 
-.post-text {
-    margin-left: 210px
-}
+ span.tab-space {
+ padding-left:5em;}
 
-.post-text {
-    font-size: 150%
-}
+ .select-weekDays input {
 
+   display: none!important;
+ }
+
+ .select-weekDays input[type=checkbox] + label {
+   display: inline-block;
+   border-radius: 5px;
+   background: #dddddd;
+   height: 30px;
+   width: 25px;
+   margin-right: 3px;
+   line-height: 30px;
+   text-align: center;
+   cursor: pointer;
+ }
+
+ .select-weekDays input[type=checkbox]:checked + label {
+   background: #2AD705;
+   color: #ffffff;
+ }
+
+ .head {
+ padding: 20px 0;
+   text-align: center;
+ }
+
+ .right {
+   position: absolute;
+   right: 0px;
+   width: 300px;
+    padding: 4px 0;
+ }
+
+ /* When the checkbox is checked, add a blue background */
+ .container input:checked ~ .checkmark {
+   background-color: #2196F3;
+ }
+
+ .required {
+ color: red;
+ }
+
+ hr {
+ width: 50%;
+ height: 3px;
+ background-color: blue;
+ margin-right: auto;
+ margin-left: auto;
+ margin-top: 5px;
+ margin-bottom: 5px;
+ border-width: 2px;
+ border-color: black;
+ }
+
+
+ .pad {
+ padding-left:4em;
+ padding-right:4em;
+ /* font-size:18px; */
+ }
+
+ .post-container {
+     margin: 50px 50px 50px 50px;
+     border: 3px solid #333;
+     overflow: auto
+ }
+ .post-image {
+     float: left
+ }
+ .post-image img {
+     display: block
+ }
+ .post-text {
+     margin-left: 210px
+ }
+ .post-text {
+ /*
+     font-weight: bold; */
+     font-size: 150%
+ }
+
+ .glyphicon-calendar:before {
+   margin-right: 5px;
+ }

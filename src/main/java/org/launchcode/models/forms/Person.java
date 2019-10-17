@@ -1,11 +1,9 @@
 package org.launchcode.models.forms;
 
 import org.hibernate.annotations.DynamicUpdate;
-
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,14 +15,14 @@ public class Person {
     @GeneratedValue
     private int id;
 
-    @NotEmpty(message = "Email cannot be empty")
+    @NotEmpty
     @Column(unique = true)
     private String email;
 
     @NotEmpty
     private String password;
 
-    @NotEmpty
+    @NotNull
     private String firstName;
 
     @NotEmpty
@@ -33,12 +31,11 @@ public class Person {
     @NotEmpty
     private String address;
 
-    //@Size(min = 10, max = 10, message = "Phone # needs to be 10 digits long")
     private String homePhone;
 
     private String cellPhone;
 
-    // one to many relationship established with foreign key person_id
+    // one-to-many relationship established
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id")
     private List<Dog> dogs = new ArrayList<>();
@@ -48,14 +45,6 @@ public class Person {
     public Person() {
     }
 
-    // parameterized constructor
-    public Person(String email) {
-    }
-
-    // parameterized constructor
-    public Person(String firstName,
-                  String lastName, String address, String phone) {
-    }
 
     public int getId() {
         return id;

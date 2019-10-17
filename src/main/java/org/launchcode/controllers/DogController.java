@@ -27,10 +27,6 @@ public class DogController {
 
     @RequestMapping(value = "")
 
-    // takes an object out of the db using Spring Data JPA (cheeseDao),
-    // run it through Spring MVC to Thymeleaf layer where we had a list of POJOs
-    // where we rendered that list to the webpage.
-    // method binds data (list of cheeses) to the model
     public String index(Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {
 
@@ -41,7 +37,6 @@ public class DogController {
         Person pers = personDao.findByEmail(email);
         List<Dog> dogs = pers.getDogs();
 
-        // findAll() is an iterable that Thymeleaf uses in th:each="dog : ${dogs}"
         model.addAttribute("dogs", dogs);
         model.addAttribute("title", "My Dogs");
 
