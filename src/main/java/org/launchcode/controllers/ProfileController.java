@@ -58,9 +58,7 @@ public class ProfileController {
 
         if (person.getPassword().equals(verify) && verify != "") {
 
-            String persEmail = person.getEmail().toLowerCase();
-
-            Cookie cookie = new Cookie("person", person.getEmail());
+            Cookie cookie = new Cookie("person", person.getEmail().toLowerCase());
             // set the path so the whole application has access to the cookie
             cookie.setPath("/");
 

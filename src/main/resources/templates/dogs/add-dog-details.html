@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
-    <title>Title</title>
+    <title>Add-Dog-Details</title>
 </head>
 <nav th:replace="fragments :: navigation"></nav>
-<body class="container">
-<!-- form-control displays a nice table like form -->
-<div style="margin-top: 60px">
-    <div class="form-row">
+<body class="container" style="margin-top: 70px">
         <div class="col-md-6 col-md-offset-3">
-            <form method ="post" style="max-width:500px;" th:object="${dog}">
-                <div th:object="${person}"></div>
-
+            <form method ="post" style="max-width:1000px;" th:object="${dog}">
                 <div class="panel-group">
-                    <!-- <div class="col-md-6 col-md-offset-3"> -->
+
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h1 class="panel-title">Add dog details</h1>
@@ -24,14 +19,14 @@
                                 <p></p>
                             </div>
 
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <label th:for="name"><small>Name </small><span class="required">*</span></label>
                                 <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="name" required/>
                             </div>
                             <div>
                                 <p></p>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <div>
                                     <p></p>
                                 </div>
@@ -39,9 +34,12 @@
                                 <input class="form-control" type="text" th:field="*{breed}" id="breed" placeholder="breed"/>
                             </div>
 
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <fieldset class="variations_fieldset">
                                     <div>
+                                        <div>
+                                            <p></p>
+                                        </div>
                                         <div>
                                             <p></p>
                                         </div>
@@ -57,16 +55,17 @@
                                         <label for="size3"><small>Large (41 - 80 lbs)</small></label>
                                     </div>
                                     <div >
-                                        <input type="radio" th:field="*{size}" data-attribute_name="attribute_size" name="attribute_size" id="size4" value="extra">
+                                        <input type="radio" th:field="*{size}" data-attribute_name="attribute_size" name="attribute_size" id="size4" value="gigantic">
                                         <label for="size4"><small>Gigantic (81 - Max)</small></label>
                                     </div>
                                 </fieldset>
+                                <!-- .prop() sets the property value checked to true for input = "Medium" -->
                                 <script>
                                     $('.variations_fieldset input[value="Medium"]').prop('checked', true);
                                 </script>
                             </div>
 
-                            <div class="col-md-8 form-group">
+                            <div class="col-md-12 form-group">
                                 <div>
                                     <p></p>
                                 </div>
@@ -75,18 +74,17 @@
                             </div>
 
 
-                            <div class="col-md-8 form-group">
+                            <div class="col-md-12 form-group">
                                 <div>
                                     <p></p>
                                 </div>
-                                <!-- <input type="hidden" th:value="${person.id}" name="personId" /> -->
+                               <!-- person.email if not specified updates a "NULL" in the person database. -->
                                 <input type="hidden" class="form-control" th:field="${person.email}" id="person.email"/>
                                 <br/>
                                 <button type="submit" name="action" class="btn btn-primary" value="Add">Save</button>
-                                <!--<button type="submit" name="action" value="Exit">Save and Exit</button> -->
                                 <span class="tab-space"><a href="/" id ="cancel" name="cancel" class="btn btn-primary">&nbsp;Exit</a></span>
                             </div>
-                            <div class="col-md-10 ">
+                            <div class="col-md-12 ">
                                 <br/>
                                 <label class="required">*</label>
                                 <label><span><small>Indicates required field</small></span></label>
@@ -94,7 +92,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+
             </form>
         </div>
     </div>
