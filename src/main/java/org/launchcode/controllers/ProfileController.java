@@ -70,9 +70,6 @@ public class ProfileController {
         }
         else {
 
-
-            // if password error, only password should be set to null. The rest is sent to the view with a refresh
-            // of other fields
             model.addAttribute("firstname", person.getFirstName());
             model.addAttribute("lastname", person.getLastName());
             model.addAttribute("email", person.getEmail());
@@ -171,7 +168,6 @@ public class ProfileController {
 
         return "home/index";
     }
-
 
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemoveForm(Model model, @CookieValue(value = "person",

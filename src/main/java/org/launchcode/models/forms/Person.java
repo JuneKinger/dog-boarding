@@ -2,8 +2,6 @@ package org.launchcode.models.forms;
 
 import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,20 +13,15 @@ public class Person {
     @GeneratedValue
     private int id;
 
-    @NotEmpty
     @Column(unique = true)
     private String email;
 
-    @NotEmpty
     private String password;
 
-    @NotNull
     private String firstName;
 
-    @NotEmpty
     private String lastName;
 
-    @NotEmpty
     private String address;
 
     private String homePhone;
@@ -40,11 +33,9 @@ public class Person {
     @JoinColumn(name = "person_id")
     private List<Dog> dogs = new ArrayList<>();
 
-
     // default constructor
     public Person() {
     }
-
 
     public int getId() {
         return id;
