@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
 <head th:replace="fragments :: head">
-    <title>Delete</title>
+    <title>Delete-Dog-Details</title>
 </head>
 <nav th:replace="fragments :: navigation"></nav>
 
-<div class ="container" style="margin-top: 75px">
-    <div class="col-md-10 col-md-offset-1">
+<div class ="container" style="margin-top: 90px">
+    <div class="col-md-6 col-md-offset-3">
         <form method ="post"  style="max-width:1000px;" th:object="${person}">
             <div class="panel-group">
-                <div class="col-md-6 col-md-offset-3">
+
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h1 class="panel-title">Delete Profile</h1>
@@ -28,7 +28,7 @@
                                 <div class="col-md-12" form-group>
                                     <!-- one space after </span> leaves a space between label and icon -->
                                     <label for="email" ><small>Email </small></label> <span class="glyphicon glyphicon-envelope"></span> <span class="required">*</span>
-                                    <input id="email" class="form-control" th:field="*{email}" name="email" required />
+                                    <input id="email" class="form-control" th:field="*{email}" name="email" readonly />
                                 </div>
 
                                 <div class="col-md-12 form-group">
@@ -51,20 +51,21 @@
                                     <span>format: 123-456-7890</span>
                                 </div>
 
-                                <!-- <label th:for="email">Email</label>
-                                <input type="hidden" th:field="*{email}" />
-                                <input type="hidden"  th:field="*{password}"  />
-                                -->
                                 <div class="col-md-12">
                                     <div>
                                         <p></p>
                                     </div>
-                                    <!-- <a class="btn btn-primary" href="#" role="button">Delete</a> -->
                                     <button type="submit" class="btn btn-primary" role="button" name="action" >Delete Profile</button>
+                                </div>
+                                <div class="col-md-12">
+                                    <br/>
+                                    <label class="required">*</label>
+                                    <label><span><small>Indicates required field</small></span></label>
+
                                 </div>
                             </div>
                         </div>
-                    </div>
+
                 </div>
             </form>
         </div>

@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
 <head th:replace="fragments :: head">
-    <title>Title</title>
+    <title>Delete-Dog-Details</title>
 </head>
 <nav th:replace="fragments :: navigation"></nav>
 <body class="container">
 <!-- form-control displays a nice table like form -->
-<div style="margin-top: 60px">
-    <div class="form-row">
+<div style="margin-top: 70px">
+
         <div class="col-md-6 col-md-offset-3">
-            <form method ="post" style="max-width:500px;" th:object="${dog}">
-                <div th:object="${person}"></div>
+            <form method ="post" style="max-width:1000px;" th:object="${dog}">
 
                 <div class="panel-group">
-                    <!-- <div class="col-md-6 col-md-offset-3"> -->
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h1 class="panel-title">Delete dog details</h1>
@@ -24,14 +22,14 @@
                                 <p></p>
                             </div>
 
-                            <div class="col-md-8 form-group">
+                            <div class="col-md-12 form-group">
                                 <label th:for="name"><small>Name </small><span class="required">*</span></label>
                                 <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="name" readonly/>
                             </div>
                             <div>
                                 <p></p>
                             </div>
-                            <div class="col-md-8 form-group">
+                            <div class="col-md-12 form-group">
                                 <label th:for="breed"><small>Breed</small></label>
                                 <input class="form-control" type="text" th:field="*{breed}" id="breed" placeholder="breed" readonly/>
                             </div>
@@ -39,7 +37,7 @@
                                 <p></p>
                             </div>
 
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <fieldset>
                                     <div>
                                         <div>
@@ -63,7 +61,7 @@
                                 </fieldset>
 
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <br/>
                                    <label th:for="specialNotes"><small>Special Notes</small></label>
                                 <textarea class="form-control"  th:field="*{specialNotes}" id="specialNotes" placeholder="specialNotes" readonly></textarea>
@@ -75,10 +73,10 @@
                                 <input type="hidden" class="form-control" name="id" th:field="${dog.id}" id="dog.id"/>
                                 <br/>
                                 <button type="submit" name="action" class="btn btn-primary" value="Delete">Delete</button>
-                                <!--<button type="submit" name="action" value="Exit">Save and Exit</button> -->
+
                                 <span class="tab-space"><a href="/" id ="cancel" name="cancel" class="btn btn-primary">&nbsp;Exit</a></span>
                             </div>
-                            <div class="col-md-10 ">
+                            <div class="col-md-12 ">
                                 <br/>
                                 <label class="required">*</label>
                                 <label><span><small>Indicates required field</small></span></label>
@@ -89,7 +87,7 @@
                 </div>
             </form>
         </div>
-    </div>
+
 </div>
 </body>
 </html>
