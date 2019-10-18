@@ -58,6 +58,8 @@ public class ProfileController {
 
         if (person.getPassword().equals(verify) && verify != "") {
 
+            String persEmail = person.getEmail().toLowerCase();
+
             Cookie cookie = new Cookie("person", person.getEmail());
             // set the path so the whole application has access to the cookie
             cookie.setPath("/");
@@ -104,17 +106,18 @@ public class ProfileController {
             model.addAttribute("person", new Person());
             return "person/login";
        }
+
+        model.addAttribute("name", personDao.findByEmail(person.getEmail()).getFirstName());
         // create cookie with cookie name and value (key-value pair) using Cookie class
-        Cookie cookie = new Cookie("person", person.getEmail());
+        Cookie cookie = new Cookie("person", person.getEmail().toLowerCase());
         // set the path so the whole application has access to the cookie
         cookie.setPath("/");
 
         // method of HttpServletResponse interface is used to add cookie in response object
         response.addCookie(cookie);
 
-        model.addAttribute("title", pers.getFirstName());
-        //return "redirect:/person/edit/" + person.getId();
-        return "home/index";
+        return  "person/welcome";
+
     }
 
 
