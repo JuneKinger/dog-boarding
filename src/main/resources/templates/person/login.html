@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
-    <title>Title</title>
+    <title>Login</title>
 </head>
 <nav th:replace="fragments :: navigation"></nav>
 <body>
-<div class="container" style="margin-top: 150px">
-        <form method ="post" style="max-width:1000px;" th:object="${person}">
-            <div class="panel-group">
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <h1 class="panel-title">Login </h1>
-                            </div>
-                            <div class="panel-body">
-                                <div th:text="${error}" class="col-form-label text-danger"></div>
-                                <!-- <div class="form-row" > -->
-                                <div class="col-md-10 form-group">
-                                    <label th:for="email"><small>Email *</small> </label>
-                                    <input class="form-control" id="email" th:field="*{email}" type="text" placeholder="Email" required/>
-                                    <span th:errors="*{email}" class="error"></span>
-                                </div>
+    <div class="container" style="margin-top: 150px">
+        <!-- the line below is needed to center the form on the page -->
+        <div class="col-md-6 col-md-offset-3">
+            <form method ="post" style="max-width:1000px;" th:object="${person}">
+                <div class="panel-group">
 
-                                <div class="col-md-10 form-group">
-                                    <label th:for="password"><small>Password *</small></label>
-                                    <input class="form-control" id="password" th:field="*{password}" type="password" placeholder="Password" required/>
-                                    <span th:errors="*{password}" class="error"></span>
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h1 class="panel-title">Login </h1>
                                 </div>
-                                <div class="col-md-3 ">
-                                    <input type="submit" value="Login"/>
+                                <div class="panel-body">
+                                    <div th:text="${error}" class="col-form-label text-danger"></div>
+
+                                    <div class="col-md-12 form-group">
+                                        <label th:for="email"><small>Email </small><span class="required">*</span> </label>
+                                        <input class="form-control" id="email" th:field="*{email}" type="text" name="email" placeholder="Email" required/>
+
+                                    </div>
+
+                                    <div class="col-md-12 form-group">
+                                        <label th:for="password"><small>Password </small><span class="required">*</span></label>
+                                        <input class="form-control" id="password" th:field="*{password}" type="password" placeholder="Password" required/>
+
+                                    </div>
+                                    <div class="col-md-12 ">
+                                        <input type="submit" class="btn btn-primary" role="button" value="Login"/>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                 </div>
-            </div>
-            <input type="hidden" th:field="${person.id}"/>
-            <!-- <h1 th:text="'Welcome ' + '!'">Default Title</h1> -->
-            <!--<p><a th:href="'/person/index/' + ${person.id}"></a></p> -->
-        </form>
+
+
+
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>
