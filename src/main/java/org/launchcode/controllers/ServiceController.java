@@ -7,11 +7,14 @@ import org.launchcode.models.forms.Dog;
 import org.launchcode.models.forms.Person;
 import org.launchcode.models.forms.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Controller
@@ -27,22 +30,6 @@ public class ServiceController {
     @Autowired
     private DogDao dogDao;
 
-        /*
-    @RequestMapping(value = "")
-    public String index(Model model, @CookieValue(value = "person",
-            defaultValue = "none") String email) {
-        if (email.equals("none")) {
-            return "redirect:/person/login";
-        }
-        Person pers = personDao.findByEmail(email);
-        List<Dog> dogs = pers.getDogs();
-        // findAll() is an iterable that Thymeleaf uses in th:each="dog : ${dogs}"
-        model.addAttribute("dogs", dogs);
-        model.addAttribute("title", "My Dogs");
-        return "service/add-service";
-    }
-*/
-
     @RequestMapping(value = "add-service", method = RequestMethod.GET)
     public String displayAddServiceForm(Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {
@@ -55,8 +42,7 @@ public class ServiceController {
         List<Dog> dogs = person.getDogs();
 
         if (dogs.size() == 0) {
-            model.addAttribute("err", "Please enter *Dog Details* first");
-            return "service/add-service";
+            return  "redirect:/service/error-services";
         }
 
         //model.addAttribute("error", "");
@@ -66,43 +52,17 @@ public class ServiceController {
         return "service/add-service";
     }
 
+
     @RequestMapping(value = "add-service", method = RequestMethod.POST)
     public String processAddServiceForm(@ModelAttribute @Valid Service newService, Errors errors,
-                                        @RequestParam("action") String action, int[] dogIds, String email, String Radio, String dayOfWeek, Model model) {
+                                        @RequestParam int[] dogIds, String email, String Radio, String dayOfWeek, Model model) {
 
-/*
-      if (Radio.equals("weekly") && !dayOfWeek.matches("[A-Za-z]")) {
-          model.addAttribute("errors", "Please enter Days of the Week");
-          Person pers = personDao.findByEmail(personEmail);
-          List<Dog> dogs = pers.getDogs();
-          model.addAttribute("dogs", dogs);
-          model.addAttribute("person", pers);
-          return "service/add-service";
-          }
-        if (dogIds == null) {
-            model.addAttribute("errors", "Please check mark at least one dog");
-            return "service/add-service";
-        }
 
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Service");
-
-            //model.addAttribute("error", "Invalid input - please reenter");
-            if (!dogIds.equals("")) {
-                for (int dogId : dogIds) {
-                    Dog dog = dogDao.findById(dogId);
-                    newService.setDog(dog);
-                    if (dogId == 0) {
-                        break;
-                    }
-                }
-
-            }
-            */
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Service");
             Person person = personDao.findByEmail(email);
 
+            model.addAttribute("error", "Invalid input - please re-enter!");
             model.addAttribute("dogs", person.getDogs());
             model.addAttribute("person", personDao.findByEmail(email));
 
@@ -128,12 +88,14 @@ public class ServiceController {
 
             serviceDao.save(service);
         }
-        if (action.equals("Add")) {
-            return "redirect:/service/add-service";
-        } else {
 
-            return "person/index";
-        }
+            return "redirect:/service/add-service";
+
+    }
+    @RequestMapping(value = "error-services", method = RequestMethod.GET)
+        public String displayError(Model model)  {
+            model.addAttribute("err", "Please enter *Dog Details* first");
+            return "service/error-services";
 
     }
 
@@ -194,5 +156,6 @@ public class ServiceController {
         serviceDao.delete(service);
         return "redirect:/service/list-services";
     }
+
 
 }

@@ -2,13 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
 <head th:replace="fragments :: head">
     <title>Title</title>
-    <!--<script type="text/javascript" src="../static/js/script.js"></script> -->
 </head>
 <nav th:replace="fragments :: navigation"></nav>
 
 <body class="container">
 <!-- form-control displays a nice table like form -->
-<div style="margin-top: 60px">
+<div style="margin-top: 100px">
     <div class="form-row">
         <div class="col-md-6 col-md-offset-3">
             <form method ="post" style="max-width:500px;" th:object="${service}">
@@ -80,34 +79,39 @@
                                                         <p></p>
                                                     </div>
                                                     <div class="select-weekDays" >
-                                                        <input type="text" class="required_week" th:field="*{dayOfWeek}" />
-                                                        <input type="checkbox" th:id="weekday-mon" class="weekday custom-control-input " name="dayOfWeek" th:value="Mon" required/>
+                                                        <input type="text" th:field="*{dayOfWeek}" />
+                                                        <input type="checkbox" th:id="weekday-mon" class="weekday custom-control-input required_group" name="dayOfWeek" th:value="Mon" required/>
                                                         <label th:for="weekday-mon">Mon</label>
 
                                                         <span><input type="text" th:field="*{dayOfWeek}" />
-                                                                        <input type="checkbox" th:id="weekday-tue" class="weekday custom-control-input " name="dayOfWeek"  th:value="Tue" required/>
+                                                                        <input type="checkbox" th:id="weekday-tue" class="weekday custom-control-input required_group" name="dayOfWeek"  th:value="Tue" required/>
                                                                         <label th:for="weekday-tue">Tue</label></span>
 
                                                         <span><input type="text" th:field="*{dayOfWeek}" />
-                                                                        <input type="checkbox" th:id="weekday-wed" class="weekday custom-control-input " name="dayOfWeek"  th:value="Wed" required/>
+                                                                        <input type="checkbox" th:id="weekday-wed" class="weekday custom-control-input required_group" name="dayOfWeek"  th:value="Wed" required/>
                                                                             <label th:for="weekday-wed">Wed</label></span>
 
                                                         <span><input type="text" th:field="*{dayOfWeek}" />
-                                                                        <input type="checkbox" th:id="weekday-thu" class="weekday custom-control-input " name="dayOfWeek" th:value="Thu" required/>
+                                                                        <input type="checkbox" th:id="weekday-thu" class="weekday custom-control-input required_group" name="dayOfWeek" th:value="Thu" required/>
                                                                         <label th:for="weekday-thu">Thu</label></span>
 
                                                         <span><input type="text" th:field="*{dayOfWeek}" />
-                                                                        <input type="checkbox" th:id="weekday-fri" class="weekday custom-control-input " name="dayOfWeek" th:value="Fri" required/>
+                                                                        <input type="checkbox" th:id="weekday-fri" class="weekday custom-control-input required_group" name="dayOfWeek" th:value="Fri" required/>
                                                                             <label th:for="weekday-fri">Fri</label></span>
 
                                                         <span><input type="text" th:field="*{dayOfWeek}" />
-                                                                        <input type="checkbox" th:id="weekday-sat" class="weekday custom-control-input " name="dayOfWeek"  th:value="Sat" required/>
+                                                                        <input type="checkbox" th:id="weekday-sat" class="weekday custom-control-input required_group" name="dayOfWeek"  th:value="Sat" required/>
                                                                             <label th:for="weekday-sat">Sat</label></span>
 
                                                         <span><input type="text" th:field="*{dayOfWeek}" />
-                                                                        <input type="checkbox" th:id="weekday-sun" class="weekday custom-control-input " name="dayOfWeek" th:value="Sun" required/>
+                                                                        <input type="checkbox" th:id="weekday-sun" class="weekday custom-control-input required_group" name="dayOfWeek" th:value="Sun" required/>
                                                                             <label th:for="weekday-sun">Sun</label></span>
                                                         <span th:errors="*{dayOfWeek}" class="error"></span>
+                                                        <script>
+                                                                $('form').on('click', '.required_group', function() {
+                                                                    $('input.required_group').prop('required', $('input.required_group').length === 0);
+                                                                });
+                                                            </script>
 
                                                     </div>
 
@@ -115,18 +119,15 @@
                                                 <div>
                                                     <p></p>
                                                 </div>
-                                                <p><label for="sdt"><small>Start Date: </small><span class="required ">*</span></label>
-                                                    <input id="sdt"  type="date" th:field="*{startDate}" required/></p>
+                                                <p><label for="sdt"><small>Start Date: </small><span class="required">*</span></label>
+                                                    <input id="sdt" type="date" th:field="*{startDate}" required/></p>
+                                                <!--<span th:errors="*{startDate}" class="error"></span> -->
+                                                <p><label for="edt"><small>End Date: </small><span class="required">*</span></label>
+                                                    <input id="edt" type="date" th:field="*{endDate}" required/></p>
+                                                <!--<span th:errors="*{endDate}" class="error"></span> -->
 
-                                                <p><label for="edt"><small>End Date: </small><span class="required ">*</span></label>
-                                                    <input id="edt"  type="date" th:field="*{endDate}" required/></p>
-                                                <script>
-                                                  $('form').on('click', '.required_week', function() {
-                                                      $('input.required_week').prop('required', $('input.required_week:checked').length === 0);
-                                                  });
-                                            </script>
-                                                <script>
 
+                                                <script>
                                                         $('input[type="radio"]').click(function()
                                                         {
                                                         if($(this).attr("value")=="once")
@@ -140,11 +141,6 @@
                                                         });
                                                         $('input[type="radio"]').trigger('click');
                                                    </script>
-                                                <script>
-                                                                $('form').on('click', '.required_group', function() {
-                                                                    $('input.required_group').prop('required', $('input.required_group').length === 0);
-                                                                });
-                                                        </script>
                                             </td>
                                         </tr>
                                     </table>
@@ -185,5 +181,3 @@
 
 </body>
 </html>
-
-
