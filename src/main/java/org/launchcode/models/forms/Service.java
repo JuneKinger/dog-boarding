@@ -8,6 +8,7 @@ import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.time.LocalDate;
 
 @Entity
 @DynamicUpdate
@@ -17,15 +18,11 @@ public class Service {
     @GeneratedValue
     private int id;
 
-    @FutureOrPresent
-    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date startDate;
+    private LocalDate startDate;
 
-    @FutureOrPresent
-    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date endDate;
+    private LocalDate endDate;
 
     private String dayOfWeek;
 
@@ -44,22 +41,19 @@ public class Service {
         return id;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

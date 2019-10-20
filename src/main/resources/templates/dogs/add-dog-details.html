@@ -6,7 +6,7 @@
 <nav th:replace="fragments :: navigation"></nav>
 <body class="container" style="margin-top: 70px">
         <div class="col-md-6 col-md-offset-3">
-            <form method ="post" style="max-width:1000px;" th:object="${dog}">
+            <form method ="post"  th:object="${dog}">
                 <div class="panel-group">
 
                     <div class="panel panel-primary">
@@ -82,7 +82,10 @@
                                 <input type="hidden" class="form-control" th:field="${person.email}" id="person.email"/>
                                 <br/>
                                 <button type="submit" name="action" class="btn btn-primary" value="Add">Save</button>
+                                <!--
                                 <span class="tab-space"><a href="/" id ="cancel" name="cancel" class="btn btn-primary">&nbsp;Exit</a></span>
+                                -->
+                                <span class="tab-space" id ="cancel" name="cancel" class="btn btn-primary">&nbsp;Exit</a></span>
                             </div>
                             <div class="col-md-12 ">
                                 <br/>

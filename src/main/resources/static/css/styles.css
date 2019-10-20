@@ -1,4 +1,4 @@
-vbody {
+body {
      font-family: sans-serif;
  }
 
@@ -14,8 +14,6 @@ vbody {
 
  h1 {
  text-align: center;}
-
-
 
  span.tab-space {
  padding-left:5em;}
@@ -54,14 +52,15 @@ vbody {
     padding: 4px 0;
  }
 
- /* When the checkbox is checked, add a blue background */
- .container input:checked ~ .checkmark {
-   background-color: #2196F3;
- }
-
  .required {
  color: red;
  }
+/*
+ .checkmark input:checked ~ .checkmark {
+   background-color: #2196F3;
+ }
+
+*/
 
  hr {
  width: 50%;
@@ -105,3 +104,21 @@ vbody {
  .glyphicon-calendar:before {
    margin-right: 5px;
  }
+
+.inner-addon {
+  position: relative;
+  /* margin just for breathe from viewport */
+  margin-top: 20px;
+}
+
+input.glyphicon {
+  /* give text some indent so it doesn't collapse with icon */
+  text-indent: 18px;
+}
+
+.glyphicon.glyphicon-user {
+  position: absolute;
+  /* Adjust coordinates as desired */
+  top: 10px;
+  left: 10px;
+}
