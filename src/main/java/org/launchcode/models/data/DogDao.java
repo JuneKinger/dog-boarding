@@ -1,9 +1,11 @@
 package org.launchcode.models.data;
 
 import org.launchcode.models.forms.Dog;
+import org.launchcode.models.forms.Person;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -12,6 +14,6 @@ import java.util.Optional;
 public interface DogDao extends CrudRepository<Dog, Integer> {
     Dog findById(int id);
 
-    Dog findAllById(int id);
+    Dog findByName(String name);
 }
 

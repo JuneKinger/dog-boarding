@@ -58,6 +58,11 @@ public class ServiceController {
                                         @RequestParam int[] dogIds, String email, String Radio, String dayOfWeek, Model model) {
 
 
+        if (newService.getStartDate().isAfter(newService.getEndDate())) {
+            model.addAttribute("error", "Start date must be >= End date - please re-enter!");
+            return "service/add-service";
+        }
+
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Service");
             Person person = personDao.findByEmail(email);
@@ -89,13 +94,13 @@ public class ServiceController {
             serviceDao.save(service);
         }
 
-            return "redirect:/service/add-service";
+        return "redirect:/service/add-service";
 
     }
     @RequestMapping(value = "error-services", method = RequestMethod.GET)
-        public String displayError(Model model)  {
-            model.addAttribute("err", "Please enter *Dog Details* first");
-            return "service/error-services";
+    public String displayError(Model model)  {
+        model.addAttribute("err", "Please enter *Dog Details* first");
+        return "service/error-services";
 
     }
 
@@ -147,7 +152,6 @@ public class ServiceController {
         //Person pers = personDao.findByEmail(person.getEmail());
 
       /*
-
         List<Dog> dogs = pers.getDogs();
         pers.setDogs(dogs);
         Dog dog = dogDao.findById(id);
