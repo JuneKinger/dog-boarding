@@ -65,7 +65,6 @@ public class Service {
         this.dayOfWeek = dayOfWeek;
     }
 
-
     public Person getPerson() {
         return person;
     }

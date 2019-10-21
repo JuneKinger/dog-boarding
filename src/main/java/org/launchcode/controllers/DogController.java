@@ -65,6 +65,15 @@ public class DogController {
     public String processAddDogDetailsForm(@ModelAttribute @Valid Dog newDog, Errors errors,
                                            @RequestParam("action") String action, Person person, Model model) {
 
+        // search dogDao if name input exists
+
+        if (newDog.getName().equals(dogDao.findByName(newDog.getName()))) {
+            model.addAttribute("error", "Duplicate dog name - please reenter dog name");
+            model.addAttribute("title", "Add Dog");
+            model.addAttribute("dogs", dogDao.findAll());
+            return "dogs/add-dog-details";
+        }
+
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Dog");
             model.addAttribute("dogs", dogDao.findAll());
