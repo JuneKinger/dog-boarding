@@ -17,7 +17,6 @@
                             <h1 class="panel-title">Delete dog details</h1>
                         </div>
                         <div class="panel-body">
-                            <div th:text="${error}" class="col-form-label text-danger"></div>
                             <div>
                                 <p></p>
                             </div>
@@ -37,25 +36,25 @@
                                 <p></p>
                             </div>
 
-                            <div class="col-md-12">
+                            <div class="col-md-12 ">
                                 <fieldset>
                                     <div>
                                         <div>
                                             <p></p>
                                         </div>
-                                        <input type="radio" th:field="*{size}" data-attribute_name="attribute_size" name="attribute_size" id="size1" value="small" readonly>
-                                        <label for="size1"><small>Small</small></label>
+                                        <input type="radio" th:field="*{size}" name="id" id="size1" value="Small"readonly>
+                                        <label for="size1" ><small>Small</small></label>
+                                    </div>
+                                        <div >
+                                        <input type="radio"  th:field="*{size}"  name="id" id="size2" value="Medium" readonly>
+                                        <label for="size2" ><small>Medium</small></label>
                                     </div>
                                     <div >
-                                        <input type="radio" th:field="*{size}" data-attribute_name="attribute_size" name="attribute_size" id="size2" value="Medium" readonly>
-                                        <label for="size2"><small>Medium</small></label>
-                                    </div>
-                                    <div >
-                                        <input type="radio" th:field="*{size}" data-attribute_name="attribute_size" name="attribute_size" id="size3" value="large" readonly>
+                                        <input type="radio"  th:field="*{size}" name="id" id="size3" th:value="Large" readonly>
                                         <label for="size3"><small>Large</small></label>
                                     </div>
                                     <div >
-                                        <input type="radio" th:field="*{size}" data-attribute_name="attribute_size" name="attribute_size" id="size4" value="extra" readonly>
+                                        <input type="radio"  th:field="*{size}" name= "id" id="size4" th:value="Gigantic" readonly>
                                         <label for="size4"><small>Gigantic (81 - Max)</small></label>
                                     </div>
                                 </fieldset>

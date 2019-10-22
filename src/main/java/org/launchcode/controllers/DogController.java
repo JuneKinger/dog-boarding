@@ -63,36 +63,37 @@ public class DogController {
 
     @RequestMapping(value = "add-dog-details", method = RequestMethod.POST)
     public String processAddDogDetailsForm(@ModelAttribute @Valid Dog newDog, Errors errors,
-                                           @RequestParam("action") String action, Person person, Model model) {
+                                           @RequestParam("action") String action, String email, Person person, Model model) {
 
         // search dogDao if name input exists
 
-        if (newDog.getName().equals(dogDao.findByName(newDog.getName()))) {
-            model.addAttribute("error", "Duplicate dog name - please reenter dog name");
+        if (dogDao.findByName(newDog.getName()) != null) {
+            model.addAttribute("error", "Duplicate dog name");
             model.addAttribute("title", "Add Dog");
             model.addAttribute("dogs", dogDao.findAll());
             return "dogs/add-dog-details";
         }
-
+/*
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Dog");
             model.addAttribute("dogs", dogDao.findAll());
             return "dogs/add-dog-details";
         }
+*/
+        else {
+            Person pers = personDao.findByEmail(person.getEmail());
 
-        Person pers = personDao.findByEmail(person.getEmail());
+            newDog.setPerson(pers);
 
-        newDog.setPerson(pers);
+            dogDao.save(newDog);
 
-        dogDao.save(newDog);
+            model.addAttribute("dogs", pers.getDogs());
+            model.addAttribute("person", pers);
 
-        if (action.equals("Add")) {
-            model.addAttribute("dog", new Dog());
-            return "dogs/add-dog-details";
-        } else {
+            return "dogs/list-dog-details";
 
-            return "person/index";
         }
+
     }
 
     @RequestMapping(value = "list-dog-details", method = RequestMethod.GET)
@@ -172,12 +173,6 @@ public class DogController {
         }
         Person pers = personDao.findByEmail(email);
 
-        List<Dog> dogs = pers.getDogs();
-
-        //pers.setDogs(dogs);
-
-        Dog dog = dogDao.findById(id);
-
         model.addAttribute("person", personDao.findByEmail(email));
         //model.addAttribute("dogs", dogDao.findAll());
 
@@ -194,12 +189,12 @@ public class DogController {
 
         Person pers = personDao.findByEmail(person.getEmail());
 
-        List<Dog> dogs = pers.getDogs();
+        List<Dog> dogs = person.getDogs();
 
-        pers.setDogs(dogs);
+        //pers.setDogs(dogs);
 
         Dog dog = dogDao.findById(id);
-        dog.setPerson(pers);
+        dog.setPerson(person);
 
         dogDao.delete(dog);
 
