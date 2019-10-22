@@ -18,13 +18,13 @@ public class Service {
     @GeneratedValue
     private int id;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat
     private LocalDate startDate;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat
     private LocalDate endDate;
 
-    private String dayOfWeek;
+    //private String dayOfWeek;
 
     @ManyToOne
     @JoinColumn(name="dog_id")
@@ -56,7 +56,7 @@ public class Service {
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
-
+/*
     public String getDayOfWeek() {
         return dayOfWeek;
     }
@@ -64,7 +64,7 @@ public class Service {
     public void setDayOfWeek(String dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
     }
-
+*/
     public Person getPerson() {
         return person;
     }
