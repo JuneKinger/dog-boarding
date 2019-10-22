@@ -60,6 +60,17 @@ public class ServiceController {
 
         if (newService.getStartDate().isAfter(newService.getEndDate())) {
             model.addAttribute("error", "Start date must be >= End date - please re-enter!");
+            Person person = personDao.findByEmail(email);
+            model.addAttribute("dogs", person.getDogs());
+            model.addAttribute("person", personDao.findByEmail(email));
+            return "service/add-service";
+        }
+
+        if (newService.getStartDate().isBefore(LocalDate.now())) {
+            model.addAttribute("error", "Start date must be >= Today - please re-enter!");
+            Person person = personDao.findByEmail(email);
+            model.addAttribute("dogs", person.getDogs());
+            model.addAttribute("person", personDao.findByEmail(email));
             return "service/add-service";
         }
 

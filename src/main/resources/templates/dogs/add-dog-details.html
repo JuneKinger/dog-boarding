@@ -43,19 +43,20 @@
                                         <div>
                                             <p></p>
                                         </div>
-                                        <input type="radio" th:field="*{size}" data-attribute_name="attribute_size" name="attribute_size" id="size1" value="small">
+                                        <!-- value= is what is added to the db and displayed in the edit-dog-details and remove-dog-details -->
+                                        <input type="radio" th:field="*{size}" id="size1" value="Small">
                                         <label for="size1"><small>Small (0 - 10 lbs)</small></label>
                                     </div>
                                     <div >
-                                        <input type="radio" th:field="*{size}" data-attribute_name="attribute_size" name="attribute_size" id="size2" value="Medium">
+                                        <input type="radio" th:field="*{size}" id="size2" value="Medium">
                                         <label for="size2"><small>Medium (11 - 40 lbs)</small></label>
                                     </div>
                                     <div >
-                                        <input type="radio" th:field="*{size}" data-attribute_name="attribute_size" name="attribute_size" id="size3" value="large">
+                                        <input type="radio" th:field="*{size}"  id="size3" value="Large">
                                         <label for="size3"><small>Large (41 - 80 lbs)</small></label>
                                     </div>
                                     <div >
-                                        <input type="radio" th:field="*{size}" data-attribute_name="attribute_size" name="attribute_size" id="size4" value="gigantic">
+                                        <input type="radio" th:field="*{size}"  id="size4" value="Gigantic">
                                         <label for="size4"><small>Gigantic (81 - Max)</small></label>
                                     </div>
                                 </fieldset>
