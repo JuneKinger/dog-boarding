@@ -13,7 +13,7 @@
         <div class="panel-group">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h1 class="panel-title">Schedule Appointment</h1>
+                    <h1 class="panel-title">Schedule Service</h1>
                 </div>
                 <div class="panel-body">
                     <div th:text="${error}" class="col-form-label text-danger"></div>
@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="form-row col-md-12 form-group" >
-                        <label><p><u><small><strong>Check dogs for service: </strong></small><span class="required">*</span></u></p></label>
+                        <label><p><u><small><strong>Check dogs for boarding: </strong></small><span class="required">*</span></u></p></label>
 
                         <div>
                             <p></p>
@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="form-row col-md-12 form-group" >
-
+<!--
                         <div>
                             </label><small><strong><p><u> How often do you need this service: </u></p></strong></small></label>
                         </div>
@@ -55,7 +55,6 @@
                             <p></p>
                         </div>
 
-                        <!--<script src="../js/script.js" type="text/javascript"></script>-->
                         <table>
                             <tr>
                                 <td align="left" height="45">
@@ -65,7 +64,7 @@
 
                                     <span class="tab-space"><input class="radioBtn" type="radio" name="Radio" id="Week" value="weekly"/></span>
                                     <label for="Week" ><small>Weekly</small></label>
-                                    <!--<input class="radioBtn" type="radio" name="Radio" id="Radio" value="weekly" required >-->
+                                    <input class="radioBtn" type="radio" name="Radio" id="Radio" value="weekly" required >
 
                                     <div class="Box" style="display:none">
                                         <div>
@@ -104,24 +103,19 @@
                                         </div>
 
                                     </div>
-
+-->
                                     <div>
                                         <p></p>
                                     </div>
 
-                                    <p><label for="sdt"><small>Start Date: </small><span class="required ">*</span></label>
+                                    <p><label for="sdt"><small>Drop off </small><span class="required ">*</span></label>
                                         <input id="sdt"  class=" glyphicon glyphicon-calendar form-control " type="date"  th:field="*{startDate}" required/></p>
+                                    <br/>
 
-
-                                    <p><label for="edt"><small>End Date: </small><span class="required ">*</span></label>
+                                    <p><label for="edt"><small>Pick up </small><span class="required ">*</span></label>
                                         <input id="edt" class="form-control glyphicon glyphicon-calendar" type="date"  th:field="*{endDate}" required/></p>
 
-                                    <!--
-                                    <script>
-                                          $('form').on('click', '.required_week', function() {
-                                              $('input.required_week').prop('required', $('input.required_week:checked').length === 0);
-                                          });
-                                    </script>  -->
+<!--
                                     <script>
 
                                                       $('input[type="radio"]').click(function()
@@ -141,7 +135,7 @@
                                 </td>
                             </tr>
                         </table>
-
+-->
                     </div>
 
                      <div class="col-md-12 form-group">

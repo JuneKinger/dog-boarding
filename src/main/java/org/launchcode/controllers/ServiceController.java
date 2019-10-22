@@ -57,9 +57,8 @@ public class ServiceController {
     public String processAddServiceForm(@ModelAttribute @Valid Service newService, Errors errors,
                                         @RequestParam int[] dogIds, String email, String Radio, String dayOfWeek, Model model) {
 
-
         if (newService.getStartDate().isAfter(newService.getEndDate())) {
-            model.addAttribute("error", "Start date must be >= End date - please re-enter!");
+            model.addAttribute("error", "Drop off date must be <= Pick up date - please re-enter!");
             Person person = personDao.findByEmail(email);
             model.addAttribute("dogs", person.getDogs());
             model.addAttribute("person", personDao.findByEmail(email));
@@ -67,13 +66,21 @@ public class ServiceController {
         }
 
         if (newService.getStartDate().isBefore(LocalDate.now())) {
-            model.addAttribute("error", "Start date must be >= Today - please re-enter!");
+            model.addAttribute("error", "Drop off date must be >= today's date - please re-enter!");
             Person person = personDao.findByEmail(email);
             model.addAttribute("dogs", person.getDogs());
             model.addAttribute("person", personDao.findByEmail(email));
             return "service/add-service";
         }
 
+        if (newService.getEndDate().isBefore(LocalDate.now())) {
+            model.addAttribute("error", "Pick up date must be >= today's date - please re-enter!");
+            Person person = personDao.findByEmail(email);
+            model.addAttribute("dogs", person.getDogs());
+            model.addAttribute("person", personDao.findByEmail(email));
+            return "service/add-service";
+        }
+/*
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Service");
             Person person = personDao.findByEmail(email);
@@ -84,18 +91,18 @@ public class ServiceController {
 
             return "service/add-service";
         }
-
+*/
         for (int dogId : dogIds) {
 
             Service service = new Service();
             Dog dog = dogDao.findById(dogId);
 
             service.setDog(dog);
-
+/*
             if (Radio.equals("weekly")) {
                 service.setDayOfWeek(newService.getDayOfWeek());
             }
-
+*/
             Person person = personDao.findByEmail(email);
 
             service.setPerson(person);
