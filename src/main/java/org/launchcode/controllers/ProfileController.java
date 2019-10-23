@@ -65,6 +65,7 @@ public class ProfileController {
             // method of HttpServletResponse interface is used to add cookie in response object
             response.addCookie(cookie);
 
+            person.setAdmin(false);
             personDao.save(person);
             return "redirect:/dogs/add-dog-details";
         }
@@ -98,12 +99,22 @@ public class ProfileController {
     public String processLoginForm(Model model, @ModelAttribute  Person person, HttpServletResponse response) {
 
         Person pers = personDao.findByEmail(person.getEmail());
+
+        if (pers.getAdmin() == true) {
+            Cookie cookie = new Cookie("person", person.getEmail().toLowerCase());
+            cookie.setPath("/");
+            response.addCookie(cookie);
+            return "home/index";
+        }
+
         if (pers == null || (!pers.getPassword().equals(person.getPassword()))) {
             model.addAttribute("error", "Invalid email and/or password");
             model.addAttribute("title", "Login");
             model.addAttribute("person", new Person());
             return "person/login";
        }
+
+
 
         model.addAttribute("name", personDao.findByEmail(person.getEmail()).getFirstName());
         // create cookie with cookie name and value (key-value pair) using Cookie class
@@ -145,10 +156,15 @@ public class ProfileController {
 
         Person pers = personDao.findByEmail(email);
 
-        model.addAttribute("person", pers);
+        if (pers.getAdmin() == true) {
+            return "person/as-owner";
+        }
+        else {
+            model.addAttribute("person", pers);
 
-        return "person/edit";
+            return "person/edit";
 
+        }
     }
 
     @RequestMapping(value = "edit", method = RequestMethod.POST)
@@ -180,11 +196,18 @@ public class ProfileController {
         }
 
         Person pers = personDao.findByEmail(email);
-        model.addAttribute("person", pers);
 
-        List<Dog> dogs = pers.getDogs();
+        if (pers.getAdmin() == true) {
+            return "person/as-owner";
+        }
+        else {
 
-        return "person/remove";
+            model.addAttribute("person", pers);
+
+            List<Dog> dogs = pers.getDogs();
+
+            return "person/remove";
+        }
 
     }
 

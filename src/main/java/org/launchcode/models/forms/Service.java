@@ -18,11 +18,11 @@ public class Service {
     @GeneratedValue
     private int id;
 
-    @DateTimeFormat
-    private LocalDate startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date startDate;
 
-    @DateTimeFormat
-    private LocalDate endDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date endDate;
 
     //private String dayOfWeek;
 
@@ -41,30 +41,31 @@ public class Service {
         return id;
     }
 
-    public LocalDate getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-/*
-    public String getDayOfWeek() {
-        return dayOfWeek;
-    }
 
-    public void setDayOfWeek(String dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
-    }
-*/
+    /*
+        public String getDayOfWeek() {
+            return dayOfWeek;
+        }
+
+        public void setDayOfWeek(String dayOfWeek) {
+            this.dayOfWeek = dayOfWeek;
+        }
+    */
     public Person getPerson() {
         return person;
     }

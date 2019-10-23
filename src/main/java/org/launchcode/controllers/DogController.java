@@ -24,7 +24,7 @@ public class DogController {
 
     @Autowired
     private PersonDao personDao;
-
+/*
     @RequestMapping(value = "")
 
     public String index(Model model, @CookieValue(value = "person",
@@ -42,7 +42,7 @@ public class DogController {
 
         return "dogs/index";
     }
-
+*/
     @RequestMapping(value = "add-dog-details", method = RequestMethod.GET)
     public String displayAddDogDetailsForm(Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {
@@ -52,6 +52,7 @@ public class DogController {
         }
 
         Person person = personDao.findByEmail(email);
+
         List<Dog> dogs = person.getDogs();
 
         model.addAttribute("dogs", dogs);
@@ -104,6 +105,10 @@ public class DogController {
             return "redirect:/person/login";
         }
         Person pers = personDao.findByEmail(email);
+
+        if (pers.getAdmin() == true) {
+            return "person/as-owner";
+        }
         List<Dog> dogs = pers.getDogs();
 
         model.addAttribute("dogs", dogs);

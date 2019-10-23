@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Controller
@@ -39,6 +40,11 @@ public class ServiceController {
         }
 
         Person person = personDao.findByEmail(email);
+
+        if (person.getAdmin() == true) {
+            return "person/as-owner";
+        }
+
         List<Dog> dogs = person.getDogs();
 
         if (dogs.size() == 0) {
@@ -57,33 +63,42 @@ public class ServiceController {
     public String processAddServiceForm(@ModelAttribute @Valid Service newService, Errors errors,
                                         @RequestParam int[] dogIds, String email, String Radio, String dayOfWeek, Model model) {
 
-        if (newService.getStartDate().isAfter(newService.getEndDate())) {
-            model.addAttribute("error", "Drop off date must be <= Pick up date - please re-enter!");
-            Person person = personDao.findByEmail(email);
+        Person person = personDao.findByEmail(email);
+        if (person.getAdmin() == true) {
+            return "person/as-owner";
+        }
+
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mm/dd/yyyy");
+
+        //LocalDate localDate = LocalDate.parse(newService.getStartDate(), formatter);
+
+        if (newService.getStartDate().after(newService.getEndDate())) {
+            model.addAttribute("error", "Drop off date must be <= Pick up date");
             model.addAttribute("dogs", person.getDogs());
             model.addAttribute("person", personDao.findByEmail(email));
             return "service/add-service";
         }
+        Date today = new Date();
+        long dt = System.currentTimeMillis() - 1000*60*60*24;
+        Date beforeDate = new Date(dt);
 
-        if (newService.getStartDate().isBefore(LocalDate.now())) {
+        if (newService.getStartDate().before(beforeDate)) {
             model.addAttribute("error", "Drop off date must be >= today's date - please re-enter!");
-            Person person = personDao.findByEmail(email);
             model.addAttribute("dogs", person.getDogs());
             model.addAttribute("person", personDao.findByEmail(email));
             return "service/add-service";
         }
 
-        if (newService.getEndDate().isBefore(LocalDate.now())) {
+        if (newService.getEndDate().before(beforeDate)) {
             model.addAttribute("error", "Pick up date must be >= today's date - please re-enter!");
-            Person person = personDao.findByEmail(email);
             model.addAttribute("dogs", person.getDogs());
             model.addAttribute("person", personDao.findByEmail(email));
             return "service/add-service";
         }
-/*
+
+
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Service");
-            Person person = personDao.findByEmail(email);
 
             model.addAttribute("error", "Invalid input - please re-enter!");
             model.addAttribute("dogs", person.getDogs());
@@ -91,7 +106,7 @@ public class ServiceController {
 
             return "service/add-service";
         }
-*/
+
         for (int dogId : dogIds) {
 
             Service service = new Service();
@@ -103,7 +118,7 @@ public class ServiceController {
                 service.setDayOfWeek(newService.getDayOfWeek());
             }
 */
-            Person person = personDao.findByEmail(email);
+            //Person person = personDao.findByEmail(email);
 
             service.setPerson(person);
             service.setStartDate(newService.getStartDate());
@@ -130,6 +145,11 @@ public class ServiceController {
             return "redirect:/person/login";
         }
         Person person = personDao.findByEmail(email);
+
+        if (person.getAdmin() == true) {
+            return "person/as-owner";
+        }
+
         List<Service> services = serviceDao.findByPerson_Id(person.getId());
         model.addAttribute("person", person);
         model.addAttribute("services", services);
