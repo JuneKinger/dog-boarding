@@ -28,8 +28,8 @@
         </div>
 
         <ul class="nav navbar-nav">
-            <li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-            <li><a href="/person/signup">Register</a></li>
+            <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+            <li class="active"><a href="/person/signup">Register</a></li>
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -68,11 +68,22 @@
                 </ul>
             </li>
             <li><a href="#"><span class="glyphicon glyphicon"></span>Pricing</a></li>
+
+            <li class="active nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuAdminLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-stats"></span> Administration
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuAdminLink">
+                    <li><a class="dropdown-item" tabindex="-1" href="/admin/list-owners">List Owners</a></li>
+                    <li><a class="dropdown-item" tabindex="-1" href="/admin/list-to-be-boarders">List To-Be-Boarders</a></li>
+                </ul>
+            </li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="/admin/checkAppointments"><span class="glyphicon glyphicon-stats"></span> Admin</a></li>
-            <li><a href="/person/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <!--<li><a href="/admin/checkAppointments"><span class="glyphicon glyphicon-stats"></span> Admin</a></li>-->
+            <li class="active"><a href="/person/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             <li><a href="/person/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
         </ul>
 

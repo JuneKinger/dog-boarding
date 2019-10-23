@@ -47,95 +47,18 @@
                     </div>
 
                     <div class="form-row col-md-12 form-group" >
-<!--
-                        <div>
-                            </label><small><strong><p><u> How often do you need this service: </u></p></strong></small></label>
-                        </div>
-                        <div>
-                            <p></p>
-                        </div>
 
-                        <table>
-                            <tr>
-                                <td align="left" height="45">
+                         <div>
+                             <p></p>
+                         </div>
 
-                                    <input type="radio" class="radioBtn" name="Radio" id="once" value="once" checked >
-                                    <label for="once" ><small>One Time</small></label>
+                        <p><label for="sdt"><small>Drop off </small><span class="required ">*</span></label>
+                            <input id="sdt"  class=" glyphicon glyphicon-calendar form-control " type="date" th:value="*{startDate}" th:field="*{startDate}" required/></p>
+                        <br/>
 
-                                    <span class="tab-space"><input class="radioBtn" type="radio" name="Radio" id="Week" value="weekly"/></span>
-                                    <label for="Week" ><small>Weekly</small></label>
-                                    <input class="radioBtn" type="radio" name="Radio" id="Radio" value="weekly" required >
+                        <p><label for="edt"><small>Pick up </small><span class="required ">*</span></label>
+                            <input id="edt" class="form-control glyphicon glyphicon-calendar" type="date"  th:value="*{endDate}" th:field="*{endDate}" required/></p>
 
-                                    <div class="Box" style="display:none">
-                                        <div>
-                                            <p></p>
-                                        </div>
-                                        <div class="select-weekDays" >
-                                            <input type="text" class="required_week" th:field="*{dayOfWeek}" />
-                                            <input type="checkbox" th:id="weekday-mon" class="weekday custom-control-input " name="dayOfWeek" th:value="Mon" />
-                                            <label th:for="weekday-mon">Mon</label>
-
-                                            <span><input type="text" th:field="*{dayOfWeek}" />
-                                                                      <input type="checkbox" th:id="weekday-tue" class="weekday custom-control-input " name="dayOfWeek"  th:value="Tue" />
-                                                                      <label th:for="weekday-tue">Tue</label></span>
-
-                                            <span><input type="text" th:field="*{dayOfWeek}" />
-                                                                      <input type="checkbox" th:id="weekday-wed" class="weekday custom-control-input " name="dayOfWeek"  th:value="Wed" />
-                                                                          <label th:for="weekday-wed">Wed</label></span>
-
-                                            <span><input type="text" th:field="*{dayOfWeek}" />
-                                                                      <input type="checkbox" th:id="weekday-thu" class="weekday custom-control-input " name="dayOfWeek" th:value="Thu" />
-                                                                      <label th:for="weekday-thu">Thu</label></span>
-
-                                            <span><input type="text" th:field="*{dayOfWeek}" />
-                                                                      <input type="checkbox" th:id="weekday-fri" class="weekday custom-control-input " name="dayOfWeek" th:value="Fri" />
-                                                                          <label th:for="weekday-fri">Fri</label></span>
-
-                                            <span><input type="text" th:field="*{dayOfWeek}" />
-                                                                      <input type="checkbox" th:id="weekday-sat" class="weekday custom-control-input " name="dayOfWeek"  th:value="Sat" />
-                                                                          <label th:for="weekday-sat">Sat</label></span>
-
-                                            <span><input type="text" th:field="*{dayOfWeek}" />
-                                                                      <input type="checkbox" th:id="weekday-sun" class="weekday custom-control-input " name="dayOfWeek" th:value="Sun" />
-                                                                          <label th:for="weekday-sun">Sun</label></span>
-
-
-                                        </div>
-
-                                    </div>
--->
-                                    <div>
-                                        <p></p>
-                                    </div>
-
-                                    <p><label for="sdt"><small>Drop off </small><span class="required ">*</span></label>
-                                        <input id="sdt"  class=" glyphicon glyphicon-calendar form-control " type="date"  th:field="*{startDate}" required/></p>
-                                    <br/>
-
-                                    <p><label for="edt"><small>Pick up </small><span class="required ">*</span></label>
-                                        <input id="edt" class="form-control glyphicon glyphicon-calendar" type="date"  th:field="*{endDate}" required/></p>
-
-<!--
-                                    <script>
-
-                                                      $('input[type="radio"]').click(function()
-                                                      {
-                                                      if($(this).attr("value")=="once")
-                                                      {
-                                                          $(".Box").hide('slow');
-                                                      }
-                                                      if($(this).attr("value")=="weekly")
-                                                      {
-                                                          $(".Box").show('slow');
-                                                      }
-                                                      });
-                                                      $('input[type="radio"]').trigger('click');
-                                                 </script>
-
-                                </td>
-                            </tr>
-                        </table>
--->
                     </div>
 
                      <div class="col-md-12 form-group">

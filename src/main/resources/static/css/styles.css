@@ -18,7 +18,7 @@ body {
  span.tab-space {
  padding-left:5em;}
 
-
+/*
  .select-weekDays input {
 
    display: none!important;
@@ -41,6 +41,7 @@ body {
    color: #ffffff;
  }
 
+*/
  .head {
  padding: 20px 0;
    text-align: center;

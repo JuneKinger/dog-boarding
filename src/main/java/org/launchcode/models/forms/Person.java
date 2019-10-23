@@ -28,6 +28,8 @@ public class Person {
 
     private String cellPhone;
 
+    private Boolean admin;
+
     // one-to-many relationship established
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id")
@@ -103,5 +105,13 @@ public class Person {
 
     public void setDogs(List<Dog> dogs) {
         this.dogs = dogs;
+    }
+
+    public Boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
     }
 }
