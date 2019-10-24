@@ -30,25 +30,25 @@
 
                         <tbody>
 
-                        <tr th:each="dog : ${dogs}">
+                            <tr th:each="dog : ${dogs}">
 
-                            <td th:text="${dog.name}"></td>
-                            <td th:text="${dog.breed}"></td>
-                            <td th:text="${dog.size}"></td>
-                            <td th:text="${dog.specialNotes}"></td>
-                            <div class="btn-group">
-                                <td>
-                                    <a th:href="@{'/dogs/edit-dog-details/' + ${dog.id}}" class="btn btn-primary btn-sm">
-                                    <span class="glyphicon glyphicon-edit" ></span>
-                                    <span><strong>Edit</strong></span></a>
+                                <td th:text="${dog.name}"></td>
+                                <td th:text="${dog.breed}"></td>
+                                <td th:text="${dog.size}"></td>
+                                <td th:text="${dog.specialNotes}"></td>
+                                <div class="btn-group">
+                                    <td>
+                                        <a th:href="@{'/dogs/edit-dog-details/' + ${dog.id}}" class="btn btn-primary btn-sm">
+                                        <span class="glyphicon glyphicon-edit" ></span>
+                                        <span><strong>Edit</strong></span></a>
 
-                                    <a th:href="@{'/dogs/remove-dog-details/' + ${dog.id}}" class="btn btn-primary btn-sm">
-                                    <span class="glyphicon glyphicon-trash" ></span>
-                                    <span><strong>Delete</strong></span></a>
-                                </td>
-                            </div>
-                        </tr>
-
+                                        <a th:href="@{'/dogs/remove-dog-details/' + ${dog.id}}" class="btn btn-primary btn-sm">
+                                        <span class="glyphicon glyphicon-trash" ></span>
+                                        <span><strong>Delete</strong></span></a>
+                                    </td>
+                                </div>
+                            </tr>
+                        </tbody>
                     </table>
                 </form>
             </div>

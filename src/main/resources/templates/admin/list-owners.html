@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body class="container">
+
+    <nav th:replace="fragments :: navigation"></nav>
+    <div style="margin-top: 100px">
+
+        <div class="table-responsive" >
+
+            <div class="col-md-8 col-md-offset-2">
+                <form  method ="post" th:object="${person}">
+                    <table style="border:1px solid blue;" class="table table-striped row">
+                        <tr>
+                            <div>
+                                <br>
+                            </div>
+                            <h1>Owners</h1>
+                            <th><p><u>First Name</u></p></th>
+                            <th><p><u>Last Name</u></p></th>
+                            <th><p><u>Address</u></p></th>
+                            <th><p><u>Phone #</u></p></th>
+                            <th><p><u>Dog name</u></p></th>
+
+                        </tr>
+
+                        <tbody>
+
+                            <tr th:each="pers : ${person}">
+
+                               <span th:if="${not pers.admin}">
+                                    <td  th:text="${pers.firstName}"></td>
+                                    <td  th:text="${pers.lastName}"></td>
+                                    <td  th:text="${pers.address}"></td>
+                                    <td  th:text="${pers.cellPhone}"></td>
+                               </span>
+
+                            </tr>
+                        </tbody>
+
+                        <!--<div class="col-md-8"> -->
+
+                            <!-- <input type="hidden" th:value="*{id}" name="serviceId" />
+                                <input type="hidden" name="email" th:value="${person.email}" />
+
+                            <button type="submit" class="btn btn-primary" value="cancel">Exit</button>
+                            <button type="submit" name="action" value="Exit">Save and Exit</button> -->
+
+                            <span><a href="/" id ="cancel" name="cancel" class="btn btn-primary">Exit</a></span>
+
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

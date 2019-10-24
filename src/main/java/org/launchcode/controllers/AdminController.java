@@ -91,7 +91,7 @@ public class AdminController {
 
     }
 
-    @RequestMapping(value = "list-dog-details", method = RequestMethod.GET)
+    @RequestMapping(value = "list-owners", method = RequestMethod.GET)
     public String displayListDogDetailsForm(Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {
 
@@ -99,12 +99,21 @@ public class AdminController {
             return "redirect:/person/login";
         }
         Person pers = personDao.findByEmail(email);
-        List<Dog> dogs = pers.getDogs();
 
-        model.addAttribute("dogs", dogs);
-        model.addAttribute("person", pers);
+        if (pers.getAdmin() == false) {
+            return "person/as-admin";
+        }
 
-        return "dogs/list-dog-details";
+        // A single row will always be present for admin login/password
+        if (personDao.count() == 1) {
+            return "person/no-owners-registered";
+        }
+
+       // List<Dog> dogs = pers.getDogs();
+        model.addAttribute("person", personDao.findAll());
+        model.addAttribute("dogs", dogDao.findAll());
+        return "admin/list-owners";
+
     }
 
 

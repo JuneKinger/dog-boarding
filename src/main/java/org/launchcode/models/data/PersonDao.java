@@ -5,6 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.io.StreamCorruptedException;
+import java.util.List;
 
 // Establish generic CRUD operation on repository
 @Repository
@@ -12,4 +13,5 @@ import java.io.StreamCorruptedException;
 public interface PersonDao extends CrudRepository<Person, Integer> {
      Person findByEmail(String email);
 
+     //List<Person> findAll(Iterable<Integer> ids);
 }
