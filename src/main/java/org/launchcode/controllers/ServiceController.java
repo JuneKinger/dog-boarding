@@ -96,17 +96,6 @@ public class ServiceController {
             return "service/add-service";
         }
 
-
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Service");
-
-            model.addAttribute("error", "Invalid input - please re-enter!");
-            model.addAttribute("dogs", person.getDogs());
-            model.addAttribute("person", personDao.findByEmail(email));
-
-            return "service/add-service";
-        }
-
         for (int dogId : dogIds) {
 
             Service service = new Service();
@@ -118,7 +107,6 @@ public class ServiceController {
                 service.setDayOfWeek(newService.getDayOfWeek());
             }
 */
-            //Person person = personDao.findByEmail(email);
 
             service.setPerson(person);
             service.setStartDate(newService.getStartDate());
@@ -164,19 +152,9 @@ public class ServiceController {
             return "redirect:/person/login";
         }
 
-        //Person pers = personDao.findByEmail(email);
-
-        //List<Dog> dogs = pers.getDogs();
-
-        //pers.setDogs(dogs);
-
         Service service = serviceDao.findById(id);
 
-        //Dog dog = service.getDog();
-
         model.addAttribute("person", personDao.findByEmail(email));
-        //model.addAttribute("dogs", dogDao.findAll());
-
         model.addAttribute("dogs", service.getDog());
         model.addAttribute("service", service);
         return "service/remove-services";
@@ -185,19 +163,10 @@ public class ServiceController {
 
     @RequestMapping(value = "remove-service/{id}", method = RequestMethod.POST)
     public String processRemoveDogDetailForm(@ModelAttribute @Valid Service service,
-                                             @PathVariable int id, Person person, Model model) {
+                                             @PathVariable int id) {
 
-        //Person pers = personDao.findByEmail(person.getEmail());
-
-      /*
-        List<Dog> dogs = pers.getDogs();
-        pers.setDogs(dogs);
-        Dog dog = dogDao.findById(id);
-        dog.setPerson(pers);
-        */
         serviceDao.delete(service);
         return "redirect:/service/list-services";
     }
-
 
 }
