@@ -2,58 +2,62 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
 </head>
-<body class="container">
+<body class="container"  style="margin-top: 70px">
 
 <nav th:replace="fragments :: navigation"></nav>
-<div style="margin-top: 100px">
 
-    <div class="table-responsive" >
+<form  method ="post" th:object="${person}">
+    <div class="table-responsive container-fluid" >
+        <div class="panel-group">
+            <div class=" panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Owners</h1>
+                </div>
+                <!-- panel-body aligns td elements with panel-heading -->
+                <div class="panel-body">
+                    <table class="table table-striped row">
+                        <!--<table style="border:1px solid blue;" class="table table-striped row">-->
+                        <thead>
+                        <tr>
+                            <th><p><u>First Name</u></p></th>
+                            <th><p><u>Last Name</u></p></th>
+                            <th><p><u>Address</u></p></th>
+                            <th><p><u>Phone #</u></p></th>
+                            <th><p><u>Dog name</u></p></th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-        <div class="col-md-6 col-md-offset-3">
-            <form  method ="post"  th:object="${dogs}">
+                        <tr th:each="dog : ${dogs}" >
+                               <span th:if="${not dog.person.admin}">
 
-                <table style="border:1px solid blue;" class="table table-striped row">
-                    <tr>
-                        <div>
-                            <br>
-                        </div>
-                        <h1>Your Dogs</h1>
-                        <th><p><u>Name</u></p></th>
-                        <th><p><u>Breed</u></p></th>
-                        <th><p><u>Size</u></p></th>
-                        <th><p><u>Special Notes</u></p></th>
+                                    <td  th:text="${dog.person.firstName}"></td>
+                                    <td  th:text="${dog.person.lastName}"></td>
+                                    <td  th:text="${dog.person.address}"></td>
+                                    <td  th:text="${dog.person.cellPhone}"></td>
+                                    <td  th:text="${dog.name}"></td>  </span>
 
-                        <th><a href="/dogs/add-dog-details" class="btn btn-primary btn-sm ">
-                            <span class="glyphicon glyphicon-plus col text-center" ></span>
-                            <span><strong>Add a Dog</strong></span></a></th>
-                    </tr>
-
-                    <tbody>
-
-                    <tr th:each="dog : ${dogs}">
-
-                        <td th:text="${dog.name}"></td>
-                        <td th:text="${dog.breed}"></td>
-                        <td th:text="${dog.size}"></td>
-                        <td th:text="${dog.specialNotes}"></td>
+                        </tr>
+                        </tbody>
                         <div class="btn-group">
+                            <div>
+                                <p></p>
+                            </div>
                             <td>
-                                <a th:href="@{'/dogs/edit-dog-details/' + ${dog.id}}" class="btn btn-primary btn-sm">
-                                    <span class="glyphicon glyphicon-edit" ></span>
-                                    <span><strong>Edit</strong></span></a>
-
-                                <a th:href="@{'/dogs/remove-dog-details/' + ${dog.id}}" class="btn btn-primary btn-sm">
-                                    <span class="glyphicon glyphicon-trash" ></span>
-                                    <span><strong>Delete</strong></span></a>
+                                <a th:href="@{'/'}" id ="cancel" name="cancel" class="btn btn-primary">Exit</a>
                             </td>
                         </div>
-                    </tr>
-                    </tbody>
-                </table>
-            </form>
+
+
+                    </table>
+                </div>
+            </div>
+
         </div>
+
     </div>
-</div>
+</form>
+
 
 </body>
 </html>
