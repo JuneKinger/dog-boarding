@@ -14,6 +14,7 @@ import java.util.Optional;
 public interface DogDao extends CrudRepository<Dog, Integer> {
     Dog findById(int id);
 
+    Dog findAllById(Object Person);
     Dog findByName(String name);
 }
 

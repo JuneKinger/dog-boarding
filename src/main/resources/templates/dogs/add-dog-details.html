@@ -23,6 +23,7 @@
                                 <label th:for="name"><small>Name </small><span class="required">*</span></label>
                                 <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="name" required/>
                             </div>
+
                             <div>
                                 <p></p>
                             </div>
@@ -78,6 +79,7 @@
                                 </div>
                                <!-- person.email if not specified updates a "NULL" in the person database. -->
                                 <input type="hidden" class="form-control" th:field="${person.email}" id="person.email"/>
+                                <input type="hidden" class="form-control" name="id" th:field="${person.id}" id="person.id"/>
                                 <br/>
                                 <button type="submit" name="action" class="btn btn-primary" value="Add">Save</button>
                                 <!--
