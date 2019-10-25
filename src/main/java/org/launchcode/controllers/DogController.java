@@ -64,38 +64,36 @@ public class DogController {
 
     @RequestMapping(value = "add-dog-details", method = RequestMethod.POST)
     public String processAddDogDetailsForm(@ModelAttribute @Valid Dog newDog, Errors errors,
-                                           @RequestParam("action") String action, String email, Person person, Model model) {
+                                           @RequestParam("action") String action, String email, Person person, int id, Model model) {
 
-        // search dogDao if name input exists
 
-        if (dogDao.findByName(newDog.getName()) != null) {
-            model.addAttribute("error", "Duplicate dog name");
-            model.addAttribute("title", "Add Dog");
-            model.addAttribute("dogs", dogDao.findAll());
-            return "dogs/add-dog-details";
-        }
-/*
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Dog");
-            model.addAttribute("dogs", dogDao.findAll());
-            return "dogs/add-dog-details";
-        }
-*/
-        else {
-            Person pers = personDao.findByEmail(person.getEmail());
+        Person pers = personDao.findByEmail(person.getEmail());
 
-            newDog.setPerson(pers);
+        List<Dog> dogs = pers.getDogs();
 
-            dogDao.save(newDog);
+        //Dog dogs = dogDao.findByName(newDog.getPerson().getDogs());
+        for (int i = 0; i < dogs.size(); i++) {
+            if (dogs.get(i).getName().contains(newDog.getName())) {
+                // search dogDao if name input exists
+                model.addAttribute("error", "Duplicate dog name");
+                model.addAttribute("title", "Add Dog");
+                //model.addAttribute("dogs", dogDao.findAll());
 
-            model.addAttribute("dogs", pers.getDogs());
-            model.addAttribute("person", pers);
-
-            return "dogs/list-dog-details";
+                return "dogs/add-dog-details";
+            }
 
         }
+                newDog.setPerson(pers);
 
+                dogDao.save(newDog);
+
+                model.addAttribute("dogs", pers.getDogs());
+                model.addAttribute("person", pers);
+
+                return "dogs/list-dog-details";
     }
+
+
 
     @RequestMapping(value = "list-dog-details", method = RequestMethod.GET)
     public String displayListDogDetailsForm(Model model, @CookieValue(value = "person",
