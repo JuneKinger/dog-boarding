@@ -15,7 +15,7 @@
                 </div>
                 <!-- panel-body aligns td elements with panel-heading -->
                 <div class="panel-body">
-                    <table class="table ">
+                    <table class="table table-striped">
                         <!--<table style="border:1px solid blue;" class="table table-striped row">-->
                         <thead>
                         <tr>
@@ -28,28 +28,28 @@
                         </thead>
                         <tbody>
 
-                        <tr th:each="dog : ${dogs}" >
-                               <span th:if="${not dog.person.admin}">
+                            <tr th:each="dog : ${dogs}" >
+                                   <span th:if="${not dog.person.admin}">
 
-                                    <td  th:text="${dog.person.firstName}"></td>
-                                    <td  th:text="${dog.person.lastName}"></td>
-                                    <td  th:text="${dog.person.address}"></td>
-                                    <td  th:text="${dog.person.cellPhone}"></td>
-                                    <td  th:text="${dog.name}"></td>  </span>
+                                        <td  th:text="${dog.person.firstName}"></td>
+                                        <td  th:text="${dog.person.lastName}"></td>
+                                        <td  th:text="${dog.person.address}"></td>
+                                        <td  th:text="${dog.person.cellPhone}"></td>
+                                        <td  th:text="${dog.name}"></td>  </span>
 
-                        </tr>
+                            </tr>
                         </tbody>
-                        <div class="btn-group">
-                            <div>
-                                <p></p>
-                            </div>
-                            <td>
-                                <a th:href="@{'/'}" id ="cancel" name="cancel" class="btn btn-primary">Exit</a>
-                            </td>
+                    </table>
+
+                    <div class="btn-group">
+                        <div>
+                            <p></p>
                         </div>
 
+                        <div><a th:href="@{'/'}" id ="cancel" name="cancel" class="btn btn-primary">Exit</a></div>
 
-                    </table>
+                    </div>
+
                 </div>
             </div>
 
