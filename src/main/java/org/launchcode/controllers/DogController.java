@@ -90,7 +90,7 @@ public class DogController {
                 model.addAttribute("dogs", pers.getDogs());
                 model.addAttribute("person", pers);
 
-                return "dogs/list-dog-details";
+                return "redirect:/dogs/list-dog-details";
     }
 
 
