@@ -80,7 +80,7 @@ public class DogController {
         Person pers = personDao.findByEmail(email);
 
         if (pers.getAdmin() == true) {
-            String mess = "Access Denied!";
+            String mess = "Please register / log in as owner first!";
             model.addAttribute("mess", mess);
             return "person/mess";
         }
@@ -166,8 +166,6 @@ public class DogController {
         Person pers = personDao.findByEmail(person.getEmail());
 
         List<Dog> dogs = person.getDogs();
-
-        //pers.setDogs(dogs);
 
         Dog dog = dogDao.findById(id);
         dog.setPerson(person);

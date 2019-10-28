@@ -79,13 +79,13 @@ body {
 }
 
 input.glyphicon {
-  /* give text some indent so it doesn't collapse with icon */
+  // give text some indent so it doesn't collapse with icon //
   text-indent: 18px;
 }
 
 .glyphicon.glyphicon-user {
   position: absolute;
-  /* Adjust coordinates as desired */
+  // Adjust coordinates as desired //
   top: 10px;
   left: 10px;
 }

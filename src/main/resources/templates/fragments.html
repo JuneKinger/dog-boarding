@@ -63,7 +63,14 @@
                     <li><a class="dropdown-item" tabindex="-1" href="/service/list-services">Delete Service</a></li>
                 </ul>
             </li>
-            <li><a href="#"><span class="glyphicon glyphicon"></span>Pricing</a></li>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <li><a data-toggle="tooltip" title="$100 per day for 1 dog - $50 each for more dogs">Pricing</a>
+
+            <script>
+               $(function () {
+               $('[data-toggle="tooltip"]').tooltip()
+               })
+            </script></li>
 
             <li class="active nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuAdminLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

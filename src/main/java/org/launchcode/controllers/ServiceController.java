@@ -38,7 +38,9 @@ public class ServiceController {
         Person person = personDao.findByEmail(email);
 
         if (person.getAdmin() == true) {
-            return "person/as-owner";
+            String mess = "Please register / log in as owner first!";
+            model.addAttribute("mess", mess);
+            return "person/mess";
         }
 
         List<Dog> dogs = person.getDogs();
