@@ -94,7 +94,6 @@ public class DogController {
     }
 
 
-
     @RequestMapping(value = "list-dog-details", method = RequestMethod.GET)
     public String displayListDogDetailsForm(Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {
@@ -105,7 +104,9 @@ public class DogController {
         Person pers = personDao.findByEmail(email);
 
         if (pers.getAdmin() == true) {
-            return "person/as-owner";
+            String mess = "Access Denied!";
+            model.addAttribute("mess", mess);
+            return "person/mess";
         }
         List<Dog> dogs = pers.getDogs();
 
