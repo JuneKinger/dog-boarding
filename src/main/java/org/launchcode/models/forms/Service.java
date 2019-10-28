@@ -2,13 +2,9 @@ package org.launchcode.models.forms;
 
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import javax.validation.constraints.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.time.LocalDate;
+
 
 @Entity
 @DynamicUpdate
@@ -24,8 +20,6 @@ public class Service {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
-    //private String dayOfWeek;
-
     @ManyToOne
     @JoinColumn(name="dog_id")
     private Dog dog;
@@ -33,7 +27,6 @@ public class Service {
     @ManyToOne
     @JoinColumn(name="person_id")
     private Person person;
-
 
     public Service() { }
 
@@ -57,15 +50,6 @@ public class Service {
         this.endDate = endDate;
     }
 
-    /*
-        public String getDayOfWeek() {
-            return dayOfWeek;
-        }
-
-        public void setDayOfWeek(String dayOfWeek) {
-            this.dayOfWeek = dayOfWeek;
-        }
-    */
     public Person getPerson() {
         return person;
     }
@@ -85,6 +69,5 @@ public class Service {
     public void setDog(Dog dog) {
         this.dog = dog;
     }
-
 
 }

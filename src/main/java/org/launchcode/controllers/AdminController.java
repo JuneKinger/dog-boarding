@@ -104,7 +104,6 @@ public class AdminController {
             return "person/mess";
         }
 
-       // List<Dog> dogs = pers.getDogs();
         model.addAttribute("person", personDao.findAll());
         model.addAttribute("dogs", dogDao.findAll());
         return "admin/list-owners";
@@ -122,8 +121,6 @@ public class AdminController {
         Person pers = personDao.findByEmail(email);
 
         model.addAttribute("person", personDao.findByEmail(email));
-        //model.addAttribute("dogs", dogDao.findAll());
-
         model.addAttribute("dog", dogDao.findById(id));
 
         return "dogs/edit-dog-details";
@@ -173,8 +170,6 @@ public class AdminController {
         Person pers = personDao.findByEmail(email);
 
         model.addAttribute("person", personDao.findByEmail(email));
-        //model.addAttribute("dogs", dogDao.findAll());
-
         model.addAttribute("dog", dogDao.findById(id));
 
         return "dogs/remove-dog-details";
@@ -189,8 +184,6 @@ public class AdminController {
         Person pers = personDao.findByEmail(person.getEmail());
 
         List<Dog> dogs = person.getDogs();
-
-        //pers.setDogs(dogs);
 
         Dog dog = dogDao.findById(id);
         dog.setPerson(person);

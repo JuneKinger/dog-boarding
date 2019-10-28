@@ -117,9 +117,11 @@ public class ProfileController {
 
 
         model.addAttribute("name", personDao.findByEmail(person.getEmail()).getFirstName());
+
         // create cookie with cookie name and value (key-value pair) using Cookie class
         Cookie cookie = new Cookie("person", person.getEmail().toLowerCase());
         // set the path so the whole application has access to the cookie
+
         cookie.setPath("/");
 
         // method of HttpServletResponse interface is used to add cookie in response object
@@ -128,7 +130,6 @@ public class ProfileController {
         return  "person/welcome";
 
     }
-
 
     @RequestMapping(value = "logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request, HttpServletResponse response) {
@@ -157,8 +158,9 @@ public class ProfileController {
         Person pers = personDao.findByEmail(email);
 
         if (pers.getAdmin() == true) {
-            model.addAttribute("message", "Please register / log in as owner first!");
-            return "person/as-owner";
+            String mess = "Please register / log in as owner first!";
+            model.addAttribute("mess", mess);
+            return "person/mess";
         }
         else {
             model.addAttribute("person", pers);
@@ -199,7 +201,9 @@ public class ProfileController {
         Person pers = personDao.findByEmail(email);
 
         if (pers.getAdmin() == true) {
-            return "person/as-owner";
+            String mess = "Please register / log in as owner first!";
+            model.addAttribute("mess", mess);
+            return "person/mess";
         }
         else {
 

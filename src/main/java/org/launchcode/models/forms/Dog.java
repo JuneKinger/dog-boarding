@@ -27,10 +27,8 @@ public class Dog {
 
     private String specialNotes;
 
-    //@ManyToOne(cascade = CascadeType.ALL)
     @ManyToOne
     private Person person;
-
 
     @OneToMany(mappedBy = "dog", cascade = CascadeType.ALL)
     private List<Service> services = new ArrayList<>();
@@ -91,6 +89,5 @@ public class Dog {
     public void setServices(List<Service> services) {
         this.services = services;
     }
-
 
 }

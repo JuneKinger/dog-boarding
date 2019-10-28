@@ -9,11 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("dogs")
@@ -24,25 +21,7 @@ public class DogController {
 
     @Autowired
     private PersonDao personDao;
-/*
-    @RequestMapping(value = "")
 
-    public String index(Model model, @CookieValue(value = "person",
-            defaultValue = "none") String email) {
-
-        if (email.equals("none")) {
-            return "redirect:/person/login";
-        }
-
-        Person pers = personDao.findByEmail(email);
-        List<Dog> dogs = pers.getDogs();
-
-        model.addAttribute("dogs", dogs);
-        model.addAttribute("title", "My Dogs");
-
-        return "dogs/index";
-    }
-*/
     @RequestMapping(value = "add-dog-details", method = RequestMethod.GET)
     public String displayAddDogDetailsForm(Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {
@@ -66,18 +45,15 @@ public class DogController {
     public String processAddDogDetailsForm(@ModelAttribute @Valid Dog newDog, Errors errors,
                                            @RequestParam("action") String action, String email, Person person, int id, Model model) {
 
-
         Person pers = personDao.findByEmail(person.getEmail());
 
         List<Dog> dogs = pers.getDogs();
 
-        //Dog dogs = dogDao.findByName(newDog.getPerson().getDogs());
         for (int i = 0; i < dogs.size(); i++) {
             if (dogs.get(i).getName().contains(newDog.getName())) {
                 // search dogDao if name input exists
                 model.addAttribute("error", "Duplicate dog name");
                 model.addAttribute("title", "Add Dog");
-                //model.addAttribute("dogs", dogDao.findAll());
 
                 return "dogs/add-dog-details";
             }
@@ -127,8 +103,6 @@ public class DogController {
         Person pers = personDao.findByEmail(email);
 
         model.addAttribute("person", personDao.findByEmail(email));
-        //model.addAttribute("dogs", dogDao.findAll());
-
         model.addAttribute("dog", dogDao.findById(id));
 
         return "dogs/edit-dog-details";
@@ -178,8 +152,6 @@ public class DogController {
         Person pers = personDao.findByEmail(email);
 
         model.addAttribute("person", personDao.findByEmail(email));
-        //model.addAttribute("dogs", dogDao.findAll());
-
         model.addAttribute("dog", dogDao.findById(id));
 
         return "dogs/remove-dog-details";

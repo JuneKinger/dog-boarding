@@ -6,7 +6,6 @@ body {
      margin-bottom: 20px;
  }
 
-
  .error
  { color: red; font-size: 12px;
  }
@@ -18,30 +17,6 @@ body {
  span.tab-space {
  padding-left:5em;}
 
-/*
- .select-weekDays input {
-
-   display: none!important;
- }
-
- .select-weekDays input[type=checkbox] + label {
-   display: inline-block;
-   border-radius: 5px;
-   background: #dddddd;
-   height: 30px;
-   width: 25px;
-   margin-right: 3px;
-   line-height: 30px;
-   text-align: center;
-   cursor: pointer;
- }
-
- .select-weekDays input[type=checkbox]:checked + label {
-   background: #2AD705;
-   color: #ffffff;
- }
-
-*/
  .head {
  padding: 20px 0;
    text-align: center;
@@ -57,12 +32,6 @@ body {
  .required {
  color: red;
  }
-/*
- .checkmark input:checked ~ .checkmark {
-   background-color: #2196F3;
- }
-
-*/
 
  hr {
  width: 50%;
@@ -80,7 +49,6 @@ body {
  .pad {
  padding-left:4em;
  padding-right:4em;
- /* font-size:18px; */
  }
 
  .post-container {
@@ -98,11 +66,9 @@ body {
      margin-left: 210px
  }
  .post-text {
- /*
-     font-weight: bold; */
      font-size: 150%
  }
-
+/*
  .glyphicon-calendar:before {
    margin-right: 5px;
  }
@@ -123,3 +89,4 @@ input.glyphicon {
   top: 10px;
   left: 10px;
 }
+*/

@@ -13,7 +13,4 @@ import java.util.List;
 public interface PersonDao extends CrudRepository<Person, Integer> {
      Person findByEmail(String email);
 
-     Person findAllById(List Dog);
-
-     //List<Person> findAll(Iterable<Integer> ids);
 }
