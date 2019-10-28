@@ -157,6 +157,7 @@ public class ProfileController {
         Person pers = personDao.findByEmail(email);
 
         if (pers.getAdmin() == true) {
+            model.addAttribute("message", "Please register / log in as owner first!");
             return "person/as-owner";
         }
         else {

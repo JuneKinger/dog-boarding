@@ -101,12 +101,16 @@ public class AdminController {
         Person pers = personDao.findByEmail(email);
 
         if (pers.getAdmin() == false) {
-            return "person/as-admin";
+            String mess = "Access Denied!";
+            model.addAttribute("mess", mess);
+            return "person/mess";
         }
 
         // A single row will always be present for admin login/password
         if (personDao.count() == 1) {
-            return "person/no-owners-registered";
+            String mess = "No owners registered as yet!";
+            model.addAttribute("mess", mess);
+            return "person/mess";
         }
 
        // List<Dog> dogs = pers.getDogs();
