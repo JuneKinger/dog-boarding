@@ -9,11 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("admin")
@@ -68,13 +65,7 @@ public class AdminController {
             model.addAttribute("dogs", dogDao.findAll());
             return "dogs/add-dog-details";
         }
-/*
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Dog");
-            model.addAttribute("dogs", dogDao.findAll());
-            return "dogs/add-dog-details";
-        }
-*/
+
         else {
             Person pers = personDao.findByEmail(person.getEmail());
 

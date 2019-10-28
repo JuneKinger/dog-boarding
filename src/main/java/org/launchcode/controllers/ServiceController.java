@@ -7,15 +7,11 @@ import org.launchcode.models.forms.Dog;
 import org.launchcode.models.forms.Person;
 import org.launchcode.models.forms.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Controller
@@ -51,7 +47,6 @@ public class ServiceController {
             return  "redirect:/service/error-services";
         }
 
-        //model.addAttribute("error", "");
         model.addAttribute("dogs", dogs);
         model.addAttribute("service", new Service());
         model.addAttribute("person", person);
@@ -67,10 +62,6 @@ public class ServiceController {
         if (person.getAdmin() == true) {
             return "person/as-owner";
         }
-
-        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mm/dd/yyyy");
-
-        //LocalDate localDate = LocalDate.parse(newService.getStartDate(), formatter);
 
         if (newService.getStartDate().after(newService.getEndDate())) {
             model.addAttribute("error", "Drop off date must be <= Pick up date");
@@ -102,12 +93,6 @@ public class ServiceController {
             Dog dog = dogDao.findById(dogId);
 
             service.setDog(dog);
-/*
-            if (Radio.equals("weekly")) {
-                service.setDayOfWeek(newService.getDayOfWeek());
-            }
-*/
-
             service.setPerson(person);
             service.setStartDate(newService.getStartDate());
             service.setEndDate(newService.getEndDate());
