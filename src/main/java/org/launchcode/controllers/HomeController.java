@@ -16,7 +16,9 @@ public class HomeController {
 
     @RequestMapping(value = "")
     // bind this method parameter to a cookie. Retrieve a cookie using @CookieValue
-    public String index(Model model, @CookieValue(value="person", defaultValue = "none") String email) {
+    public String index() {
+            /*
+            (Model model, @CookieValue(value="person", defaultValue = "none") String email) {
 
         // if no cookies present, direct to login page to force a log in
         if (email.equals("none") || email.equals("")) {
@@ -25,7 +27,7 @@ public class HomeController {
 
          Person person = personDao.findByEmail(email);
          model.addAttribute("person", person.getFirstName());
-
+*/
         return "home/index";
     }
 }

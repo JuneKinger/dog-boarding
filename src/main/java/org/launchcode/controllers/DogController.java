@@ -11,6 +11,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
+import java.lang.String;
+import static jdk.nashorn.internal.objects.NativeString.trim;
 
 @Controller
 @RequestMapping("dogs")
@@ -59,6 +61,15 @@ public class DogController {
             }
 
         }
+
+  /*
+            if (trim(newDog.getName().equals(""))) {
+                model.addAttribute("error", "Name cannot be blank - please re-enter");
+                model.addAttribute("title", "add-dog");
+                return "dogs/add-dog-details";
+            }
+    */
+
                 newDog.setPerson(pers);
 
                 dogDao.save(newDog);
