@@ -16,6 +16,8 @@ import javax.validation.Valid;
 import java.util.List;
 import java.lang.String;
 
+import static jdk.nashorn.internal.objects.NativeString.trim;
+
 @Controller
 @RequestMapping(value = "person")
 public class ProfileController {
@@ -56,7 +58,50 @@ public class ProfileController {
             return "person/signup";
         }
 
-        if (person.getPassword().equals(verify) && verify != "") {
+        if (trim(person.getFirstName()).equals("")) {
+            model.addAttribute("error", "First name cannot be blank - please re-enter");
+            model.addAttribute("title", "Sign up");
+            return "person/signup";
+        }
+
+        if (trim(person.getLastName()).equals("")) {
+            model.addAttribute("error", "Last name cannot be blank - please re-enter");
+            model.addAttribute("title", "Sign up");
+            return "person/signup";
+        }
+
+        if (trim(person.getPassword()).equals("")) {
+            model.addAttribute("error", "Password cannot be blank - please re-enter");
+            model.addAttribute("title", "Sign up");
+            return "person/signup";
+        }
+
+        if (person.getPassword().contains(" ")) {
+            model.addAttribute("error", "Password cannot contain spaces - please re-enter");
+            model.addAttribute("title", "Sign up");
+            return "person/signup";
+        }
+
+        if (trim(verify).equals("")) {
+            model.addAttribute("error", "Verify password cannot be blank - please re-enter");
+            model.addAttribute("title", "Sign up");
+            return "person/signup";
+        }
+
+        if (trim(person.getAddress()).equals("")) {
+            model.addAttribute("error", "Address cannot be blank - please re-enter");
+            model.addAttribute("title", "Sign up");
+            return "person/signup";
+        }
+
+        if (trim(person.getCellPhone()).equals("")) {
+            model.addAttribute("error", "Cell Phone cannot be blank - please re-enter");
+            model.addAttribute("title", "Sign up");
+            return "person/signup";
+        }
+
+
+        if (person.getPassword().equals(verify) && trim(verify) != "") {
 
             Cookie cookie = new Cookie("person", person.getEmail().toLowerCase());
             // set the path so the whole application has access to the cookie
@@ -100,20 +145,19 @@ public class ProfileController {
 
         Person pers = personDao.findByEmail(person.getEmail());
 
+        if (pers == null || (!pers.getPassword().equals(person.getPassword()))) {
+            model.addAttribute("error", "Invalid email and/or password - please re-enter!");
+            model.addAttribute("title", "Login");
+            model.addAttribute("person", new Person());
+            return "person/login";
+        }
+
         if (pers.getAdmin() == true) {
             Cookie cookie = new Cookie("person", person.getEmail().toLowerCase());
             cookie.setPath("/");
             response.addCookie(cookie);
             return "home/index";
         }
-
-        if (pers == null || (!pers.getPassword().equals(person.getPassword()))) {
-            model.addAttribute("error", "Invalid email and/or password");
-            model.addAttribute("title", "Login");
-            model.addAttribute("person", new Person());
-            return "person/login";
-       }
-
 
 
         model.addAttribute("name", personDao.findByEmail(person.getEmail()).getFirstName());
@@ -176,6 +220,30 @@ public class ProfileController {
 
         if (errors.hasErrors()) {
             return "person/edit";
+        }
+
+        if (trim(person.getFirstName()).equals("")) {
+            model.addAttribute("error", "First name cannot be blank - please re-enter");
+            model.addAttribute("title", "Sign up");
+            return "person/signup";
+        }
+
+        if (trim(person.getLastName()).equals("")) {
+            model.addAttribute("error", "Last name cannot be blank - please re-enter");
+            model.addAttribute("title", "Sign up");
+            return "person/signup";
+        }
+
+        if (trim(person.getAddress()).equals("")) {
+            model.addAttribute("error", "Address cannot be blank - please re-enter");
+            model.addAttribute("title", "Sign up");
+            return "person/signup";
+        }
+
+        if (trim(person.getCellPhone()).equals("")) {
+            model.addAttribute("error", "Cell Phone cannot be blank - please re-enter");
+            model.addAttribute("title", "Sign up");
+            return "person/signup";
         }
 
         Person pers = personDao.findByEmail(email);

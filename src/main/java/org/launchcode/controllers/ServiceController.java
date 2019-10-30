@@ -27,7 +27,7 @@ public class ServiceController {
     @Autowired
     private DogDao dogDao;
 
-    @RequestMapping(value = "add-service", method = RequestMethod.GET)
+    @RequestMapping(value = "add-services", method = RequestMethod.GET)
     public String displayAddServiceForm(Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {
 
@@ -46,17 +46,17 @@ public class ServiceController {
         List<Dog> dogs = person.getDogs();
 
         if (dogs.size() == 0) {
-            return  "redirect:/service/error-services";
+            return  "redirect:/service/checkbox-error-services";
         }
 
         model.addAttribute("dogs", dogs);
         model.addAttribute("service", new Service());
         model.addAttribute("person", person);
-        return "service/add-service";
+        return "service/add-services";
     }
 
 
-    @RequestMapping(value = "add-service", method = RequestMethod.POST)
+    @RequestMapping(value = "add-services", method = RequestMethod.POST)
     public String processAddServiceForm(@ModelAttribute @Valid Service newService, Errors errors,
                                         @RequestParam int[] dogIds, String email, String Radio, String dayOfWeek, Model model) {
 
@@ -71,7 +71,7 @@ public class ServiceController {
             model.addAttribute("error", "Drop off date must be <= Pick up date");
             model.addAttribute("dogs", person.getDogs());
             model.addAttribute("person", personDao.findByEmail(email));
-            return "service/add-service";
+            return "service/add-services";
         }
         Date today = new Date();
         long dt = System.currentTimeMillis() - 1000*60*60*24;
@@ -81,14 +81,14 @@ public class ServiceController {
             model.addAttribute("error", "Drop off date must be >= today's date - please re-enter!");
             model.addAttribute("dogs", person.getDogs());
             model.addAttribute("person", personDao.findByEmail(email));
-            return "service/add-service";
+            return "service/add-services";
         }
 
         if (newService.getEndDate().before(beforeDate)) {
             model.addAttribute("error", "Pick up date must be >= today's date - please re-enter!");
             model.addAttribute("dogs", person.getDogs());
             model.addAttribute("person", personDao.findByEmail(email));
-            return "service/add-service";
+            return "service/add-services";
         }
 
         for (int dogId : dogIds) {
@@ -104,13 +104,13 @@ public class ServiceController {
             serviceDao.save(service);
         }
 
-        return "redirect:/service/add-service";
+        return "redirect:/service/add-services";
 
     }
-    @RequestMapping(value = "error-services", method = RequestMethod.GET)
+    @RequestMapping(value = "checkbox-error-services", method = RequestMethod.GET)
     public String displayError(Model model)  {
         model.addAttribute("err", "Please enter *Dog Details* first");
-        return "service/error-services";
+        return "service/checkbox-error-services";
 
     }
 
