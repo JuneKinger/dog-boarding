@@ -2,52 +2,56 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
 </head>
-<body class="container">
+<body class="container" style="margin-top: 100px">
 
 <nav th:replace="fragments :: navigation"></nav>
-<div style="margin-top: 100px">
 
-    <div class="table-responsive" >
+<form  method ="post"  th:object="${services}">
+    <div class="table-responsive container-fluid" >
 
-        <div class="col-md-6 col-md-offset-3">
-            <form  method ="post"  th:object="${services}">
-               <!-- <div th:object="${dogs}"></div> -->
-                <table style="border:1px solid blue;" class="table table-striped row">
-                    <tr>
+        <div class="panel-group">
+            <div class=" panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Boarding Service</h1>
+                </div>
+                <!-- panel-body aligns td elements with panel-heading -->
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr >
+                                <th><p><u>Dog name</u></p></th>
+                                <th><p><u>Start date</u></p></th>
+                                <th><p><u>End date</u></p></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr th:each="service : ${services}">
+
+                                <td th:text="${service.dog.name}"></td>
+                                <td th:text="${service.startDate}"></td>
+                                <td th:text="${service.endDate}"></td>
+
+                                    <td>
+                                        <a th:href="@{'/service/remove-service/' + ${service.id}}" class="btn btn-primary btn-sm">
+                                            <span class="glyphicon glyphicon-trash" ></span>
+                                           A <span><strong>Delete</strong></span></a>
+
+                                    </td>
+                            </tr>
+                        </tbody>
+                    </table>
                         <div>
-                            <br>
+                            <div><a th:href="@{'/'}" id ="cancel" name="cancel" class="btn btn-primary">Exit</a></div>
                         </div>
-                        <h1>Services</h1>
-                        <th><p><u>Dog name</u></p></th>
-                        <th><p><u>Start date</u></p></th>
-                        <th><p><u>End date</u></p></th>
 
-                    </tr>
-
-                    <tbody>
-
-                    <tr th:each="service : ${services}">
-
-                        <td th:text="${service.dog.name}"></td>
-                        <td th:text="${service.startDate}"></td>
-                        <td th:text="${service.endDate}"></td>
-
-                        <div class="btn-group">
-                            <td>
-                                <a th:href="@{'/service/remove-service/' + ${service.id}}" class="btn btn-primary btn-sm">
-                                    <span class="glyphicon glyphicon-trash" ></span>
-                                    <span><strong>Delete</strong></span></a>
-
-                            </td>
-                        </div>
-                    </tr>
-
-                </table>
-            </form>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
+</form>
 
 </body>
 </html>
