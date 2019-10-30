@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fragments :: head">
+    <title>Error-Services</title>
+</head>
+<nav th:replace="fragments :: navigation"></nav>
+
+<body class="container" >
+    <div class="col-md-6 col-md-offset-3" style="margin-top: 90px">
+
+        <form class="form" >
+            <div class="panel-group" >
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h1 class="panel-title" >Schedule Appointment</h1>
+                    </div>
+                    <div class="panel-body">
+                        <div th:err="${err}" th:text="${err}" class="col-form-label text-danger head"></div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+</html>
+
+

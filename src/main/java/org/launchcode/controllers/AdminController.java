@@ -2,8 +2,10 @@ package org.launchcode.controllers;
 
 import org.launchcode.models.data.DogDao;
 import org.launchcode.models.data.PersonDao;
+import org.launchcode.models.data.ServiceDao;
 import org.launchcode.models.forms.Dog;
 import org.launchcode.models.forms.Person;
+import org.launchcode.models.forms.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,9 @@ public class AdminController {
 
     @Autowired
     private PersonDao personDao;
+
+    @Autowired
+    private ServiceDao serviceDao;
 
     @RequestMapping(value = "")
 
@@ -194,6 +199,31 @@ public class AdminController {
         model.addAttribute("person", pers);
 
         return "dogs/list-dog-details";
+
+
+    }
+
+    @RequestMapping(value = "list-prospective-boarders", method = RequestMethod.GET)
+    public String displayListServicesForm(Model model, @CookieValue(value = "person",
+            defaultValue = "none") String email) {
+
+        if (email.equals("none")) {
+            return "redirect:/person/login";
+        }
+        Person person = personDao.findByEmail(email);
+
+        if (person.getAdmin() == true) {
+            String mess = "Please register / log in as owner first!";
+            model.addAttribute("mess", mess);
+            return "person/mess";
+        }
+
+
+        List<Service> services = serviceDao.findByPerson_Id(person.getId());
+        model.addAttribute("person", person);
+        model.addAttribute("services", services);
+
+        return "admin/list-prospective-boarders";
     }
 }
 
