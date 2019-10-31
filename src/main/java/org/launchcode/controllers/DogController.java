@@ -62,22 +62,22 @@ public class DogController {
 
         }
 
-  /*
-            if (trim(newDog.getName().equals(""))) {
-                model.addAttribute("error", "Name cannot be blank - please re-enter");
-                model.addAttribute("title", "add-dog");
-                return "dogs/add-dog-details";
-            }
-    */
 
-                newDog.setPerson(pers);
+        if (trim(newDog.getName()).equals("")) {
 
-                dogDao.save(newDog);
+            model.addAttribute("error", "Name cannot be blank - please re-enter");
+            model.addAttribute("title", "add-dog");
+            return "dogs/add-dog-details";
+        }
 
-                model.addAttribute("dogs", pers.getDogs());
-                model.addAttribute("person", pers);
+        newDog.setPerson(pers);
 
-                return "redirect:/dogs/list-dog-details";
+        dogDao.save(newDog);
+
+        model.addAttribute("dogs", pers.getDogs());
+        model.addAttribute("person", pers);
+
+        return "redirect:/dogs/list-dog-details";
     }
 
 
