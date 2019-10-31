@@ -245,7 +245,7 @@ public class AdminController {
         //List<Service> services = serviceDao.findByPerson_Id(person.getId());
         model.addAttribute("title", "Future Boarders");
         model.addAttribute("person", person);
-        model.addAttribute("services", serviceDao.findAllByStartDateNative());
+        model.addAttribute("services", serviceDao.findAllByStartDateOrderByStartDateAscNative());
 
         return "admin/list-all-and-future-boarders";
     }
