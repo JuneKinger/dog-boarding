@@ -203,8 +203,8 @@ public class AdminController {
 
     }
 
-    @RequestMapping(value = "list-prospective-boarders", method = RequestMethod.GET)
-    public String displayListServicesForm(Model model, @CookieValue(value = "person",
+    @RequestMapping(value = "list-all-boarders", method = RequestMethod.GET)
+    public String displayListAllBoardersForm(Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {
 
         if (email.equals("none")) {
@@ -212,18 +212,42 @@ public class AdminController {
         }
         Person person = personDao.findByEmail(email);
 
-        if (person.getAdmin() == true) {
-            String mess = "Please register / log in as owner first!";
+        if (person.getAdmin() == false) {
+            String mess = "Access Denied";
             model.addAttribute("mess", mess);
             return "person/mess";
         }
 
 
-        List<Service> services = serviceDao.findByPerson_Id(person.getId());
+        //List<Service> services = serviceDao.findByPerson_Id(person.getId());
         model.addAttribute("person", person);
-        model.addAttribute("services", services);
+        model.addAttribute("title", "All Boarders");
+        model.addAttribute("services", serviceDao.findAll());
 
-        return "admin/list-prospective-boarders";
+        return "admin/list-all-and-future-boarders";
+    }
+
+    @RequestMapping(value = "list-future-boarders", method = RequestMethod.GET)
+    public String displayListFutureForm(Model model, @CookieValue(value = "person",
+            defaultValue = "none") String email) {
+
+        if (email.equals("none")) {
+            return "redirect:/person/login";
+        }
+        Person person = personDao.findByEmail(email);
+
+        if (person.getAdmin() == false) {
+            String mess = "Access Denied";
+            model.addAttribute("mess", mess);
+            return "person/mess";
+        }
+
+        //List<Service> services = serviceDao.findByPerson_Id(person.getId());
+        model.addAttribute("title", "Future Boarders");
+        model.addAttribute("person", person);
+        model.addAttribute("services", serviceDao.findAllByStartDateNative());
+
+        return "admin/list-all-and-future-boarders";
     }
 }
 
