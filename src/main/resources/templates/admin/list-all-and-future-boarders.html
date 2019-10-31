@@ -12,7 +12,7 @@
         <div class="panel-group">
             <div class=" panel panel-primary">
                 <div class="panel-heading">
-                    <h1 class="panel-title">Prospective Boarders</h1>
+                    <h1 class="panel-title" th:text="${title}">s</h1>
                 </div>
                 <!-- panel-body aligns td elements with panel-heading -->
                 <div class="panel-body">
@@ -21,8 +21,9 @@
                         <tr >
                             <th><p><u>Dog name</u></p></th>
                             <th><p><u>Dog Breed</u></p></th>
-                            <th><p><u>Start date</u></p></th>
-                            <th><p><u>End date</u></p></th>
+                            <th><p><u>Dog Size</u></p></th>
+                            <th><p><u>Drop off date</u></p></th>
+                            <th><p><u>Pick up date</u></p></th>
 
                         </tr>
                         </thead>
@@ -32,6 +33,7 @@
 
                             <td th:text="${service.dog.name}"></td>
                             <td th:text="${service.dog.breed}"></td>
+                            <td th:text="${service.dog.size}"></td>
                             <td th:text="${#strings.substring(service.startDate,0,10)}"></td>
                             <td th:text="${#strings.substring(service.endDate,0,10)}"></td>
 
