@@ -2,6 +2,7 @@ package org.launchcode.models.data;
 
 import org.launchcode.models.forms.Service;
 import org.launchcode.models.forms.Service;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
@@ -15,4 +16,7 @@ public interface ServiceDao extends CrudRepository<Service, Integer> {
     Service findById(int id);
 
     List<Service> findByPerson_Id(int personId);
+
+    @Query(value = "select * FROM service where start_date >= NOW() - INTERVAL 1 DAY", nativeQuery = true)
+    List<Service> findAllByStartDateNative();
 }
