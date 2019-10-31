@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body class="container" style="margin-top: 100px">
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<form  method ="post"  th:object="${services}">
+    <div class="table-responsive container-fluid" >
+
+        <div class="panel-group">
+            <div class=" panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title" th:text="${title}">s</h1>
+                </div>
+                <!-- panel-body aligns td elements with panel-heading -->
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr >
+                            <th><p><u>Dog name</u></p></th>
+                            <th><p><u>Dog Breed</u></p></th>
+                            <th><p><u>Dog Size</u></p></th>
+                            <th><p><u>Drop off date</u></p></th>
+                            <th><p><u>Pick up date</u></p></th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr th:each="service : ${services}">
+
+                            <td th:text="${service.dog.name}"></td>
+                            <td th:text="${service.dog.breed}"></td>
+                            <td th:text="${service.dog.size}"></td>
+                            <td th:text="${#strings.substring(service.startDate,0,10)}"></td>
+                            <td th:text="${#strings.substring(service.endDate,0,10)}"></td>
+
+
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <div><a th:href="@{'/'}" id ="cancel" name="cancel" class="btn btn-primary">Exit</a></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+</body>
+</html>
