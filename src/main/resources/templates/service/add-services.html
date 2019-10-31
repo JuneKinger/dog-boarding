@@ -32,8 +32,8 @@
                             <div class="custom-control custom-checkbox" th:each="dog : ${dogs}" >
                                 <!--including form-control in input below distorts the ckeckbox to a huge box so I had it removed
                                 including class="checkbox" in label places text on next line and does not align with checkbox-->
-                                <input  type="checkbox" class=" custom-control-input required_group"  name="dogIds" th:value="${dog.id}" th:id="${dog.id}" id="defaultChecked" checked />
-                                <label class="custom-control-label" th:for="${dog.id}"  for="defaultChecked" th:text="${dog.name}"></label>
+                                <input  type="checkbox" class="  custom-control-input required_group"  name="dogIds" th:value="${dog.id}" th:id="${dog.id}" id="defaultChecked" checked />
+                                <label class=" custom-control-label" th:for="${dog.id}"  for="defaultChecked" th:text="${dog.name}"></label>
 
                                 <script>
                                        $('form').on('click', '.required_group', function() {
