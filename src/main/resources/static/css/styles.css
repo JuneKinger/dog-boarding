@@ -68,25 +68,7 @@ body {
  .post-text {
      font-size: 150%
  }
-/*
- .glyphicon-calendar:before {
-   margin-right: 5px;
- }
 
-.inner-addon {
-  position: relative;
-  margin-top: 20px;
+input:checked + label{
+ background: #e7f478;
 }
-
-input.glyphicon {
-  // give text some indent so it doesn't collapse with icon //
-  text-indent: 18px;
-}
-
-.glyphicon.glyphicon-user {
-  position: absolute;
-  // Adjust coordinates as desired //
-  top: 10px;
-  left: 10px;
-}
-*/

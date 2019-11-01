@@ -31,6 +31,7 @@
                                      <!-- one space after </span> leaves a space between label and icon -->
                                      <label for="email" ><small>Email </small></label> <span class="glyphicon glyphicon-envelope"></span> <span class="required">*</span>
                                      <input id="email" class="form-control" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]{2,3}$" th:field="*{email}" name="email" placeholder="Email format" required />
+
                                  </div>
 
                                 <div class="col-md-12 form-group">
@@ -57,6 +58,8 @@
                                  <div class="col-md-12">
                                      <br/>
                                      <button type="submit" class="btn btn-primary" role="button" name="action" >Edit Profile</button>
+                                     <!-- id="person.id" and th:field="*{id}" is needed for accessing person object via the @RequestParam int id in PersonController -->
+                                     <input type="hidden" th:field="*{id}"  id="person.id">
                                  </div>
                                  <div class="col-md-12">
                                      <br/>

@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 import java.lang.String;
-
 import static jdk.nashorn.internal.objects.NativeString.trim;
 
 @Controller
@@ -111,6 +110,11 @@ public class ProfileController {
             response.addCookie(cookie);
 
             person.setAdmin(false);
+
+            // convert email to lowercase before save
+            String pEmail = person.getEmail().toLowerCase();
+            person.setEmail(pEmail);
+
             personDao.save(person);
             return "redirect:/dogs/add-dog-details";
         }
@@ -118,7 +122,7 @@ public class ProfileController {
 
             model.addAttribute("firstname", person.getFirstName());
             model.addAttribute("lastname", person.getLastName());
-            model.addAttribute("email", person.getEmail());
+            model.addAttribute("email", person.getEmail().toLowerCase());
             model.addAttribute("address", person.getAddress());
             model.addAttribute("hPhone", person.getHomePhone());
             model.addAttribute("cPhone", person.getCellPhone());
@@ -143,8 +147,9 @@ public class ProfileController {
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String processLoginForm(Model model, @ModelAttribute  Person person, HttpServletResponse response) {
 
-        Person pers = personDao.findByEmail(person.getEmail());
+        Person pers = personDao.findByEmail(person.getEmail().toLowerCase());
 
+        // if email not found or passwords don't match
         if (pers == null || (!pers.getPassword().equals(person.getPassword()))) {
             model.addAttribute("error", "Invalid email and/or password - please re-enter!");
             model.addAttribute("title", "Login");
@@ -152,6 +157,7 @@ public class ProfileController {
             return "person/login";
         }
 
+        // if record is admin type
         if (pers.getAdmin() == true) {
             Cookie cookie = new Cookie("person", person.getEmail().toLowerCase());
             cookie.setPath("/");
@@ -160,7 +166,7 @@ public class ProfileController {
         }
 
 
-        model.addAttribute("name", personDao.findByEmail(person.getEmail()).getFirstName());
+        model.addAttribute("name", personDao.findByEmail(person.getEmail().toLowerCase()).getFirstName());
 
         // create cookie with cookie name and value (key-value pair) using Cookie class
         Cookie cookie = new Cookie("person", person.getEmail().toLowerCase());
@@ -216,7 +222,7 @@ public class ProfileController {
 
     @RequestMapping(value = "edit", method = RequestMethod.POST)
     public String processEditForm(@ModelAttribute @Valid Person person, Errors errors,
-                                  @RequestParam String email, Model model) {
+                                  @RequestParam String email, int id, Model model, HttpServletResponse response) {
 
         if (errors.hasErrors()) {
             return "person/edit";
@@ -246,13 +252,25 @@ public class ProfileController {
             return "person/signup";
         }
 
-        Person pers = personDao.findByEmail(email);
-        pers.setFirstName(person.getFirstName());
-        pers.setLastName(person.getLastName());
-        pers.setAddress(person.getAddress());
+        // need to pass in personId to find record since if email has been modified  by user, it will not be found in file
+        // via a personDao.findByEmail(email)
+
+        Person pers = personDao.findById(id);
+        pers.setFirstName(trim(person.getFirstName()));
+        pers.setLastName(trim(person.getLastName()));
+        pers.setEmail(trim(person.getEmail()));
+        pers.setAddress(trim(person.getAddress()));
         pers.setHomePhone(person.getHomePhone());
         pers.setCellPhone(person.getCellPhone());
         personDao.save(pers);
+
+        // save new email in cookie in case email had been modified
+        Cookie cookie = new Cookie("person", pers.getEmail().toLowerCase());
+        // set the path so the whole application has access to the cookie
+        cookie.setPath("/");
+
+        // method of HttpServletResponse interface is used to add cookie in response object
+        response.addCookie(cookie);
 
         return "home/index";
     }
