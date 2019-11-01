@@ -12,5 +12,6 @@ import java.util.List;
 @Transactional
 public interface PersonDao extends CrudRepository<Person, Integer> {
      Person findByEmail(String email);
+     Person findById(int id);
 
 }
