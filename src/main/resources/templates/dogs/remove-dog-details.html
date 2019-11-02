@@ -17,11 +17,13 @@
                             <h1 class="panel-title">Delete dog details</h1>
                         </div>
                         <div class="panel-body">
-                            <div>
-                                <p></p>
-                            </div>
+                            <div th:text="${warn}" class="col-form-label col-md-12 text-danger"></div>
+
 
                             <div class="col-md-12 form-group">
+                                <div>
+                                    <br/>
+                                </div>
                                 <label th:for="name"><small>Name </small><span class="required">*</span></label>
                                 <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="name" readonly/>
                             </div>

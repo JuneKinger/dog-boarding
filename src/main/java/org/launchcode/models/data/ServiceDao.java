@@ -17,6 +17,8 @@ public interface ServiceDao extends CrudRepository<Service, Integer> {
 
     List<Service> findByPerson_Id(int personId);
 
+    List<Service> findByDog_Id(int dogId);
+
     @Query(value = "select * FROM service where start_date >= NOW() - INTERVAL 1 DAY order by start_date ASC", nativeQuery = true)
     List<Service> findAllByStartDateOrderByStartDateAscNative();
 
@@ -28,4 +30,5 @@ public interface ServiceDao extends CrudRepository<Service, Integer> {
 
     @Query(value = "select * FROM service order by end_date ASC", nativeQuery = true)
     List<Service> findAllOrderByEndDateAscNative();
+
 }

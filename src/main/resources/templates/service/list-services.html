@@ -12,7 +12,7 @@
         <div class="panel-group">
             <div class=" panel panel-primary">
                 <div class="panel-heading">
-                    <h1 class="panel-title">Boarding Service</h1>
+                    <h1 class="panel-title">Boarding Services</h1>
                 </div>
                 <!-- panel-body aligns td elements with panel-heading -->
                 <div class="panel-body">
@@ -30,13 +30,13 @@
                             <tr th:each="service : ${services}">
 
                                 <td th:text="${service.dog.name}"></td>
-                                <td th:text="${service.startDate}"></td>
-                                <td th:text="${service.endDate}"></td>
+                                <td th:text="${#strings.substring(service.startDate,0,10)}"></td>
+                                <td th:text="${#strings.substring(service.endDate,0,10)}"></td>
 
                                     <td>
                                         <a th:href="@{'/service/remove-service/' + ${service.id}}" class="btn btn-primary btn-sm">
                                             <span class="glyphicon glyphicon-trash" ></span>
-                                           A <span><strong>Delete</strong></span></a>
+                                            <span><strong>Delete</strong></span></a>
 
                                     </td>
                             </tr>
