@@ -30,6 +30,7 @@ public class Dog {
     @ManyToOne
     private Person person;
 
+    // mappedby makes a relationship bidirectional
     @OneToMany(mappedBy = "dog", cascade = CascadeType.ALL)
     private List<Service> services = new ArrayList<>();
 

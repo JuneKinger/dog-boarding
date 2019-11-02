@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.util.*;
 
 @Controller
@@ -57,8 +59,8 @@ public class ServiceController {
 
 
     @RequestMapping(value = "add-services", method = RequestMethod.POST)
-    public String processAddServiceForm(@ModelAttribute @Valid Service newService, Errors errors,
-                                        @RequestParam int[] dogIds, String email, String Radio, String dayOfWeek, Model model) {
+    public String processAddServiceForm(@ModelAttribute @Valid Service newService,
+                                        @RequestParam int[] dogIds, String email, Model model) {
 
         Person person = personDao.findByEmail(email);
         if (person.getAdmin() == true) {
@@ -73,7 +75,8 @@ public class ServiceController {
             model.addAttribute("person", personDao.findByEmail(email));
             return "service/add-services";
         }
-        Date today = new Date();
+
+        //long nowDt = System.currentTimeMillis();
         long dt = System.currentTimeMillis() - 1000*60*60*24;
         Date beforeDate = new Date(dt);
 
@@ -93,10 +96,29 @@ public class ServiceController {
 
         for (int dogId : dogIds) {
 
-            Service service = new Service();
-            Dog dog = dogDao.findById(dogId);
+            Dog dogRec = dogDao.findById(dogId);
+            List<Service> services = dogRec.getServices();
 
-            service.setDog(dog);
+            for (int j = 0; j < services.size(); j++) {
+
+               if ((newService.getStartDate().equals(services.get(j).getStartDate()) ||
+                       newService.getStartDate().after(services.get(j).getStartDate())) &&
+                (newService.getStartDate().before(services.get(j).getEndDate())) ||
+                       (newService.getStartDate().equals(services.get(j).getEndDate())))
+            {
+                model.addAttribute("error", "Duplicate service - please re-enter");
+                model.addAttribute("title", "Add Service");
+                model.addAttribute("dogs", person.getDogs());
+                model.addAttribute("person", personDao.findByEmail(email));
+                return "service/add-services";
+               }
+
+            }
+
+            Service service = new Service();
+            //Dog dog = dogDao.findById(dogId);
+
+            service.setDog(dogRec);
             service.setPerson(person);
             service.setStartDate(newService.getStartDate());
             service.setEndDate(newService.getEndDate());
@@ -107,6 +129,8 @@ public class ServiceController {
         return "redirect:/service/add-services";
 
     }
+
+
     @RequestMapping(value = "checkbox-error-services", method = RequestMethod.GET)
     public String displayError(Model model)  {
         model.addAttribute("err", "Please enter *Dog Details* first");
@@ -130,6 +154,8 @@ public class ServiceController {
         }
 
         List<Service> services = serviceDao.findByPerson_Id(person.getId());
+
+        //List<Service> sortServices = serviceDao.findAllByStartDateOrderByStartDateAscNative();
         model.addAttribute("person", person);
         model.addAttribute("services", services);
 

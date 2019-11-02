@@ -2,8 +2,10 @@ package org.launchcode.controllers;
 
 import org.launchcode.models.data.DogDao;
 import org.launchcode.models.data.PersonDao;
+import org.launchcode.models.data.ServiceDao;
 import org.launchcode.models.forms.Dog;
 import org.launchcode.models.forms.Person;
+import org.launchcode.models.forms.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,9 @@ public class DogController {
 
     @Autowired
     private PersonDao personDao;
+
+    @Autowired
+    private ServiceDao serviceDao;
 
     @RequestMapping(value = "add-dog-details", method = RequestMethod.GET)
     public String displayAddDogDetailsForm(Model model, @CookieValue(value = "person",
@@ -61,7 +66,6 @@ public class DogController {
             }
 
         }
-
 
         if (trim(newDog.getName()).equals("")) {
 
@@ -164,6 +168,7 @@ public class DogController {
 
         model.addAttribute("person", personDao.findByEmail(email));
         model.addAttribute("dog", dogDao.findById(id));
+        model.addAttribute("warn", "Please note - Deleting a dog will also delete existing services");
 
         return "dogs/remove-dog-details";
     }
@@ -172,7 +177,6 @@ public class DogController {
     @RequestMapping(value = "remove-dog-details/{id}", method = RequestMethod.POST)
     public String processRemoveDogDetailForm(@ModelAttribute @Valid Dog newDog, Errors errors,
                                              @PathVariable int id, Person person, Model model) {
-
 
         Person pers = personDao.findByEmail(person.getEmail());
 
