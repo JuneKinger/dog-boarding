@@ -48,7 +48,7 @@ public class ServiceController {
         List<Dog> dogs = person.getDogs();
 
         if (dogs.size() == 0) {
-            return  "redirect:/service/checkbox-error-services";
+            return  "service/checkbox-error-services";
         }
 
         model.addAttribute("dogs", dogs);
@@ -127,14 +127,6 @@ public class ServiceController {
         }
 
         return "redirect:/service/add-services";
-
-    }
-
-
-    @RequestMapping(value = "checkbox-error-services", method = RequestMethod.GET)
-    public String displayError(Model model)  {
-        model.addAttribute("err", "Please enter *Dog Details* first");
-        return "service/checkbox-error-services";
 
     }
 
