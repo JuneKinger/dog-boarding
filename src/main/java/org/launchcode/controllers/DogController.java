@@ -55,7 +55,7 @@ public class DogController {
 
         for (int i = 0; i < dogs.size(); i++) {
 
-            if (dogs.get(i).getName().equals(newDog.getName())) {
+            if (dogs.get(i).getName().toLowerCase().equals(newDog.getName().toLowerCase())) {
                 // search dogDao if name input exists
                 model.addAttribute("error", "Duplicate dog name");
                 model.addAttribute("title", "Add Dog");
