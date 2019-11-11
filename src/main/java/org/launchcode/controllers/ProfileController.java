@@ -60,6 +60,12 @@ public class ProfileController {
             return "person/signup";
         }
 
+        if (trim(person.getPassword()).length() < 7) {
+            model.addAttribute("error", "Password must be at least 6 characters long - please re-enter");
+            model.addAttribute("title", "Sign up");
+            return "person/signup";
+        }
+
         if (person.getPassword().contains(" ")) {
             model.addAttribute("error", "Password cannot contain spaces - please re-enter");
             model.addAttribute("title", "Sign up");

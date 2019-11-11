@@ -41,6 +41,7 @@
                                  <p></p>
                                  <label for="password" ><small>Password </small><span class="required">*</span></label>
                                  <input id="password" class="form-control" th:field="*{password}" type="password" placeholder="Password" required/>
+                                 <span>Length: Minimum 6</span>
                                  <span th:errors="*{password}" class="error"></span>
                              </div>
 
