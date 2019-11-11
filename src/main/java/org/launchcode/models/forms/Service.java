@@ -20,12 +20,12 @@ public class Service {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
-    // one-to-many relationship established - creates column dog_id in Dog table
+    // one-to-many relationship established - creates column dog_id in service table
     @ManyToOne
     @JoinColumn(name="dog_id")
     private Dog dog;
 
-    // one-to-many relationship established - creates column person_id in Person table
+    // one-to-many relationship established - creates column person_id in service table
     @ManyToOne
     @JoinColumn(name="person_id")
     private Person person;

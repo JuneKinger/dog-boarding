@@ -30,15 +30,10 @@ public class Person {
 
     private Boolean admin;
 
-    // one-to-many relationship established - creates column person_id in Person table
+    // one-to-many relationship established
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id")
     private List<Dog> dogs = new ArrayList<>();
-
-    // one-to-many relationship established - creates column dog_id in Dog table
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "dog_id")
-    private List<Service> services = new ArrayList<>();
 
     // default constructor
     public Person() {
@@ -63,7 +58,6 @@ public class Person {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
     public String getFirstName() {
         return firstName;
@@ -120,11 +114,4 @@ public class Person {
         this.admin = admin;
     }
 
-    public List<Service> getServices() {
-        return services;
-    }
-
-    public void setServices(List<Service> services) {
-        this.services = services;
-    }
 }

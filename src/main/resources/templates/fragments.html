@@ -10,96 +10,102 @@
 
     <!-- bootstrap css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <!-- Bootstrap js -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <!-- css styles -->
     <link type="text/css" href="../../css/styles.css" rel="stylesheet" />
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 <body>
+<!-- class=navbar is a BS navigation header. Navbar-inverse displays a black band across the width of the viewport
+     fixed-top fixes navbar to the top of the user's viewport
+     th:fragment = "navigation" is used in all htmls to display bar on all pages -->
+    <nav class="navbar navbar-inverse navbar-fixed-top"  th:fragment="navigation">
+        <!-- BS container-fluid spans the entire width of your viewport -->
+        <div class="container-fluid">
+            <!-- allocates space to the left (approx 150 px) of navbar to wrap the navbar-brand which is "Pause for Paws" -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/" >Pause for Paws</a>
+            </div>
+            <!-- BS class = "nav" for horizontal bar. navbar-nav - navigation with support for drop-downs -->
+            <ul class="nav navbar-nav">
+                <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                <li class="active"><a href="/person/signup">Register</a></li>
+                <!-- BS nav-item - each item on the nav bar with toggable drop-down -->
+                <li class="nav-item dropdown">
+                    <!-- BS aria-expanded ="false" - state of a collapsible element and caret is dropdown arrow -->
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        My Profile
+                        <span class="caret"></span>
+                    </a>
+                    <!-- BS dropdown-menu - builds the menu. labelledby - relationship between objects and their labels -->
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" tabindex="-1" href="/person/edit">Edit Profile</a></li>
+                        <li><a class="dropdown-item" tabindex="-1" href="/person/remove">Delete Profile</a></li>
+                    </ul>
+                </li>
 
-<nav class="navbar navbar-inverse navbar-fixed-top"  th:fragment="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/" >Pause for Paws</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLinkDogs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dog Details
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkDogs">
+                        <li><a class="dropdown-item" tabindex="-1" href="/dogs/list-dog-details">Add/Edit/Delete Dog Details</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuServiceLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Schedule Service
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuServiceLink">
+                        <li><a class="dropdown-item" tabindex="-1" href="/service/add-services">Add Service</a></li>
+                        <li><a class="dropdown-item" tabindex="-1" href="/service/list-services">List/Delete Service</a></li>
+                    </ul>
+                </li>
+                <!-- All BS tooltips must be initialized with jquery according to BS doc -->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                <li><a data-toggle="tooltip" title="$100 per day for 1 dog - $50 each for more dogs">Pricing</a>
+
+                <script>
+                   $(function () {
+                   $('[data-toggle="tooltip"]').tooltip()
+                   })
+                </script></li>
+
+                <li class="active nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuAdminLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-stats"></span> Administration
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuAdminLink">
+                        <li><a class="dropdown-item" tabindex="-1" href="/admin/list-owners">List Owners</a></li>
+                        <li><a class="dropdown-item" tabindex="-1" href="/admin/list-all-boarders-drop-off">List ALL Boarders - By drop-off date</a></li>
+                        <li><a class="dropdown-item" tabindex="-1" href="/admin/list-all-boarders-pick-up">List ALL Boarders - By pick-up date</a></li>
+                        <li><a class="dropdown-item" tabindex="-1" href="/admin/list-future-boarders-drop-off">List FUTURE Boarders - By drop-off date</a></li>
+                        <li><a class="dropdown-item" tabindex="-1" href="/admin/list-future-boarders-pick-up">List FUTURE Boarders - By pick-up date</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- navbar-right to display links on the RHS of the navbar -->
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="/person/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="/person/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+
         </div>
 
-        <ul class="nav navbar-nav">
-            <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-            <li class="active"><a href="/person/signup">Register</a></li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    My Profile
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" tabindex="-1" href="/person/edit">Edit Profile</a></li>
-                    <li><a class="dropdown-item" tabindex="-1" href="/person/remove">Delete Profile</a></li>
-                </ul>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLinkDogs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dog Details
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkDogs">
-                    <li><a class="dropdown-item" tabindex="-1" href="/dogs/list-dog-details">Add/Edit/Delete Dog Details</a></li>
-
-                </ul>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuServiceLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Schedule Service
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuServiceLink">
-                    <li><a class="dropdown-item" tabindex="-1" href="/service/add-services">Add Service</a></li>
-                    <li><a class="dropdown-item" tabindex="-1" href="/service/list-services">List/Delete Service</a></li>
-                </ul>
-            </li>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-            <li><a data-toggle="tooltip" title="$100 per day for 1 dog - $50 each for more dogs">Pricing</a>
-
-            <script>
-               $(function () {
-               $('[data-toggle="tooltip"]').tooltip()
-               })
-            </script></li>
-
-            <li class="active nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuAdminLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="glyphicon glyphicon-stats"></span> Administration
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuAdminLink">
-                    <li><a class="dropdown-item" tabindex="-1" href="/admin/list-owners">List Owners</a></li>
-                    <li><a class="dropdown-item" tabindex="-1" href="/admin/list-all-boarders-drop-off">List ALL Boarders - By drop-off date</a></li>
-                    <li><a class="dropdown-item" tabindex="-1" href="/admin/list-all-boarders-pick-up">List ALL Boarders - By pick-up date</a></li>
-                    <li><a class="dropdown-item" tabindex="-1" href="/admin/list-future-boarders-drop-off">List FUTURE Boarders - By drop-off date</a></li>
-                    <li><a class="dropdown-item" tabindex="-1" href="/admin/list-future-boarders-pick-up">List FUTURE Boarders - By pick-up date</a></li>
-                </ul>
-            </li>
-        </ul>
-
-        <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="/person/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            <li><a href="/person/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-        </ul>
-
+    </nav>
+    <div>
+        <br>
+        <br>
+        <br>
     </div>
-
-</nav>
-<div>
-    <br>
-    <br>
-    <br>
-</div>
-
 </body>
 </html>

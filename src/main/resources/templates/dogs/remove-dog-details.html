@@ -10,15 +10,12 @@
 
         <div class="col-md-6 col-md-offset-3">
             <form method ="post"  th:object="${dog}">
-
-                <div class="panel-group">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h1 class="panel-title">Delete dog details</h1>
                         </div>
                         <div class="panel-body">
-                            <strong><div th:text="${warn}" class="col-form-label col-md-12 text-danger"></div></strong>
-
+                            <strong><div th:text="${warn}" class=" col-md-12 text-danger"></div></strong>
 
                             <div class="col-md-12 form-group">
                                 <div>
@@ -75,7 +72,7 @@
                                 <br/>
                                 <button type="submit" name="action" class="btn btn-primary" value="Delete">Delete</button>
 
-                                <span class="tab-space"><a href="/" id ="cancel" name="cancel" class="btn btn-primary">&nbsp;Exit</a></span>
+                                <span class="tab-space"><a href="/dogs/list-dog-details" id ="cancel" name="cancel" class="btn btn-primary">&nbsp;Exit</a></span>
                             </div>
                             <div class="col-md-12 ">
                                 <br/>
@@ -85,7 +82,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+
             </form>
         </div>
 

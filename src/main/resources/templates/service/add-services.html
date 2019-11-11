@@ -9,19 +9,19 @@
 <div class="col-md-6 col-md-offset-3" >
 
     <form method ="post"  th:object="${service}">
+        <div th:object="${person}" ></div>
 
-        <div class="panel-group">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h1 class="panel-title">Schedule Service</h1>
                 </div>
                 <div class="panel-body">
-                    <div th:text="${error}" class="col-form-label col-md-12 text-danger"></div>
+                    <div th:text="${error}" class=" col-md-12 text-danger"></div>
                     <div>
                         <p></p>
                     </div>
 
-                    <div class="form-row col-md-12 form-group" >
+                    <div class="col-md-12 form-group" >
                         <label><p><u><small><strong>Check dogs for boarding: </strong></small><span class="required">*</span></u></p></label>
 
                         <div>
@@ -46,7 +46,7 @@
                         </em></p>
                     </div>
 
-                    <div class="form-row col-md-12 form-group" >
+                    <div class="col-md-12 form-group" >
 
                          <div>
                              <p></p>
@@ -68,8 +68,8 @@
                         <br/>
                         <button type="submit" name="action" class="btn btn-primary" value="Add">Save</button>
                         <span class="tab-space"><a href="/" id ="cancel" name="cancel" class="btn btn-primary">&nbsp;Exit</a></span>
-                         <!-- person.email if not specified updates a "NULL" in the person database. -->
-                         <input type="hidden"  th:field="${person.email}" id="person.email"/>
+                         <!-- person.email if not specified updates a "NULL" in the service database. -->
+                         <input type="hidden"  th:field="${person.email}" id="person.email" />
                     </div>
                     <div class="col-md-12 ">
                         <br/>
@@ -80,7 +80,6 @@
                 </div>
 
             </div>
-        </div>
     </form>
 
 </div>

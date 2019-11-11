@@ -11,13 +11,12 @@
 
         <div class="col-md-6 col-md-offset-3">
             <form method ="post"  th:object="${dog}">
-                <div class="panel-group">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h1 class="panel-title">Edit dog details</h1>
                         </div>
                         <div class="panel-body">
-                            <div th:text="${error}" class="col-form-label text-danger"></div>
+                            <div th:text="${error}" class=" text-danger"></div>
                             <div>
                                 <p></p>
                             </div>
@@ -73,7 +72,7 @@
                                 <input type="hidden" class="form-control" name="id" th:field="${dog.id}" id="dog.id"/>
                                 <button type="submit" name="action" class="btn btn-primary" value="Edit">Save</button>
 
-                                <span class="tab-space"><a href="/" id ="cancel" name="cancel" class="btn btn-primary">&nbsp;Exit</a></span>
+                                <span class="tab-space"><a href="/dogs/list-dog-details" id ="cancel" name="cancel" class="btn btn-primary">&nbsp;Exit</a></span>
                             </div>
                             <div class="col-md-12 ">
                                 <br/>
@@ -83,7 +82,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+
             </form>
         </div>
 

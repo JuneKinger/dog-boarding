@@ -1,85 +1,89 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
 <head th:replace="fragments :: head">
-    <title>Edit</title>
+    <title>Signup</title>
     </head>
 <nav th:replace="fragments :: navigation"></nav>
 <body>
-<div class ="container" style="margin-top: 58px">
-  <div class="col-md-6 col-md-offset-3">
-            <form method ="post"   th:object="${person}">
-                <div class="panel-group">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <h1 class="panel-title">Register</h1>
-                            </div>
-                            <div class="panel-body">
+    <!-- container contains the container of columns or grid system -->
+    <div class ="container" style="margin-top: 58px">
+      <div class="col-md-6 col-md-offset-3">
+                <form method ="post"   th:object="${person}">
+                     <!-- class="panel" puts DOM components in a box with padding -->
+                     <div class="panel panel-primary">
+                         <!-- adds a heading band to the box -->
+                         <div class="panel-heading">
+                             <h1 class="panel-title">Register</h1>
+                         </div>
+                         <!-- content inside the panel -->
+                         <div class="panel-body">
 
-                                <div th:text="${error}" class="col-form-label col-md-12 text-danger"></div>
+                             <div th:text="${error}" class=" col-md-12 text-danger"></div>
+                             <!-- form-group adds a blank line between vertical fields -->
+                             <div class="col-md-6 form-group">
+                                 <label for="firstName"><small>First Name </small><span class="required">*</span></label>
+                                 <!-- form-control gives a nice rounded form outline to the input fields -->
+                                 <input id="firstName"  type="text" class="form-control" th:field="*{firstName}" placeholder="First Name" required/>
+                             </div>
 
-                                <div class="col-md-6 form-group">
-                                    <label for="firstName"><small>First Name </small><span class="required">*</span></label>
-                                    <input id="firstName"  type="text" class="form-control" th:field="*{firstName}" placeholder="First Name" required/>
-                                </div>
+                             <div class="col-md-6 form-group">
+                                 <label for="lastName" ><small>Last Name </small><span class="required">*</span></label>
+                                 <input id="lastName" type = "text" class="form-control" th:field="*{lastName}" placeholder="Last Name" required/>
+                             </div>
 
-                                <div class="col-md-6 form-group">
-                                    <label for="lastName" ><small>Last Name </small><span class="required">*</span></label>
-                                    <input id="lastName" type = "text" class="form-control" th:field="*{lastName}" placeholder="Last Name" required/>
-                                </div>
+                             <div class="col-md-12" form-group>
+                                 <!-- one space after </span> leaves a space between label and icon -->
+                                 <label for="email" ><small>Email </small></label> <span class="glyphicon glyphicon-envelope"></span> <span class="required">*</span>
+                                 <input id="email" class="form-control " pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]{2,3}$" th:field="*{email}" placeholder="Email format" required />
+                             </div>
 
-                                <div class="col-md-12" form-group>
-                                    <!-- one space after </span> leaves a space between label and icon -->
-                                    <label for="email" ><small>Email </small></label> <span class="glyphicon glyphicon-envelope"></span> <span class="required">*</span>
-                                    <input id="email" class="form-control " pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]{2,3}$" th:field="*{email}" placeholder="Email format" required />
-                                </div>
+                             <div class="col-md-6 form-group">
+                                 <p></p>
+                                 <label for="password" ><small>Password </small><span class="required">*</span></label>
+                                 <input id="password" class="form-control" th:field="*{password}" type="password" placeholder="Password" required/>
+                                 <span th:errors="*{password}" class="error"></span>
+                             </div>
 
-                                <div class="col-md-6 form-group">
-                                    <p></p>
-                                    <label for="password" ><small>Password </small><span class="required">*</span></label>
-                                    <input id="password" class="form-control" th:field="*{password}" type="password" placeholder="Password" required/>
-                                    <span th:errors="*{password}" class="error"></span>
-                                </div>
+                             <div class="col-md-6 form-group">
+                                 <p></p>
+                                 <label for="verify" ><small>Verify Password </small><span class="required">*</span></label>
+                                 <input id="verify" class="form-control" name="verify" type="password" placeholder="Verify" required/>
+                             </div>
 
-                                <div class="col-md-6 form-group">
-                                    <p></p>
-                                    <label for="verify" ><small>Verify Password</small><span class="required">*</span></label>
-                                    <input id="verify" class="form-control" name="verify" type="password" placeholder="Verify" required/>
-                                </div>
+                             <div class="col-md-12 form-group">
+                                 <label for="address" ><small>Address </small><span class="required">*</span></label>
+                                 <textarea id="address" class="form-control" rows="3" type="text" th:field="*{address}" placeholder="Address" required></textarea>
+                             </div>
 
-                                <div class="col-md-12 form-group">
-                                    <label for="address" ><small>Address </small><span class="required">*</span></label>
-                                    <textarea id="address" class="form-control" rows="3" type="text" th:field="*{address}" placeholder="Address" required></textarea>
-                                </div>
+                             <div class="col-md-6 form-group">
+                                 <label for="homePhone" ><small>Home Phone (optional)</small></label>
+                                 <input id="homePhone" class="form-control"  type="tel" th:field="*{homePhone}" placeholder="eg. 999-999-9999" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"  />
+                                 <span>Format: 123-456-7890</span>
 
-                                <div class="col-md-6 form-group">
-                                    <label for="homePhone" ><small>Home Phone (optional)</small></label>
-                                    <input id="homePhone" class="form-control"  type="tel" th:field="*{homePhone}" placeholder="eg. 999-999-9999" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"  />
-                                    <span>Format: 123-456-7890</span>
+                             </div>
 
-                                </div>
+                             <div class="col-md-6 form-group">
+                                 <label for="cellPhone" ><small>Cell Phone </small><span class="required">*</span></label>
+                                 <input id="cellPhone" class="form-control" type="tel" th:field="*{cellPhone}" placeholder="eg. 999-999-9999" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
+                                 <span>Format: 123-456-7890</span>
+                                 <span th:errors="*{cellPhone}" class="error"></span>
+                             </div>
 
-                                <div class="col-md-6 form-group">
-                                    <label for="cellPhone" ><small>Cell Phone </small><span class="required">*</span></label>
-                                    <input id="cellPhone" class="form-control" type="tel" th:field="*{cellPhone}" placeholder="eg. 999-999-9999" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
-                                    <span>Format: 123-456-7890</span>
-                                    <span th:errors="*{cellPhone}" class="error"></span>
-                                </div>
+                             <div class="col-md-12 ">
+                                 <p></p>
+                                 <button type="submit" class="btn btn-primary"  name="action" >Register</button>
+                                 <br/>
+                             </div>
 
-                                <div class="col-md-12 ">
-                                    <p></p>
-                                    <button type="submit" class="btn btn-primary" role="button" name="action" >Register</button>
-                                    <br/>
-                                </div>
+                             <div class="col-md-12 ">
+                                 <br/>
+                                 <label class="required">*</label>
+                                 <label><span><small>Indicates required field</small></span></label>
+                             </div>
+                         </div>
+                     </div>
 
-                                <div class="col-md-12 ">
-                                    <br/>
-                                    <label class="required">*</label>
-                                    <label><span><small>Indicates required field</small></span></label>
-                                </div>
-                            </div>
-                        </div>
-                 </div>
-            </form>
-</div>
+                </form>
+    </div>
 </body>
 </html>

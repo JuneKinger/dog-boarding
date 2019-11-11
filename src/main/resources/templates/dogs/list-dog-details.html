@@ -4,62 +4,59 @@
 </head>
 <body class="container" style="margin-top: 100px">
 
-<nav th:replace="fragments :: navigation"></nav>
-<form  method ="post"  th:object="${dogs}">
-    <div class="table-responsive container-fluid" >
-        <div class="panel-group">
-            <div class=" panel panel-primary">
-                <div class="panel-heading">
-                    <h1 class="panel-title">Your dogs</h1>
-                </div>
-                <!-- panel-body aligns td elements with panel-heading -->
-                <div class="panel-body">
-                    <table class="table table-striped">
+    <nav th:replace="fragments :: navigation"></nav>
+    <form  method ="post"  th:object="${dogs}">
 
-                        <thead>
-                        <tr>
-                            <th><p><u>Name</u></p></th>
-                            <th><p><u>Breed</u></p></th>
-                            <th><p><u>Size</u></p></th>
-                            <th><p><u>Special Notes</u></p></th>
+           <div class=" panel panel-primary">
+               <div class="panel-heading">
+                   <h1 class="panel-title">Your dogs</h1>
+               </div>
+               <!-- panel-body aligns td elements with panel-heading -->
+               <div class="panel-body">
+                   <table class="table table-striped">
 
-                            <th><a href="/dogs/add-dog-details" class="btn btn-primary btn-sm ">
-                                <span class="glyphicon glyphicon-plus col text-center" ></span>
-                                <span><strong>Add a Dog</strong></span></a></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="dog : ${dogs}">
+                       <thead>
+                       <tr>
+                           <th><p><u>Name</u></p></th>
+                           <th><p><u>Breed</u></p></th>
+                           <th><p><u>Size</u></p></th>
+                           <th><p><u>Special Notes</u></p></th>
 
-                            <td th:text="${dog.name}"></td>
-                            <td th:text="${dog.breed}"></td>
-                            <td th:text="${dog.size}"></td>
-                            <td th:text="${dog.specialNotes}"></td>
+                           <th><a href="/dogs/add-dog-details" class="btn btn-primary btn-sm ">
+                               <span class="glyphicon glyphicon-plus col text-center" ></span>
+                               <span><strong>Add a Dog</strong></span></a></th>
+                       </tr>
+                       </thead>
+                       <tbody>
+                       <tr th:each="dog : ${dogs}">
 
-                            <td>
-                                <a th:href="@{'/dogs/edit-dog-details/' + ${dog.id}}" class="btn btn-primary btn-sm">
-                                    <span class="glyphicon glyphicon-edit" ></span>
-                                    <span><strong>Edit</strong></span></a>
+                           <td th:text="${dog.name}"></td>
+                           <td th:text="${dog.breed}"></td>
+                           <td th:text="${dog.size}"></td>
+                           <td th:text="${dog.specialNotes}"></td>
 
-                                <a th:href="@{'/dogs/remove-dog-details/' + ${dog.id}}" class="btn btn-primary btn-sm">
-                                    <span class="glyphicon glyphicon-trash" ></span>
-                                    <span><strong>Delete</strong></span></a>
-                            </td>
+                           <td>
+                               <a th:href="@{'/dogs/edit-dog-details/' + ${dog.id}}" class="btn btn-primary btn-sm">
+                                   <span class="glyphicon glyphicon-edit" ></span>
+                                   <span><strong>Edit</strong></span></a>
 
-                        </tr>
+                               <a th:href="@{'/dogs/remove-dog-details/' + ${dog.id}}" class="btn btn-primary btn-sm">
+                                   <span class="glyphicon glyphicon-trash" ></span>
+                                   <span><strong>Delete</strong></span></a>
+                           </td>
 
-                        </tbody>
+                       </tr>
 
-                    </table>
-                    <div>
-                        <div><a th:href="@{'/'}" id ="cancel" name="cancel" class="btn btn-primary">Exit</a></div>
-                    </div>
+                       </tbody>
 
-                </div>
-            </div>
-        </div>
-    </div>
+                   </table>
+                   <div>
+                       <div><a th:href="@{'/'}" id ="cancel" name="cancel" class="btn btn-primary">Exit</a></div>
+                   </div>
 
-</form>
+               </div>
+           </div>
+
+    </form>
 </body>
 </html>

@@ -9,33 +9,32 @@
         <!-- the line below is needed to center the form on the page -->
         <div class="col-md-6 col-md-offset-3">
             <form method ="post"  th:object="${person}">
-                <div class="panel-group">
 
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <h1 class="panel-title">Login </h1>
-                                </div>
-                                <div class=" panel-body">
-                                    <div th:text="${error}" class="col-form-label col-md-12 text-danger"></div>
 
-                                    <div class="col-md-12 form-group">
-                                        <label th:for="email"><small>Email </small><span class="required">*</span> </label>
-                                        <input class="form-control" id="email" th:field="*{email}" type="text" name="email" placeholder="Email" required/>
+                  <div class="panel panel-primary">
+                      <div class="panel-heading">
+                          <h1 class="panel-title">Login </h1>
+                      </div>
+                      <div class=" panel-body">
+                          <div th:text="${error}" class=" col-md-12 text-danger"></div>
 
-                                    </div>
+                          <div class="col-md-12 form-group">
+                              <label th:for="email"><small>Email </small><span class="required">*</span> </label>
+                              <input class="form-control" id="email" th:field="*{email}" type="text" name="email" placeholder="Email" required/>
 
-                                    <div class="col-md-12 form-group">
-                                        <label th:for="password"><small>Password </small><span class="required">*</span></label>
-                                        <input class="form-control" id="password" th:field="*{password}" type="password" placeholder="Password" required/>
+                          </div>
 
-                                    </div>
-                                    <div class="col-md-12 ">
-                                        <input type="submit" class="btn btn-primary" role="button" value="Login"/>
-                                    </div>
-                                </div>
-                            </div>
+                          <div class="col-md-12 form-group">
+                              <label th:for="password"><small>Password </small><span class="required">*</span></label>
+                              <input class="form-control" id="password" th:field="*{password}" type="password" placeholder="Password" required/>
 
-                </div>
+                          </div>
+                          <div class="col-md-12 ">
+                              <input type="submit" class="btn btn-primary"  value="Login"/>
+                          </div>
+                      </div>
+                  </div>
+
             </form>
         </div>
     </div>

@@ -1,5 +1,7 @@
 package org.launchcode.models.data;
 
+import org.launchcode.models.forms.Dog;
+import org.launchcode.models.forms.Person;
 import org.launchcode.models.forms.Service;
 import org.launchcode.models.forms.Service;
 import org.springframework.data.jpa.repository.Query;
@@ -19,6 +21,7 @@ public interface ServiceDao extends CrudRepository<Service, Integer> {
 
     List<Service> findByDog_Id(int dogId);
 
+    // @Query to define SQL to execute for a Spring Data repository method //
     @Query(value = "select * FROM service where start_date >= NOW() - INTERVAL 1 DAY order by start_date ASC", nativeQuery = true)
     List<Service> findAllByStartDateOrderByStartDateAscNative();
 
@@ -28,7 +31,10 @@ public interface ServiceDao extends CrudRepository<Service, Integer> {
     @Query(value = "select * FROM service order by start_date ASC", nativeQuery = true)
     List<Service> findAllOrderByStartDateAscNative();
 
-    @Query(value = "select * FROM service order by end_date ASC", nativeQuery = true)
+    @Query(value = "select * FROM service order by End_date ASC", nativeQuery = true)
     List<Service> findAllOrderByEndDateAscNative();
+
+    //@Query(value = "select s.dog_id, s.person_id FROM service s JOIN Person p ON s.person_id = p.id order by s.start_date ASC", nativeQuery = true)
+    //List<Service> findByDog_IdAndPerson_IdOrderByStartDateAscNative(int dogId, int personId);
 
 }

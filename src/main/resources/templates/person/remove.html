@@ -5,71 +5,67 @@
 </head>
 <nav th:replace="fragments :: navigation"></nav>
 
-<div class ="container" style="margin-top: 90px">
-    <div class="col-md-6 col-md-offset-3">
-        <form method ="post"  th:object="${person}">
-            <div class="panel-group">
+    <div class ="container" style="margin-top: 90px">
+        <div class="col-md-6 col-md-offset-3">
+            <form method ="post"  th:object="${person}">
 
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h1 class="panel-title">Delete Profile</h1>
                         </div>
-                            <div class="panel-body">
-                                <div class="col-md-6 form-group">
-                                    <label th:for="firstName"><small>First name </small><span class="required">*</span></label>
-                                    <input type="text" class="form-control" id = "firstName" th:field="*{firstName}"  readonly/>
-                                </div>
+                         <div class="panel-body">
+                             <div class="col-md-6 form-group">
+                                 <label th:for="firstName"><small>First name </small><span class="required">*</span></label>
+                                 <input type="text" class="form-control" id = "firstName" th:field="*{firstName}"  readonly/>
+                             </div>
 
-                                <div class="col-md-6 form-group">
-                                    <label th:for="lastName"><small>Last name </small> <span class="required">*</span></label>
-                                    <input class="form-control" id="lastName" th:field="*{lastName}" readonly />
-                                </div>
+                             <div class="col-md-6 form-group">
+                                 <label th:for="lastName"><small>Last name </small> <span class="required">*</span></label>
+                                 <input class="form-control" id="lastName" th:field="*{lastName}" readonly />
+                             </div>
 
-                                <div class="col-md-12" form-group>
-                                    <!-- one space after </span> leaves a space between label and icon -->
-                                    <label for="email" ><small>Email </small></label> <span class="glyphicon glyphicon-envelope"></span> <span class="required">*</span>
-                                    <input id="email" class="form-control" th:field="*{email}" name="email" readonly />
-                                </div>
+                             <div class="col-md-12" form-group>
+                                 <!-- one space after </span> leaves a space between label and icon -->
+                                 <label for="email" ><small>Email </small></label> <span class="glyphicon glyphicon-envelope"></span> <span class="required">*</span>
+                                 <input id="email" class="form-control" th:field="*{email}" name="email" readonly />
+                             </div>
 
-                                <div class="col-md-12 form-group">
-                                    <div>
-                                        <p></p>
-                                    </div>
-                                    <label th:for="address"><small>Address </small><span class="required">*</span></label>
-                                    <textarea rows="3" class="form-control" id="address" th:field="*{address}"  readonly/>
-                                </div>
+                             <div class="col-md-12 form-group">
+                                 <div>
+                                     <p></p>
+                                 </div>
+                                 <label th:for="address"><small>Address </small><span class="required">*</span></label>
+                                 <textarea rows="3" class="form-control" id="address" th:field="*{address}"  readonly/>
+                             </div>
 
-                                <div class="col-md-6 form-group">
-                                    <label for="homePhone" ><small>Home Phone (optional)</small></label>
-                                    <input id="homePhone" class="form-control"  type="text" th:field="*{homePhone}" readonly />
-                                    <span>format: 123-456-7890</span>
-                                </div>
+                             <div class="col-md-6 form-group">
+                                 <label for="homePhone" ><small>Home Phone (optional)</small></label>
+                                 <input id="homePhone" class="form-control"  type="text" th:field="*{homePhone}" readonly />
+                                 <span>format: 123-456-7890</span>
+                             </div>
 
-                                <div class="col-md-6 form-group">
-                                    <label for="cellPhone" ><small>Cell Phone </small><span class="required">*</span></label>
-                                    <input id="cellPhone" class="form-control"  type="text" th:field="*{cellPhone}"  readonly />
-                                    <span>format: 123-456-7890</span>
-                                </div>
+                             <div class="col-md-6 form-group">
+                                 <label for="cellPhone" ><small>Cell Phone </small><span class="required">*</span></label>
+                                 <input id="cellPhone" class="form-control"  type="text" th:field="*{cellPhone}"  readonly />
+                                 <span>format: 123-456-7890</span>
+                             </div>
 
-                                <div class="col-md-12">
-                                    <div>
-                                        <p></p>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary" role="button" name="action" >Delete Profile</button>
-                                </div>
-                                <div class="col-md-12">
-                                    <br/>
-                                    <label class="required">*</label>
-                                    <label><span><small>Indicates required field</small></span></label>
+                             <div class="col-md-12">
+                                 <div>
+                                     <p></p>
+                                 </div>
+                                 <button type="submit" class="btn btn-primary" name="action" >Delete Profile</button>
+                             </div>
+                             <div class="col-md-12">
+                                 <br/>
+                                 <label class="required">*</label>
+                                 <label><span><small>Indicates required field</small></span></label>
 
-                                </div>
-                            </div>
+                             </div>
                         </div>
-
-                </div>
+                    </div>
             </form>
         </div>
     </div>
-</div>
 </body>
 </html>
