@@ -2,18 +2,15 @@ package org.launchcode.controllers;
 
 import org.launchcode.models.data.DogDao;
 import org.launchcode.models.data.PersonDao;
-import org.launchcode.models.forms.Dog;
 import org.launchcode.models.forms.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.util.List;
 import java.lang.String;
 import static jdk.nashorn.internal.objects.NativeString.trim;
 
@@ -27,13 +24,6 @@ public class ProfileController {
     @Autowired
     private DogDao dogDao;
 
-    @RequestMapping(value = "")
-    public String index(Model model) {
-
-        model.addAttribute("person", personDao.findAll());
-        return "home/index";
-    }
-
     @RequestMapping(value = "signup", method = RequestMethod.GET)
     public String displaySignupForm(Model model) {
 
@@ -43,15 +33,10 @@ public class ProfileController {
     }
 
     @RequestMapping(value = "signup", method = RequestMethod.POST)
-    public String processSignupForm(@ModelAttribute  @Valid Person person, Errors errors, String verify,
-                                    String email, Model model, HttpServletResponse response) {
+    public String processSignupForm(@ModelAttribute @Valid Person person, String verify,
+                                    Model model, HttpServletResponse response) {
 
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Sign up");
-            return "person/signup";
-        }
-
-        if (personDao.findByEmail(email) != null) {
+        if (personDao.findByEmail(person.getEmail()) != null) {
             model.addAttribute("error", "This email address has been taken");
             model.addAttribute("title", "Sign up");
             return "person/signup";
@@ -106,12 +91,12 @@ public class ProfileController {
             // set the path so the whole application has access to the cookie
             cookie.setPath("/");
 
-            // method of HttpServletResponse interface is used to add cookie in response object
+            // addCookie() method of HttpServletResponse interface is used to add cookie in response object
             response.addCookie(cookie);
 
             person.setAdmin(false);
 
-            // convert email to lowercase before save
+            // convert email to lowercase before save so that it can be found on edit
             String pEmail = person.getEmail().toLowerCase();
             person.setEmail(pEmail);
 
@@ -135,7 +120,6 @@ public class ProfileController {
 
     }
 
-
     @RequestMapping(value = "login", method = RequestMethod.GET)
 
     public String displayLoginForm(Model model) {
@@ -145,7 +129,7 @@ public class ProfileController {
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String processLoginForm(Model model, @ModelAttribute  Person person, HttpServletResponse response) {
+    public String processLoginForm(Model model, @ModelAttribute Person person, HttpServletResponse response) {
 
         Person pers = personDao.findByEmail(person.getEmail().toLowerCase());
 
@@ -157,7 +141,8 @@ public class ProfileController {
             return "person/login";
         }
 
-        // if record is admin type
+        // if record is admin type, sets the cookie and goes to home page else sets a cookie and
+        // displays a welcome message to the user
         if (pers.getAdmin() == true) {
             Cookie cookie = new Cookie("person", person.getEmail().toLowerCase());
             cookie.setPath("/");
@@ -165,9 +150,7 @@ public class ProfileController {
             return "home/index";
         }
 
-
-        model.addAttribute("name", personDao.findByEmail(person.getEmail().toLowerCase()).getFirstName());
-
+        model.addAttribute("name", pers.getFirstName());
         // create cookie with cookie name and value (key-value pair) using Cookie class
         Cookie cookie = new Cookie("person", person.getEmail().toLowerCase());
         // set the path so the whole application has access to the cookie
@@ -221,12 +204,8 @@ public class ProfileController {
     }
 
     @RequestMapping(value = "edit", method = RequestMethod.POST)
-    public String processEditForm(@ModelAttribute @Valid Person person, Errors errors,
-                                  @RequestParam String email, int id, Model model, HttpServletResponse response) {
-
-        if (errors.hasErrors()) {
-            return "person/edit";
-        }
+    public String processEditForm(@ModelAttribute @Valid Person person,
+                                  @RequestParam int id, Model model, HttpServletResponse response) {
 
         if (trim(person.getFirstName()).equals("")) {
             model.addAttribute("error", "First name cannot be blank - please re-enter");
@@ -252,8 +231,8 @@ public class ProfileController {
             return "person/signup";
         }
 
-        // need to pass in personId to find record since if email has been modified  by user, it will not be found in file
-        // via a personDao.findByEmail(email)
+        // need to pass in personId to find record since if email has been modified by user,
+        // finding by email personDao.findByEmail(email) here would throw an error
 
         Person pers = personDao.findById(id);
         pers.setFirstName(trim(person.getFirstName()));
@@ -289,13 +268,12 @@ public class ProfileController {
         if (pers.getAdmin() == true) {
             String mess = "Please register / log in as owner first!";
             model.addAttribute("mess", mess);
+
             return "person/mess";
         }
         else {
 
             model.addAttribute("person", pers);
-
-            List<Dog> dogs = pers.getDogs();
 
             return "person/remove";
         }
@@ -314,11 +292,11 @@ public class ProfileController {
             }
         }
         Person pers = personDao.findByEmail(email);
+        // delete pers from personDao also automatically deletes dogs in Dog table where person_id = pers
+        // This happens due to Cascade = CasecadeType.all in person POJO
         personDao.delete(pers);
 
         return "home/index";
     }
-
-
 }
 

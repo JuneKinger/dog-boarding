@@ -7,49 +7,45 @@
 <nav th:replace="fragments :: navigation"></nav>
 
 <form  method ="post"  th:object="${services}">
-    <div class="table-responsive container-fluid" >
 
-        <div class="panel-group">
-            <div class=" panel panel-primary">
-                <div class="panel-heading">
-                    <h1 class="panel-title">Boarding Services</h1>
-                </div>
-                <!-- panel-body aligns td elements with panel-heading -->
-                <div class="panel-body">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr >
-                                <th><p><u>Dog name</u></p></th>
-                                <th><p><u>Start date</u></p></th>
-                                <th><p><u>End date</u></p></th>
+     <div class=" panel panel-primary">
+         <div class="panel-heading">
+             <h1 class="panel-title">Boarding Services</h1>
+         </div>
+         <!-- panel-body aligns td elements with panel-heading -->
+         <div class="panel-body">
+             <table class="table table-striped">
+                 <thead>
+                     <tr >
+                         <th><p><u>Dog name</u></p></th>
+                         <th><p><u>Start date</u></p></th>
+                         <th><p><u>End date</u></p></th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
+                     </tr>
+                 </thead>
+                 <tbody>
 
-                            <tr th:each="service : ${services}">
+                     <tr th:each="service : ${services}">
 
-                                <td th:text="${service.dog.name}"></td>
-                                <td th:text="${#strings.substring(service.startDate,0,10)}"></td>
-                                <td th:text="${#strings.substring(service.endDate,0,10)}"></td>
+                         <td th:text="${service.dog.name}"></td>
+                         <td th:text="${#strings.substring(service.startDate,0,10)}"></td>
+                         <td th:text="${#strings.substring(service.endDate,0,10)}"></td>
 
-                                    <td>
-                                        <a th:href="@{'/service/remove-service/' + ${service.id}}" class="btn btn-primary btn-sm">
-                                            <span class="glyphicon glyphicon-trash" ></span>
-                                            <span><strong>Delete</strong></span></a>
+                             <td>
+                                 <a th:href="@{'/service/remove-service/' + ${service.id}}" class="btn btn-primary btn-sm">
+                                     <span class="glyphicon glyphicon-trash" ></span>
+                                     <span><strong>Delete</strong></span></a>
 
-                                    </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                        <div>
-                            <div><a th:href="@{'/'}" id ="cancel" name="cancel" class="btn btn-primary">Exit</a></div>
-                        </div>
+                             </td>
+                     </tr>
+                 </tbody>
+             </table>
+                 <div>
+                     <div><a th:href="@{'/'}" id ="cancel" name="cancel" class="btn btn-primary">Exit</a></div>
+                 </div>
 
-                </div>
-            </div>
-        </div>
-    </div>
+         </div>
+     </div>
 
 </form>
 

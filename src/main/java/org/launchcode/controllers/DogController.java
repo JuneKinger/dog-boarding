@@ -5,11 +5,9 @@ import org.launchcode.models.data.PersonDao;
 import org.launchcode.models.data.ServiceDao;
 import org.launchcode.models.forms.Dog;
 import org.launchcode.models.forms.Person;
-import org.launchcode.models.forms.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
@@ -49,15 +47,15 @@ public class DogController {
     }
 
     @RequestMapping(value = "add-dog-details", method = RequestMethod.POST)
-    public String processAddDogDetailsForm(@ModelAttribute @Valid Dog newDog, Errors errors,
-                                           @RequestParam("action") String action, String email, Person person, int id, Model model) {
+    public String processAddDogDetailsForm(@ModelAttribute @Valid Dog newDog, Person person, Model model) {
 
         Person pers = personDao.findByEmail(person.getEmail());
 
         List<Dog> dogs = pers.getDogs();
 
         for (int i = 0; i < dogs.size(); i++) {
-            if (dogs.get(i).getName().contains(newDog.getName())) {
+
+            if (dogs.get(i).getName().equals(newDog.getName())) {
                 // search dogDao if name input exists
                 model.addAttribute("error", "Duplicate dog name");
                 model.addAttribute("title", "Add Dog");
@@ -107,7 +105,7 @@ public class DogController {
         return "dogs/list-dog-details";
     }
 
-
+    // edit dog-details from list of dogs displayed via list-dog-details - note the id selected
     @RequestMapping(value = "edit-dog-details/{id}", method = RequestMethod.GET)
     public String displayEditDogDetailsForm(@PathVariable int id, Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {
@@ -115,7 +113,6 @@ public class DogController {
         if (email.equals("none")) {
             return "redirect:/person/login";
         }
-        Person pers = personDao.findByEmail(email);
 
         model.addAttribute("person", personDao.findByEmail(email));
         model.addAttribute("dog", dogDao.findById(id));
@@ -125,14 +122,16 @@ public class DogController {
 
 
     @RequestMapping(value = "edit-dog-details/{id}", method = RequestMethod.POST)
-    public String processEditDogDetailsForm(@ModelAttribute @Valid Dog newDog, Errors errors,
-                                            @PathVariable int id, Person person, Model model) {
+    public String processEditDogDetailsForm(@ModelAttribute @Valid Dog newDog, Person person,
+                                            @PathVariable int id, Model model) {
 
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Edit Dog");
-            model.addAttribute("dog", dogDao.findById(id));
+        if (trim(newDog.getName()).equals("")) {
+
+            model.addAttribute("error", "Name cannot be blank - please re-enter");
+            model.addAttribute("title", "edit-dog");
             return "dogs/edit-dog-details";
         }
+
 
         Person pers = personDao.findByEmail(person.getEmail());
 
@@ -164,19 +163,17 @@ public class DogController {
         if (email.equals("none")) {
             return "redirect:/person/login";
         }
-        Person pers = personDao.findByEmail(email);
 
         model.addAttribute("person", personDao.findByEmail(email));
         model.addAttribute("dog", dogDao.findById(id));
-        model.addAttribute("warn", "Please note - Deleting a dog will also delete existing services");
+        model.addAttribute("warn", "Please note - Deleting a dog will also delete services if present");
 
         return "dogs/remove-dog-details";
     }
 
 
     @RequestMapping(value = "remove-dog-details/{id}", method = RequestMethod.POST)
-    public String processRemoveDogDetailForm(@ModelAttribute @Valid Dog newDog, Errors errors,
-                                             @PathVariable int id, Person person, Model model) {
+    public String processRemoveDogDetailForm(@PathVariable int id, Person person, Model model) {
 
         Person pers = personDao.findByEmail(person.getEmail());
 
@@ -193,5 +190,3 @@ public class DogController {
         return "dogs/list-dog-details";
     }
 }
-
-
