@@ -25,6 +25,10 @@ Admin can list future boarders by drop-off date.
 
 Admin can list future boarders by pick-up date.
 
+# FUTURE PLANS:
+Add a pricing page to display price depending on # of dogs and more discount during the holiday season.
+A blog about dogs.
+
 ![Demo Animation](../assets/register1.gif?raw=true)
 
 ![Demo Animation](../assets/register2.gif?raw=true)
@@ -58,10 +62,6 @@ Owners can edit their dogs' details like name, breed, size, special instructions
 ![Demo Animation](../assets/dogDetailsDelete.gif?raw=true)
 
 Owners can remove their dogs' details from the system.
-
-# FUTURE PLANS:
-Add a pricing page to display price depending on # of dogs and more discount during the holiday season.
-A blog about dogs.
 
 ![Demo Animation](../assets/pricing.gif?raw=true)
 
