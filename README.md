@@ -1,5 +1,6 @@
 # dog-boarding
 ![Demo Animation](../assets/home.gif?raw=true)
+A dog boarding business app
 ![Demo Animation](../assets/register1.gif?raw=true)
 ![Demo Animation](../assets/register2.gif?raw=true)
 ![Demo Animation](../assets/login.gif?raw=true)
