@@ -1,14 +1,14 @@
 # dog-boarding
 ![Demo Animation](../assets/home.gif?raw=true)
 
-<h1>What This Does!!!
+<h1><strong>What This Does!!!</strong></h1>
   
-A dog boarding business app that lets owners book a dog boarding service. 
-This app is written in Java and Spring Boot. I used Thymeleaf for the view and MySQL/MAMP for database storage
+<h1>A dog boarding business app that lets owners book a dog boarding service. 
+This app is written in Java and Spring Boot. I used Thymeleaf for the view and MySQL/MAMP for database storage</h1>
 
-Features!!!
+<h1><strong>Features!!!</strong></h1>
 
-Owners can create/edit/delete profiles
+<h1>Owners can create/edit/delete profiles
 
 Owners can enter/edit/remove dogs' details
 
@@ -61,10 +61,9 @@ Admin can list future boarders by pick-up date</h1>
 
 <h1>Owners can remove their dogs' details from the system</h1>
 
-<h1>FUTURE PLANS:
-  Add a pricing page to display price depending on # of dogs and more discount during the holiday season
-  A blog about dogs<h1>
-
+<h1><strong>FUTURE PLANS:</strong></h1>
+  <h1>Add a pricing page to display price depending on # of dogs and more discount during the holiday season
+  A blog about dogs</h1>
 
 ![Demo Animation](../assets/pricing.gif?raw=true)
 
@@ -75,7 +74,6 @@ Admin can list future boarders by pick-up date</h1>
 <h1>Owners can schedule a boarding service for their dogs</h1>
 
 ![Demo Animation](../assets/serviceListDelete.gif?raw=true)
-
 
 <h1>Owners can list/delete a boarding service</h1>
 
@@ -88,7 +86,6 @@ Admin can list future boarders by pick-up date</h1>
 <h1>Admin can list all boarders by drop-off dates</h1>
 
 ![Demo Animation](../assets/listBoardersPickUp.gif?raw=true)
-
 
 <h1>Admin can list all boarders by pick-off dates</h1>
 
