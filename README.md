@@ -8,7 +8,9 @@ This app is written in Java and Spring Boot. I used Thymeleaf for the view and M
 
 <h1><strong>Features!!!</strong></h1>
 
-<h3>Owners can create/edit/delete profiles.Owners can enter/edit/remove dogs' details.
+<h3>Owners can create/edit/delete profiles.
+<br>
+Owners can enter/edit/remove dogs' details.
 
 Owners can schedule/remove their dogs for boarding services.
 
