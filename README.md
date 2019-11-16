@@ -20,7 +20,7 @@ tooltip link.</h1>
 
 ![Demo Animation](../assets/login.gif?raw=true)
 
-<h1>Owners can log in after creating their profiles</h1>
+<h1>Owners have to log in to access any links</h1>
 
 ![Demo Animation](../assets/adminAccessDenied.gif?raw=true)
 
@@ -49,7 +49,7 @@ tooltip link.</h1>
 ![Demo Animation](../assets/serviceListDelete.gif?raw=true)
 
 
-<h1>Owners can delete a boarding service</h1>
+<h1>Owners can list/delete a boarding service</h1>
 
 ![Demo Animation](../assets/listOwners.gif?raw=true)
 
