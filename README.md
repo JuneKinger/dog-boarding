@@ -1,18 +1,16 @@
 # dog-boarding
 ![Demo Animation](../assets/home.gif?raw=true)
 
-<h1><strong>What This Does!!!</strong></h1>
+#What This Does!!!
   
-<h3>A dog boarding business app that lets owners book a dog boarding service. 
-This app is written in Java and Spring Boot. I used Thymeleaf for the view and MySQL/MAMP for database storage.</h3>
+##A dog boarding business app that lets owners book a dog boarding service. 
+This app is written in Java and Spring Boot. I used Thymeleaf for the view and MySQL/MAMP for database storage.
 
-<h1><strong>Features!!!</strong></h1>
+#Features!!!
 
-<h3>Owners can create/edit/delete profiles.
-</br>
-Owners can enter/edit/remove dogs' details.
-
-Owners can schedule/remove their dogs for boarding services.
+###Owners can create/edit/delete profiles.
+###Owners can enter/edit/remove dogs' details.
+###Owners can schedule/remove their dogs for boarding services.
 
 Pricing tooltip link
 
