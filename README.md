@@ -3,9 +3,9 @@
 
 
 
-A dog boarding business app that lets owners to create/edit/delete profiles, enter their dogs' details, 
+<h2>A dog boarding business app that lets owners to create/edit/delete profiles, enter their dogs' details, 
 and schedule their dogs for boarding services. There is also an admin link for reporting and a pricing
-tooltip link.
+tooltip link.</h2>
 
 
 
