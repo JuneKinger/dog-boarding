@@ -38,6 +38,11 @@ tooltip link.</h1>
 
 <h1>Owners can remove their dogs' details from the system</h1>
 
+<h1>FUTURE PLANS:
+  Add a pricing page to display price depending on # of dogs and more discount during the holiday season
+  A blog about dogs<h1>
+
+
 ![Demo Animation](../assets/pricing.gif?raw=true)
 
 <h1>Pricing for boarding dogs is displayed as a tooltip</h1>
