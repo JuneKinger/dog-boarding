@@ -27,6 +27,7 @@ Admin can list future boarders by pick-up date.
 
 # FUTURE PLANS:
 Add a pricing page to display price depending on # of dogs and more discount during the holiday season.
+
 A blog about dogs.
 
 ![Demo Animation](../assets/register1.gif?raw=true)
