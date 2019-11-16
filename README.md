@@ -3,8 +3,8 @@
 
 <h1><strong>What This Does!!!</strong></h1>
   
-<h1>A dog boarding business app that lets owners book a dog boarding service. 
-This app is written in Java and Spring Boot. I used Thymeleaf for the view and MySQL/MAMP for database storage</h1>
+<h2>A dog boarding business app that lets owners book a dog boarding service. 
+This app is written in Java and Spring Boot. I used Thymeleaf for the view and MySQL/MAMP for database storage</h2>
 
 <h1><strong>Features!!!</strong></h1>
 
