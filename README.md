@@ -11,7 +11,7 @@ Owners can enter/edit/remove dogs' details.
 
 Owners can schedule/remove their dogs for boarding services.
 
-Pricing tooltip link
+Pricing tooltip link.
 
 Admin reporting with security to prevent unauthorized access.
 
