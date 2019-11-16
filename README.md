@@ -1,6 +1,11 @@
 # dog-boarding
 ![Demo Animation](../assets/home.gif?raw=true)
-A dog boarding business app
+
+A dog boarding business app that lets owners to create/edit/delete profiles, enter their dogs' details, 
+and schedule their dogs for boarding services. There is also an admin link for reporting and a pricing
+tooltip link.
+
+
 ![Demo Animation](../assets/register1.gif?raw=true)
 ![Demo Animation](../assets/register2.gif?raw=true)
 ![Demo Animation](../assets/login.gif?raw=true)
