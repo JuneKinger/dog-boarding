@@ -100,14 +100,17 @@ Admin can list only future boarders by pick-off dates.
 
 Users can log out, and once logged out have to log back in to access any links.
 
-Database Structure and rows!
-Dog table:
+# Database Structure and rows!
+# Dog table:
 ![Demo Animation](../assets/dog.gif?raw=true)
-Person table:
+
+# Person table:
 ![Demo Animation](../assets/person.gif?raw=true)
-Service table:
+
+# Service table:
 ![Demo Animation](../assets/service.gif?raw=true)
-Hibernate_sequence table:
+
+# Hibernate_sequence table:
 ![Demo Animation](../assets/hibernate_sequence_table.gif?raw=true)
 
 
