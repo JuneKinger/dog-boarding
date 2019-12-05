@@ -5,7 +5,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.util.Date;
 
-
 @Entity
 @DynamicUpdate
 public class Service {
@@ -14,18 +13,19 @@ public class Service {
     @GeneratedValue
     private int id;
 
+    // pattern used for using html type = "date" for a calendar popup for drop-off and pick-up dates
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
-    // one-to-many relationship established - creates column dog_id in service table
+    // many-to-one relationship established - creates column dog_id in service table as foreign key
     @ManyToOne
     @JoinColumn(name="dog_id")
     private Dog dog;
 
-    // one-to-many relationship established - creates column person_id in service table
+    // many-to-one relationship established - creates column person_id in service table as foreign key
     @ManyToOne
     @JoinColumn(name="person_id")
     private Person person;

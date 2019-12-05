@@ -14,6 +14,7 @@ import javax.validation.Valid;
 import java.lang.String;
 import static jdk.nashorn.internal.objects.NativeString.trim;
 
+// signup
 @Controller
 @RequestMapping(value = "person")
 public class ProfileController {
@@ -36,6 +37,7 @@ public class ProfileController {
     public String processSignupForm(@ModelAttribute @Valid Person person, String verify,
                                     Model model, HttpServletResponse response) {
 
+        // input fields check
         if (personDao.findByEmail(person.getEmail()) != null) {
             model.addAttribute("error", "This email address has been taken");
             model.addAttribute("title", "Sign up");
@@ -90,7 +92,7 @@ public class ProfileController {
             return "person/signup";
         }
 
-
+        // if passwords ok, set up cookie
         if (person.getPassword().equals(verify) && trim(verify) != "") {
 
             Cookie cookie = new Cookie("person", person.getEmail().toLowerCase());
@@ -102,7 +104,7 @@ public class ProfileController {
 
             person.setAdmin(false);
 
-            // convert email to lowercase before save so that it can be found on edit
+            // convert email to lowercase before save so that it can be found on edit of profile
             String pEmail = person.getEmail().toLowerCase();
             person.setEmail(pEmail);
 
@@ -208,7 +210,7 @@ public class ProfileController {
 
         }
     }
-
+    // edit profile details
     @RequestMapping(value = "edit", method = RequestMethod.POST)
     public String processEditForm(@ModelAttribute @Valid Person person,
                                   @RequestParam int id, Model model, HttpServletResponse response) {
@@ -260,6 +262,7 @@ public class ProfileController {
         return "home/index";
     }
 
+    // remove profile details and delete cookies
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemoveForm(Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {

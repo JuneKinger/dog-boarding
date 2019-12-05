@@ -1,16 +1,16 @@
 package org.launchcode.models.forms;
 
 import org.hibernate.annotations.DynamicUpdate;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
+//The @Entity annotation specifies that the class is an entity and is mapped to a database table.
 @Entity
+// @DynamicUpdate is a class-level annotation that can be applied to a JPA entity. It ensures that
+// Hibernate uses only the modified columns in the SQL statement that it generates for the update of an
+// entity.
 @DynamicUpdate
 public class Dog {
 
