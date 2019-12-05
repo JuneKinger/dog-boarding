@@ -30,7 +30,9 @@ Add a pricing page to display price depending on # of dogs and more discount dur
 
 Include dog-walking and pet-sitting services
 
-A blog about dogs.
+A blog about dogs
+
+Links for vet services and adoption agencies
 
 ![Demo Animation](../assets/register1.gif?raw=true)
 
