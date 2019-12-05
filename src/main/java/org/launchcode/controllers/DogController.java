@@ -18,6 +18,7 @@ import static jdk.nashorn.internal.objects.NativeString.trim;
 @RequestMapping("dogs")
 public class DogController {
 
+    // inject dependencies
     @Autowired
     private DogDao dogDao;
 
@@ -27,6 +28,8 @@ public class DogController {
     @Autowired
     private ServiceDao serviceDao;
 
+    // add, list, and delete dog details
+    // add dog details
     @RequestMapping(value = "add-dog-details", method = RequestMethod.GET)
     public String displayAddDogDetailsForm(Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {
@@ -82,7 +85,7 @@ public class DogController {
         return "redirect:/dogs/list-dog-details";
     }
 
-
+    // list dog details
     @RequestMapping(value = "list-dog-details", method = RequestMethod.GET)
     public String displayListDogDetailsForm(Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {
@@ -156,6 +159,7 @@ public class DogController {
 
     }
 
+    // remove dog details
     @RequestMapping(value = "remove-dog-details/{id}", method = RequestMethod.GET)
     public String displayRemoveDogDetailsForm(@PathVariable int id, Model model, @CookieValue(value = "person",
             defaultValue = "none") String email) {

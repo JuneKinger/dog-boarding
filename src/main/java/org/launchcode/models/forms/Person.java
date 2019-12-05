@@ -5,10 +5,13 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// @Entity creates an entity object or structure for table Person so that SB knows that
+// there is a database to connect
 @Entity
 @DynamicUpdate
 public class Person {
 
+    // Identifier needed to be specified for entity
     @Id
     @GeneratedValue
     private int id;

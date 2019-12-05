@@ -5,7 +5,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 
+// @Repository defines a repository
 // Establish generic CRUD operation on repository
+// <Person, Integer> is the integer key (Id) defined for Person
 @Repository
 @Transactional
 public interface PersonDao extends CrudRepository<Person, Integer> {
