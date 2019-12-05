@@ -5,7 +5,7 @@
 A dog boarding business app that lets owners book a dog boarding service. 
 This app is written in Java and Spring Boot. I have used Thymeleaf for the view and MySQL/MAMP for database storage.
 # Features!!!
-Owners can create/edit/delete profiles.
+Owners can create/edit/delete profiles - register, log in, and log out
 
 Owners can enter/edit/remove dogs' details.
 
