@@ -102,16 +102,16 @@ Users can log out, and once logged out have to log back in to access any links.
 
 # Database Structure and rows!
 # Dog table:
-![Demo Animation](../assets/dog.gif?raw=true)
+![Demo Animation](../assets/Dog_table.gif?raw=true)
 
 # Person table:
-![Demo Animation](../assets/person.gif?raw=true)
+![Demo Animation](../assets/Person_table.gif?raw=true)
 
 # Service table:
-![Demo Animation](../assets/service.gif?raw=true)
+![Demo Animation](../assets/Service_table.gif?raw=true)
 
 # Hibernate_sequence table:
-![Demo Animation](../assets/hibernate_sequence_table.gif?raw=true)
+![Demo Animation](../assets/Hibernate_sequence_table.gif?raw=true)
 
 
 
